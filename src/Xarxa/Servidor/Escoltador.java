@@ -5,6 +5,7 @@
  */
 package Xarxa.Servidor;
 
+import Xarxa.Sockets.PaquetSocket;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;

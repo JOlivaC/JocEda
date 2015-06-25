@@ -8,6 +8,7 @@ package main;
 import Xarxa.Missatges.Login;
 import Xarxa.Servidor.Escoltador;
 import Xarxa.Servidor.Sesio;
+import Xarxa.Sockets.PaquetSocket;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
@@ -23,7 +24,8 @@ public class Client {
         Login l = new Login();
         l.Dades.Name = "joan";
         l.Dades.Pass = "oliva";
-        Sesio.Escriure(s, l);
+        PaquetSocket t = new PaquetSocket(s);
+        t.Escriure(l);
         
 
         Scanner in = new Scanner(System.in);

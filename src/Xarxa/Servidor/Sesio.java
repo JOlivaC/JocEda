@@ -11,6 +11,7 @@ import Xarxa.Missatges.Login;
 import Xarxa.Missatges.LoginResponse;
 import Xarxa.Missatges.Paquet;
 import Xarxa.Missatges.PenjarJugador;
+import Xarxa.Sockets.PaquetSocket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,29 +24,23 @@ import java.util.logging.Logger;
  * @author JOAN
  */
 public class Sesio extends Thread {
-    private Socket connexio;
+    private PaquetSocket connexio;
     private CasUsSessio CUSessio;
 
     
-    public Sesio(Socket s){
-        connexio = s;
+    public Sesio(Socket s) throws IOException{
+        connexio = new PaquetSocket(s);
         CUSessio = new CasUsSessio();
         this.setDaemon(true);
     }
-    public static Paquet Llegir(Socket s) throws IOException, ClassNotFoundException{
-        Paquet Ret = (Paquet) new ObjectInputStream(s.getInputStream()).readObject();
-        return Ret;
-    }
-    public static void Escriure(Socket s,Paquet p) throws IOException{
-        new ObjectOutputStream(s.getOutputStream()).writeObject(p);
-    }
+
     public void run() {
             
             boolean end = false;
             while (!end){
                 try {
                     Paquet dada;
-                    dada = Llegir(connexio);
+                    dada = connexio.Llegir();
                     if (dada.EsLogin()) Login(dada.LoginCast());
                     
                     else if (dada.EsFinalitzar()){
@@ -71,7 +66,7 @@ public class Sesio extends Thread {
             R.LR.Autoritzat = false;
         }
         
-        Sesio.Escriure(connexio,R);
+        connexio.Escriure(R);
     }
     
 }
