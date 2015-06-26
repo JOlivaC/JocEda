@@ -10,5 +10,8 @@ package Domini.Model;
  * @author JOAN
  */
 public class Jugador {
+    private String name;
+    
+    
     
 }
