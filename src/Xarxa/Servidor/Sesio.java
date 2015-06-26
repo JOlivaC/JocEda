@@ -11,7 +11,10 @@ import Xarxa.Missatges.Login;
 import Xarxa.Missatges.LoginResponse;
 import Xarxa.Missatges.Paquet;
 import Xarxa.Missatges.PenjarJugador;
+import Xarxa.Missatges.PenjarJugadorResponse;
 import Xarxa.Sockets.PaquetSocket;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -28,8 +31,8 @@ public class Sesio extends Thread {
     private CasUsSessio CUSessio;
 
     
-    public Sesio(Socket s) throws IOException{
-        connexio = new PaquetSocket(s);
+    public Sesio(PaquetSocket s) throws IOException{
+        connexio = s;
         CUSessio = new CasUsSessio();
         this.setDaemon(true);
     }
@@ -46,9 +49,7 @@ public class Sesio extends Thread {
                     else if (dada.EsFinalitzar()){
                         
                     }
-                    else if (dada.EsPenjarJugador()){
-                        
-                    }
+                    else if (dada.EsPenjarJugador()) Penjar(dada.PenjarJugadorCast());
                 } catch (IOException | ClassNotFoundException ex) {
                     end = true;
                 } 
@@ -57,15 +58,21 @@ public class Sesio extends Thread {
 
     }
     
+    private void Penjar(PenjarJugador PJ) throws IOException{
+    	PenjarJugadorResponse R = new PenjarJugadorResponse(true);
+    	System.out.print("Fitxer Rebut\n");
+    	connexio.Escriure(R);
+    }
+    
     private void Login(Login l) throws IOException{
         LoginResponse R = new LoginResponse();
         try {
-            CUSessio.Login(l.Dades.Name, l.Dades.Pass);
-            R.LR.Autoritzat = true;
-            System.out.print("Login Successful");
+            CUSessio.Login(l.User, l.Pass);
+            R.autoritzat = true;
+            System.out.print("Login Successful\n");
         } catch (Exception ex) {
-            R.LR.Autoritzat = false;
-            System.out.print("Login Failed");
+            R.autoritzat = false;
+            System.out.print("Login Failed\n");
         }
         
         connexio.Escriure(R);

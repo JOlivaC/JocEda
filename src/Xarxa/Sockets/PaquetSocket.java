@@ -6,10 +6,14 @@
 package Xarxa.Sockets;
 
 import Xarxa.Missatges.Paquet;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketImpl;
+import java.net.UnknownHostException;
 
 /**
  *
@@ -18,13 +22,17 @@ import java.net.Socket;
 public class PaquetSocket extends Socket {
     private ObjectOutputStream out;
     private ObjectInputStream in;
-    public PaquetSocket(Socket s) throws IOException{
-        super(s.getInetAddress(),s.getPort());
-        
-        
-    }
-    public void Escriure(Paquet p) throws IOException{
-        out = new ObjectOutputStream(getOutputStream());
+
+    public PaquetSocket(SocketImpl socketImpl) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PaquetSocket(String string, int i) throws UnknownHostException, IOException {
+		 super(string,i);
+	}
+
+	public void Escriure(Paquet p) throws IOException{
+		 out = new ObjectOutputStream(getOutputStream());
          out.writeObject(p);
     }
     

@@ -12,7 +12,10 @@ import Xarxa.Missatges.Login;
 import Xarxa.Missatges.LoginResponse;
 import Xarxa.Missatges.Paquet;
 import Xarxa.Sockets.PaquetSocket;
+
+import java.io.File;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -25,19 +28,26 @@ public class Solicitant implements CapaDominiInterface {
     
     public Solicitant() throws IOException{
         //llegir ip i port d'algun lloc
-        Socket s = new Socket("localhost",4000);
-        this.s = new PaquetSocket(s);
+         s = new PaquetSocket("localhost",4000);
+        //this.s = new PaquetSocket(s);
     }
     
     @Override
     public void Login(String User,String Pass) throws IOException, ClassNotFoundException, InvalidLogin{
-        s.Escriure(new Xarxa.Missatges.Login(User,Pass));
-        LoginResponse r = s.Llegir().LoginResponseCast();
-        if (! r.LR.Autoritzat) throw new InvalidLogin();   
+         s.Escriure(new Xarxa.Missatges.Login(User,Pass));
+    	 LoginResponse r = s.Llegir().LoginResponseCast();
+    	 if (! r.autoritzat) throw new InvalidLogin();   
     }
     
-    public void EnviarFitxer(FitxerJugador FJ) throws IOException, ClassNotFoundException, FitxerInvalid{
-        s.Escriure(new Xarxa.Missatges.PenjarJugador(FJ));
-        if (!s.Llegir().PenjarJugadorResponseCast().PJ.valid) throw new FitxerInvalid();
+    public static void Escriure(Socket s,Paquet p) throws IOException{
+    	new ObjectOutputStream(s.getOutputStream()).writeObject(p);
     }
+
+	@Override
+	public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid{
+        s.Escriure(new Xarxa.Missatges.PenjarJugador(f));
+        if (!s.Llegir().PenjarJugadorResponseCast().valid) throw new FitxerInvalid();
+	}
+    
+   
 }

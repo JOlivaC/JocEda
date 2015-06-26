@@ -5,6 +5,8 @@
  */
 package Xarxa.Missatges;
 
+import java.io.File;
+
 import Domini.Fitxers.FitxerJugador;
 
 /**
@@ -12,10 +14,10 @@ import Domini.Fitxers.FitxerJugador;
  * @author JOAN
  */
 public class PenjarJugador extends Paquet {
-    public Comunicacio.PenjarJugador PJ = new Comunicacio.PenjarJugador();
+    public File F;
 
-    public PenjarJugador(FitxerJugador F){
-        PJ.FJ = F;
+    public PenjarJugador(File F){
+        this.F = F;
     }
     public boolean EsPenjarJugador(){return true;}
     

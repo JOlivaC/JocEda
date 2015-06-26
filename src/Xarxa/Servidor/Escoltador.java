@@ -6,6 +6,8 @@
 package Xarxa.Servidor;
 
 import Xarxa.Sockets.PaquetSocket;
+import Xarxa.Sockets.SocketServidor;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -28,19 +30,21 @@ public class Escoltador extends Thread {
 
     @Override
     public void run() {
-        for (;;){
-            try {
-                Socket s;
-                ServerSocket SS = new ServerSocket(4000);
-                s = SS.accept();
-                System.out.print("Nova Connexio");
-                new Sesio(s).start();
+    	SocketServidor SS;
+		try {
+			SS = new SocketServidor(4000);
+			for (;;){
+	            	    
+	               	PaquetSocket s = SS.accept();
+	                System.out.print("Nova Connexio\n");
+	                new Sesio(s).start();
 
-            } catch (IOException ex) {
-
-            }
-
-        }
+	        }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+        
     }
 
     

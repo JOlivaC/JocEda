@@ -13,10 +13,18 @@ import javax.swing.JPanel;
  */
 public class PanellContenidor extends JPanel {
     
+	private String titol;
+	public PanellContenidor(){
+		
+	}
+	public  PanellContenidor(String t){titol = t;}
     public void Show(){
         this.setVisible(true);
     }
     public void tancar(){
         this.setVisible(false);
     }
+    
+    public String getTitol(){return titol;}
+    public void setTitol(String titol){this.titol = titol;}
 }

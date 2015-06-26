@@ -10,7 +10,7 @@ package Xarxa.Missatges;
  * @author JOAN
  */
 public class LoginResponse extends Paquet{
-    public Comunicacio.LoginResponse LR = new Comunicacio.LoginResponse();
+    public boolean autoritzat;
     
     public boolean EsLoginResponse(){return true;}
 }

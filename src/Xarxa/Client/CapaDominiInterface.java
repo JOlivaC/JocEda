@@ -8,6 +8,8 @@ package Xarxa.Client;
 import Domini.Fitxers.FitxerJugador;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
+
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -17,6 +19,6 @@ import java.io.IOException;
 public interface CapaDominiInterface {
     public void Login(String User,String Pass) throws IOException, ClassNotFoundException, InvalidLogin;
     
-    public void EnviarFitxer(FitxerJugador FJ) throws IOException, ClassNotFoundException, FitxerInvalid;
+    public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid;
     
 }

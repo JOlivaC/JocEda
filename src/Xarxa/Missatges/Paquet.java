@@ -26,4 +26,7 @@ public abstract class Paquet implements Serializable {
     public LoginResponse LoginResponseCast(){return (LoginResponse) this;}
     public PenjarJugadorResponse PenjarJugadorResponseCast(){return (PenjarJugadorResponse) this;}
     
+    
+    
+    
 }
