@@ -62,8 +62,10 @@ public class Sesio extends Thread {
         try {
             CUSessio.Login(l.Dades.Name, l.Dades.Pass);
             R.LR.Autoritzat = true;
+            System.out.print("Login Successful");
         } catch (Exception ex) {
             R.LR.Autoritzat = false;
+            System.out.print("Login Failed");
         }
         
         connexio.Escriure(R);

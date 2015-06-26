@@ -16,18 +16,20 @@ import java.net.Socket;
  * @author JOAN
  */
 public class PaquetSocket extends Socket {
-    private final ObjectOutputStream out;
-    private final ObjectInputStream in;
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
     public PaquetSocket(Socket s) throws IOException{
         super(s.getInetAddress(),s.getPort());
-        out = new ObjectOutputStream(getOutputStream());
-        in = new ObjectInputStream(getInputStream());
+        
+        
     }
     public void Escriure(Paquet p) throws IOException{
+        out = new ObjectOutputStream(getOutputStream());
          out.writeObject(p);
     }
     
     public Paquet Llegir() throws IOException, ClassNotFoundException{
+        in = new ObjectInputStream(getInputStream());
         return (Paquet) in.readObject();
     }
 }

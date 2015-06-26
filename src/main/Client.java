@@ -5,6 +5,7 @@
  */
 package main;
 
+import Presentacio.Controladors.ControladorPrincipal;
 import Xarxa.Missatges.Login;
 import Xarxa.Servidor.Escoltador;
 import Xarxa.Servidor.Sesio;
@@ -19,6 +20,6 @@ import java.util.Scanner;
  */
 public class Client {
     public static void main(String[] args) throws IOException {
-        
+        new ControladorPrincipal();
     }
 }

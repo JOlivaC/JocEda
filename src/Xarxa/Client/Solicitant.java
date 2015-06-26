@@ -20,7 +20,7 @@ import java.util.Scanner;
  *
  * @author JOAN
  */
-public class Solicitant {
+public class Solicitant implements CapaDominiInterface {
     private PaquetSocket s;
     
     public Solicitant() throws IOException{
@@ -29,6 +29,7 @@ public class Solicitant {
         this.s = new PaquetSocket(s);
     }
     
+    @Override
     public void Login(String User,String Pass) throws IOException, ClassNotFoundException, InvalidLogin{
         s.Escriure(new Xarxa.Missatges.Login(User,Pass));
         LoginResponse r = s.Llegir().LoginResponseCast();

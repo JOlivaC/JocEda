@@ -32,7 +32,7 @@ public class Login extends PanellAmbMsg{
     private JTextField UserName;
     private JPasswordField Pass;
     
-    public Login(ActionListener OKHandler,ActionListener SortirHandler){
+    public Login(ActionListener OKHandler){
 
 
         this.setLayout(new BorderLayout());
@@ -42,7 +42,6 @@ public class Login extends PanellAmbMsg{
         JPanel Misc = new JPanel();
         Misc.setLayout(new BorderLayout());
         
-        Misc.add(new BotoSortir(SortirHandler), WEST);
         Misc.add(new BotoOK(OKHandler), EAST);
         
         this.add(Misc, SOUTH);
@@ -63,8 +62,6 @@ public class Login extends PanellAmbMsg{
         
         this.add(Camps, CENTER);
         
-        UserName.setText("2048");
-        Pass.setText("2048");
 
     }
     
