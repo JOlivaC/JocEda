@@ -25,26 +25,25 @@ public class LectorResultat {
         }
     }
 
-    
-	public InfoResultat Llegir(File f) throws FileNotFoundException, IOException, Exception{
-		BufferedReader r = new BufferedReader(new FileReader(f));
-                String l;
-                String[] names = new String[0];
-                String[] score = new String[0];
-                while((l = r.readLine()) != null){
-                    String[] aux = l.split(" ");
-                    if(aux[0].equals("names")) names = aux;
-                    if(aux[0].equals("score")) score = aux;
-                }
-                if (names.length==0 || score.length==0)
-                    throw new Exception("El fitxer no és un fitxer de Battle Royale vàlid.");
-                
-                InfoResultat info = new InfoResultat(4);
-                for (int i=1; i<=4; ++i){
-                    InfoJugador inf = new InfoJugador(names[i],Integer.parseInt(score[i]));
-                    info.addInfoJugador(inf);
-                }
-                info.ordenar();
-		return info;
-	}
+    public InfoResultat Llegir(File f) throws FileNotFoundException, IOException, Exception{
+            BufferedReader r = new BufferedReader(new FileReader(f));
+            String l;
+            String[] names = new String[0];
+            String[] score = new String[0];
+            while((l = r.readLine()) != null){
+                String[] aux = l.split(" ");
+                if(aux[0].equals("names")) names = aux;
+                if(aux[0].equals("score")) score = aux;
+            }
+            if (names.length==0 || score.length==0)
+                throw new Exception("El fitxer no és un fitxer de Battle Royale vàlid.");
+
+            InfoResultat info = new InfoResultat(4);
+            for (int i=1; i<=4; ++i){
+                InfoJugador inf = new InfoJugador(names[i],Integer.parseInt(score[i]));
+                info.addInfoJugador(inf);
+            }
+            info.ordenar();
+            return info;
+    }
 }
