@@ -15,6 +15,11 @@ public class Login extends Paquet {
     public Comunicacio.Login Dades = new Comunicacio.Login();
 
 
+    public Login(){}
+    public Login(String Name,String Pass){
+        Dades.Name = Name;
+        Dades.Pass = Pass;
+    }
     public boolean EsLogin(){return true;}
     
     

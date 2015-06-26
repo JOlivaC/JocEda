@@ -19,16 +19,6 @@ import java.util.Scanner;
  */
 public class Client {
     public static void main(String[] args) throws IOException {
-        Socket s = new Socket("localhost",4000);
         
-        Login l = new Login();
-        l.Dades.Name = "joan";
-        l.Dades.Pass = "oliva";
-        PaquetSocket t = new PaquetSocket(s);
-        t.Escriure(l);
-        
-
-        Scanner in = new Scanner(System.in);
-        while (in.nextLine().compareTo("exit") != 0);
     }
 }

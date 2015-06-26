@@ -11,13 +11,11 @@ import Domini.Fitxers.FitxerJugador;
  *
  * @author JOAN
  */
-public class PenjarJugador extends Paquet {
-    public Comunicacio.PenjarJugador PJ = new Comunicacio.PenjarJugador();
+public class PenjarJugadorResponse extends Paquet {
+    public Comunicacio.PenjarJugadorResponse PJ = new Comunicacio.PenjarJugadorResponse();
 
-    public PenjarJugador(FitxerJugador F){
-        PJ.FJ = F;
+    public PenjarJugadorResponse(boolean valid){
+        PJ.valid = valid;
     }
-    public boolean EsPenjarJugador(){return true;}
-    
-    
+    public boolean EsPenjarJugadorResponse(){return true;}
 }
