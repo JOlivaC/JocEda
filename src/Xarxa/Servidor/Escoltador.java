@@ -33,8 +33,7 @@ public class Escoltador extends Thread {
     	SocketServidor SS;
 		try {
 			SS = new SocketServidor(4000);
-			for (;;){
-	            	    
+			for (;;){         	    
 	               	PaquetSocket s = SS.accept();
 	                System.out.print("Nova Connexio\n");
 	                new Sesio(s).start();
