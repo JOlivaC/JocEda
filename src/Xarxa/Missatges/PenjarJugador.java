@@ -6,7 +6,9 @@
 package Xarxa.Missatges;
 
 import java.io.File;
+import java.io.IOException;
 
+import Xarxa.Utils.Fitxer;
 import Domini.Fitxers.FitxerJugador;
 
 /**
@@ -14,12 +16,14 @@ import Domini.Fitxers.FitxerJugador;
  * @author JOAN
  */
 public class PenjarJugador extends Paquet {
-    public File F;
+    public Fitxer F;
 
-    public PenjarJugador(File F){
-        this.F = F;
+    public PenjarJugador(File F) throws IOException{
+        this.F = new Fitxer(F);
     }
     public boolean EsPenjarJugador(){return true;}
-    
+    public File getPenjarJugador() throws IOException{
+    	return F.getFile();
+    }
     
 }
