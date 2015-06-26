@@ -10,5 +10,5 @@ package Domini.Model;
  * @author JOAN
  */
 public class Resultat {
-
+	private Vector<Jugador> 
 }

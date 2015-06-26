@@ -60,6 +60,7 @@ public class Sesio extends Thread {
     
     private void Penjar(PenjarJugador PJ) throws IOException{
     	PenjarJugadorResponse R = new PenjarJugadorResponse(true);
+    	CUSessio.Penjar(PJ.F);
     	System.out.print("Fitxer Rebut\n");
     	connexio.Escriure(R);
     }

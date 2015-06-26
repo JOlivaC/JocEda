@@ -16,4 +16,8 @@ public class InfoJugador {
         public int getPuntuacio(){
             return puntuacio;
         }
+        
+        public String toString(){
+        	return nom + ": " + String.valueOf(puntuacio);
+        }
 }
