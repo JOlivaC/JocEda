@@ -1,6 +1,19 @@
 package Domini.LectorResultat;
 
 public class InfoJugador {
-	public String nom;
-	public int puntuacio;
+        private String nom;
+        private int puntuacio;
+        
+        public InfoJugador(String n, int p){
+            nom = n;
+            puntuacio = p;
+        }
+        
+        public String getNom(){
+            return nom;
+        }
+        
+        public int getPuntuacio(){
+            return puntuacio;
+        }
 }
