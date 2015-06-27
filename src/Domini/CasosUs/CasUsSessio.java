@@ -18,8 +18,7 @@ import Domini.LectorResultat.LectorResultat;
 public class CasUsSessio {
     public void Login(String User,String Pass) throws Exception
     {
-        
-       
+        new CasUsLogin().Login(User, Pass);    
     }
     
     public void Penjar(File f){

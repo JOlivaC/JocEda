@@ -5,10 +5,15 @@
  */
 package Domini.CasosUs;
 
+import Excepcions.InvalidLogin;
+
 /**
  *
  * @author JOAN
  */
 public class CasUsLogin {
-    
+	public CasUsLogin(){}
+    public void Login(String User,String Pass) throws InvalidLogin{
+    	
+    }
 }

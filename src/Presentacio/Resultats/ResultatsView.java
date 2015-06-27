@@ -12,15 +12,15 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Comunicacio.InfoJugadorPartida;
-import Comunicacio.InfoResultat;
+import Comunicacio.InfoPartida;
 import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Taula.TaulaResultats;
 
 public class ResultatsView extends PanellGeneral {
 	private TaulaResultats t;
 	private int n;
-	SortedSet<InfoResultat> Info;
-	Map<String,InfoResultat> Acces;
+	SortedSet<InfoPartida> Info;
+	Map<String,InfoPartida> Acces;
 	
 	private ActionListener Visualitzar;
 	private int LastId;
@@ -33,10 +33,10 @@ public class ResultatsView extends PanellGeneral {
 		this.add(t);
 	}
 	public int getLastID(){return LastId;}
-	public void SetResultats(SortedSet<InfoResultat> Info){
+	public void SetResultats(SortedSet<InfoPartida> Info){
 		t.TransformarEnBoto(1 + n, new Resultats());
 		t.TransformarEnBoto(1 + n + 1, new Visualitzar());
-		for (InfoResultat i:Info){
+		for (InfoPartida i:Info){
 			Object[] x = new Object[3 + n];
 			x[0] = i.IDPartida;
 			int k = 0;
@@ -54,8 +54,8 @@ public class ResultatsView extends PanellGeneral {
 			t.Insereix(x);
 			
 		}
-		Acces = new HashMap<String,InfoResultat>();
-		for (InfoResultat i: Info){
+		Acces = new HashMap<String,InfoPartida>();
+		for (InfoPartida i: Info){
 			Acces.put(String.valueOf(i.IDPartida), i);
 		}
 		this.Info = Info;
@@ -82,7 +82,7 @@ public class ResultatsView extends PanellGeneral {
 	        int modelRow = Integer.valueOf( e.getActionCommand() );
 	        
 	        String id = String.valueOf(((DefaultTableModel)table.getModel()).getValueAt(modelRow, 0));
-	        InfoResultat j = Acces.get(id);
+	        InfoPartida j = Acces.get(id);
 	        
 	        int k = 0;
 	        for (InfoJugadorPartida ij: j.Jugadors){

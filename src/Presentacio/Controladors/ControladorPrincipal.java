@@ -5,7 +5,7 @@
  */
 package Presentacio.Controladors;
 
-import Comunicacio.InfoResultat;
+import Comunicacio.InfoPartida;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
 import Excepcions.NoHiHaFitxer;
@@ -66,7 +66,7 @@ public class ControladorPrincipal {
     }
     public void VeureResultats(){
     	MostrarResultats(4);
-    	VistaResultats.SetResultats(InfoResultat.ConjStub());
+    	//VistaResultats.SetResultats(InfoPartida.ConjStub());
     }
     public void VisualitzarPartida(int IDPartida){
     	System.out.print(IDPartida);

@@ -10,5 +10,8 @@ package Domini.CasosUs;
  * @author JOAN
  */
 public class CasUsJugarPartida {
-    
+	public CasUsJugarPartida(){}
+	public void JugarPartida(int IDPartida){
+		
+	}
 }

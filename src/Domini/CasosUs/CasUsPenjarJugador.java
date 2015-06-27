@@ -5,10 +5,18 @@
  */
 package Domini.CasosUs;
 
+import java.io.File;
+
+import Domini.Model.Usuari;
+import Excepcions.FitxerInvalid;
+
 /**
  *
  * @author JOAN
  */
 public class CasUsPenjarJugador {
-    
+    public CasUsPenjarJugador(Usuari u){}
+    public void PenjarJugador(File f) throws FitxerInvalid{
+    	
+    }
 }
