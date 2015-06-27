@@ -5,6 +5,7 @@
  */
 package Presentacio.Controladors;
 
+import Comunicacio.InfoResultat;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
 import Excepcions.NoHiHaFitxer;
@@ -29,6 +30,8 @@ import java.util.logging.Logger;
 public class ControladorPrincipal {
     private Presentacio.LoginView.Login VistaLogin;
     private Presentacio.PenjarView.Penjar VistaPenjar;
+    private Presentacio.MenuPrincipalView.MenuPrincipal VistaMenu;
+    private Presentacio.Resultats.ResultatsView VistaResultats;
     private CapaDominiInterface Domini;
     private Finestra Vista;
     private GestorContextual Gestor;
@@ -48,10 +51,25 @@ public class ControladorPrincipal {
     	 VistaPenjar = new Presentacio.PenjarView.Penjar(new FitxerOK(),new Retrocedir());
     	 CanviarContext("Penjar Jugador",VistaPenjar);
     }
+    private void MostrarMenu(){
+    	VistaMenu = new Presentacio.MenuPrincipalView.MenuPrincipal(new Penjar(), new Resultats(), new Ranking());
+    	CanviarContext("Menu",VistaMenu);
+    }
+    private void MostrarResultats(int n){
+    	VistaResultats = new Presentacio.Resultats.ResultatsView(new Retrocedir(), n);
+    	CanviarContext("Resultats",VistaResultats);
+    }
+    public void VeureResultats(){
+    	MostrarResultats(4);
+    	VistaResultats.SetResultats(InfoResultat.ConjStub());
+    }
+    public void VisualitzarPartida(int IDPartida){
+    	
+    }
     public void Login(String User,String Pass){
         try {
             Domini.Login(User, Pass);
-            MostrarPenjar();
+            MostrarMenu();
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
@@ -60,6 +78,7 @@ public class ControladorPrincipal {
             VistaLogin.MostraMsg("Login Incorrecte");
         }
     }
+    
     public void PenjarFitxer(){
     	try {
     		File f = VistaPenjar.getFitxer();
@@ -97,10 +116,47 @@ public class ControladorPrincipal {
         
     }
     
+    private class Penjar implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MostrarPenjar();
+			
+		}
+    	
+    }
+    private class Resultats implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			VeureResultats();
+			
+		}
+    	
+    }
+    private class Ranking implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+    	
+    }
     private class FitxerOK implements ActionListener{
     	public void actionPerformed(ActionEvent e){
     		PenjarFitxer();
     	}
+    }
+    
+    private class VisualitzarPartida implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+    	
     }
     
     private class Retrocedir implements ActionListener{
@@ -111,4 +167,5 @@ public class ControladorPrincipal {
 		}
     	
     }
+    
 }

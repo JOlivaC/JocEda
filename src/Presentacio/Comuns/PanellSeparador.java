@@ -26,7 +26,7 @@ public class PanellSeparador extends JPanel {
 
         this.setLayout(new GridBagLayout());
         
-        
+        klj
         Central = new JPanel();
         l = new BoxLayout(Central, Y_AXIS);
         Central.setLayout(l);
