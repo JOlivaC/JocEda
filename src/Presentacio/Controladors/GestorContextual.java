@@ -17,6 +17,7 @@ public class GestorContextual {
 	}
 	
 	public PanellContenidor Retrocedir(){
-		return Pila.pop();
+		Pila.pop();
+		return Pila.peek();
 	}
 }

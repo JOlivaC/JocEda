@@ -1,12 +1,9 @@
 package Presentacio.PenjarView;
 
 import static java.awt.BorderLayout.CENTER;
-import static java.awt.BorderLayout.EAST;
 import static java.awt.BorderLayout.NORTH;
-import static java.awt.BorderLayout.SOUTH;
 
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -14,24 +11,20 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 import Excepcions.NoHiHaFitxer;
-import Presentacio.Comuns.BotoOK;
-import Presentacio.Comuns.PanellAmbMsg;
+import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Comuns.PanellSeparador;
 import Presentacio.Comuns.TextMesCamp;
 
-public class Penjar extends PanellAmbMsg {
+public class Penjar extends PanellGeneral{
 	private File f;
 	private JLabel FitxerText;
 	
 	public Penjar(ActionListener Acceptar,ActionListener Retrocedir){
-		 	this.setLayout(new BorderLayout());
-	        this.add(msg, NORTH);
+			super(Retrocedir);
 	        
+			
 	        JButton Examinar = new JButton("Examinar...");
 	        Examinar.addActionListener(new Examinar());
 	        
@@ -46,10 +39,7 @@ public class Penjar extends PanellAmbMsg {
 	        BotoAcceptar.addActionListener(Acceptar);
 	        
 	        S.afegir(BotoAcceptar);
-	        
-	        JPanel C = new JPanel(new GridBagLayout());
-	        C.add(S);
-	        this.add(C, CENTER);
+	        Centre.add(S);
 	}
 	public void SeleccionaFitxer() {
 		 JFileChooser Sel = new JFileChooser();
