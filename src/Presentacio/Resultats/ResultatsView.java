@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Comunicacio.InfoJugadorPartida;
 import Comunicacio.InfoResultat;
-import Domini.LectorResultat.InfoJugador;
 import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Taula.TaulaResultats;
 
@@ -21,14 +21,18 @@ public class ResultatsView extends PanellGeneral {
 	private int n;
 	SortedSet<InfoResultat> Info;
 	Map<String,InfoResultat> Acces;
-	public ResultatsView(ActionListener Retrocedir,int n){
+	
+	private ActionListener Visualitzar;
+	private int LastId;
+	public ResultatsView(ActionListener Retrocedir,ActionListener Visualitzar,int n){
 		super(Retrocedir);
 		
+		this.Visualitzar = Visualitzar;
 		t = new TaulaResultats(n);
 		this.n = n;
 		this.add(t);
 	}
-	
+	public int getLastID(){return LastId;}
 	public void SetResultats(SortedSet<InfoResultat> Info){
 		t.TransformarEnBoto(1 + n, new Resultats());
 		t.TransformarEnBoto(1 + n + 1, new Visualitzar());
@@ -36,7 +40,7 @@ public class ResultatsView extends PanellGeneral {
 			Object[] x = new Object[3 + n];
 			x[0] = i.IDPartida;
 			int k = 0;
-			for (InfoJugador IJ: i.Jugadors){
+			for (InfoJugadorPartida IJ: i.Jugadors){
 				k++;
 				x[k] = IJ.getNom();
 				
@@ -64,8 +68,8 @@ public class ResultatsView extends PanellGeneral {
 			JTable table = (JTable)e.getSource();
 	        int modelRow = Integer.valueOf( e.getActionCommand() );
 	        
-	        ((DefaultTableModel)table.getModel()).getValueAt(modelRow, 0);
-			System.out.print(((DefaultTableModel)table.getModel()).getValueAt(modelRow, 0));
+	        LastId = Integer.valueOf(String.valueOf(((DefaultTableModel)table.getModel()).getValueAt(modelRow, 0)));
+			Visualitzar.actionPerformed(e);
 		}
 		
 	}
@@ -81,7 +85,7 @@ public class ResultatsView extends PanellGeneral {
 	        InfoResultat j = Acces.get(id);
 	        
 	        int k = 0;
-	        for (InfoJugador ij: j.Jugadors){
+	        for (InfoJugadorPartida ij: j.Jugadors){
 	        	
 	        	t.Set(modelRow, 1 + k, ij);
 	        	k ++;

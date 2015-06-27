@@ -32,6 +32,7 @@ public class ControladorPrincipal {
     private Presentacio.PenjarView.Penjar VistaPenjar;
     private Presentacio.MenuPrincipalView.MenuPrincipal VistaMenu;
     private Presentacio.Resultats.ResultatsView VistaResultats;
+    private Presentacio.Classificacio.ClassificacioView VistaRanking;
     private CapaDominiInterface Domini;
     private Finestra Vista;
     private GestorContextual Gestor;
@@ -56,14 +57,23 @@ public class ControladorPrincipal {
     	CanviarContext("Menu",VistaMenu);
     }
     private void MostrarResultats(int n){
-    	VistaResultats = new Presentacio.Resultats.ResultatsView(new Retrocedir(), n);
+    	VistaResultats = new Presentacio.Resultats.ResultatsView(new Retrocedir(),new VisualitzarPartida(), n);
     	CanviarContext("Resultats",VistaResultats);
+    }
+    private void MostrarRanking(int n){
+    	VistaRanking = new Presentacio.Classificacio.ClassificacioView(new Retrocedir(),n);
+    	CanviarContext("Classificacio",VistaRanking);
     }
     public void VeureResultats(){
     	MostrarResultats(4);
     	VistaResultats.SetResultats(InfoResultat.ConjStub());
     }
     public void VisualitzarPartida(int IDPartida){
+    	System.out.print(IDPartida);
+    	
+    }
+    public void VeureRanking(){
+    	MostrarRanking(4);
     	
     }
     public void Login(String User,String Pass){
@@ -138,7 +148,7 @@ public class ControladorPrincipal {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			VeureRanking();
 			
 		}
     	
@@ -153,8 +163,7 @@ public class ControladorPrincipal {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			VisualitzarPartida(VistaResultats.getLastID());
 		}
     	
     }

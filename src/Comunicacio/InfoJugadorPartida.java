@@ -1,12 +1,12 @@
-package Domini.LectorResultat;
+package Comunicacio;
 
 import java.util.Comparator;
 
-public class InfoJugador {
+public class InfoJugadorPartida {
     private String nom;
     private int puntuacio;
 
-    public InfoJugador(String n, int p){
+    public InfoJugadorPartida(String n, int p){
         nom = n;
         puntuacio = p;
     }
@@ -23,9 +23,9 @@ public class InfoJugador {
             return nom + ": " + String.valueOf(puntuacio);
     }
 
-    public static Comparator<InfoJugador> PUNTUACIO = new Comparator<InfoJugador>() {
+    public static Comparator<InfoJugadorPartida> PUNTUACIO = new Comparator<InfoJugadorPartida>() {
         @Override
-        public int compare(InfoJugador o1, InfoJugador o2) {
+        public int compare(InfoJugadorPartida o1, InfoJugadorPartida o2) {
             return Integer.valueOf(o2.puntuacio).compareTo(o1.puntuacio);
         }
     };

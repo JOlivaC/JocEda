@@ -2,8 +2,10 @@ package Domini.LectorResultat;
 
 import java.io.File;
 
+import Comunicacio.InfoJugadorPartida;
 import Domini.Model.Resultat;
 import Presentacio.Controladors.ControladorPrincipal;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -40,7 +42,7 @@ public class LectorResultat {
 
             InfoResultat info = new InfoResultat(4);
             for (int i=1; i<=4; ++i){
-                InfoJugador inf = new InfoJugador(names[i],Integer.parseInt(score[i]));
+                InfoJugadorPartida inf = new InfoJugadorPartida(names[i],Integer.parseInt(score[i]));
                 info.addInfoJugador(inf);
             }
             info.ordenar();
