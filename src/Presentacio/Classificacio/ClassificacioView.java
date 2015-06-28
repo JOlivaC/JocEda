@@ -18,7 +18,7 @@ public class ClassificacioView extends PanellGeneral{
 		ret[0] = "Jugador";
 		ret[1] = "Punts";
 		for (int k = 0;k < n; k++){
-			ret[2 + k] = "Nº" + String.valueOf(k+1);
+			ret[2 + k] = "NÂº" + String.valueOf(k+1);
 		}
 		return ret;
 	}
