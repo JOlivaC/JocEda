@@ -5,6 +5,9 @@
  */
 package Domini.CasosUs;
 
+import Dades.Excepcions.NoExisteixUsuari;
+import Domini.Factories.FactoriaControladors;
+import Domini.Model.Usuari;
 import Excepcions.InvalidLogin;
 
 /**
@@ -13,7 +16,13 @@ import Excepcions.InvalidLogin;
  */
 public class CasUsLogin {
 	public CasUsLogin(){}
-    public void Login(String User,String Pass) throws InvalidLogin{
-    	
+    public Usuari Login(String User,String Pass) throws InvalidLogin{
+    	try {
+			Usuari u = FactoriaControladors.getInstance().getCtrlUsuari().get(User);
+			if (! u.getPass().equals(Pass)) throw new InvalidLogin();
+			return u;
+		} catch (Exception e) {
+			throw new InvalidLogin();
+		}
     }
 }

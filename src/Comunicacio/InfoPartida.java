@@ -13,11 +13,36 @@ public class InfoPartida extends Tipus implements Comparable{
 		Jugadors = new HashSet<>();
 
 	}
+	
 
 
 	@Override
 	public int compareTo(Object o) {
 		return Integer.valueOf(((InfoPartida)o).IDPartida).compareTo(this.IDPartida);
+	}
+
+
+
+	public int getIDPartida() {
+		return IDPartida;
+	}
+
+
+
+	public void setIDPartida(int iDPartida) {
+		IDPartida = iDPartida;
+	}
+
+
+
+	public Set<InfoJugadorPartida> getJugadors() {
+		return Jugadors;
+	}
+
+
+
+	public void setJugadors(Set<InfoJugadorPartida> jugadors) {
+		Jugadors = jugadors;
 	}
 	
 

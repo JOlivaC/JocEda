@@ -6,15 +6,18 @@
 package Domini.Fitxers;
 
 import java.io.File;
+import java.io.IOException;
+
+import Comunicacio.Fitxer;
 
 /**
  *
  * @author JOAN
  */
-public class FitxerJugador extends File {
+public class FitxerJugador extends Fitxer {
 
-    public FitxerJugador(String pathname) {
-        super(pathname);
+    public FitxerJugador(File f) throws IOException {
+    	super(f);
     }
     
 }

@@ -5,29 +5,33 @@
  */
 package Domini.CasosUs;
 
-import java.io.File;
-import java.net.Socket;
+import java.io.IOException;
 import java.util.SortedSet;
 
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
-import Domini.LectorResultat.InfoResultat;
+import Dades.Excepcions.NoExisteixPartida;
+import Domini.Fitxers.FitxerJugador;
+import Domini.Fitxers.FitxerResultat;
 import Domini.LectorResultat.LectorResultat;
+import Domini.Model.Usuari;
+import Excepcions.PartidaNoJugada;
 
 /**
  *
  * @author JOAN
  */
 public class CasUsSessio {
+	private Usuari loguejat;
     public void Login(String User,String Pass) throws Exception
     {
-        new CasUsLogin().Login(User, Pass);    
+        loguejat = new CasUsLogin().Login(User, Pass);    
     }
     
-    public void Penjar(File f){
+    public void Penjar(FitxerJugador f){
     	LectorResultat LR = new LectorResultat();
     	try {
-			System.out.printf(LR.Llegir(f).toString());
+			System.out.printf(LR.Llegir(f.getFile()).toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,7 +47,7 @@ public class CasUsSessio {
     	return new CasUsConsultarClassificacio().ConsultarClassificacio();
     }
     
-    public File VisualitzarPartida(int IDPartida){
+    public FitxerResultat VisualitzarPartida(int IDPartida) throws IOException, PartidaNoJugada, NoExisteixPartida{
     	return new CasUsVisualitzarPartida().VisualitzarPartida(IDPartida);
     }
 }

@@ -5,10 +5,17 @@
  */
 package Domini.Fitxers;
 
+import java.io.File;
+import java.io.IOException;
+
+import Comunicacio.Fitxer;
+
 /**
  *
  * @author JOAN
  */
-public class FitxerResultat {
-    
+public class FitxerResultat extends Fitxer{
+	 public FitxerResultat(File f) throws IOException {
+	    	super(f);
+	   }
 }

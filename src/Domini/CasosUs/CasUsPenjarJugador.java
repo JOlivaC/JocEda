@@ -5,8 +5,8 @@
  */
 package Domini.CasosUs;
 
-import java.io.File;
-
+import Domini.Fitxers.FitxerJugador;
+import Domini.Model.Jugador;
 import Domini.Model.Usuari;
 import Excepcions.FitxerInvalid;
 
@@ -15,8 +15,14 @@ import Excepcions.FitxerInvalid;
  * @author JOAN
  */
 public class CasUsPenjarJugador {
+	private Usuari u;
     public CasUsPenjarJugador(Usuari u){}
-    public void PenjarJugador(File f) throws FitxerInvalid{
-    	
+    public void PenjarJugador(FitxerJugador f) throws FitxerInvalid{
+    	 Jugador j = new Jugador();
+    	 j.setJugador(f);
+    	 j.setName(f.getNomSenseExt());
+    	 u.AfegirJugador(j);
+    	 
+    	 // Guardar U i J, prevenir rollback en cas de nom repetit
     }
 }

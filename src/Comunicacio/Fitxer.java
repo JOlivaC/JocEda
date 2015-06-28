@@ -18,6 +18,7 @@ public class Fitxer extends Tipus {
 		dades = new byte[(int)f.length()];
 		in.read(dades);
 		nom = f.getName();
+		
 		in.close();
 	}
 	
@@ -28,4 +29,20 @@ public class Fitxer extends Tipus {
 		out.close();
 		return f;
 	}
+	public String getNomSenseExt(){
+		return stripExtension(nom);
+	}
+	
+	
+	public String getNom(){
+		return nom;
+	}
+	
+	private static String stripExtension (String str) {
+        if (str == null) return null;
+        int pos = str.lastIndexOf(".");
+        if (pos == -1) return str;
+        return str.substring(0, pos);
+    }
+	
 }

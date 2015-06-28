@@ -16,14 +16,14 @@ import Domini.Fitxers.FitxerJugador;
  * @author JOAN
  */
 public class PenjarJugador extends Paquet {
-    public Fitxer F;
+    public FitxerJugador F;
 
-    public PenjarJugador(File F) throws IOException{
-        this.F = new Fitxer(F);
+    public PenjarJugador(FitxerJugador F) throws IOException{
+        this.F = F;
     }
     public boolean EsPenjarJugador(){return true;}
-    public File getPenjarJugador() throws IOException{
-    	return F.getFile();
+    public FitxerJugador getPenjarJugador() throws IOException{
+    	return F;
     }
     
 }

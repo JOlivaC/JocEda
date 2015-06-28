@@ -5,12 +5,33 @@
  */
 package Domini.Model;
 
+import java.io.File;
+
+import Domini.Fitxers.FitxerJugador;
+
 /**
  *
  * @author JOAN
  */
 public class Jugador {
+	private int ID;
     private String name;
+    private FitxerJugador jugador;
+    private Usuari owner;
+    
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public FitxerJugador getJugador() {
+		return jugador;
+	}
+	public void setJugador(FitxerJugador jugador) {
+		this.jugador = jugador;
+	}
+    
     
     
     

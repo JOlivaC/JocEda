@@ -45,7 +45,7 @@ public class Solicitant implements CapaDominiInterface {
 
 	@Override
 	public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid{
-        s.Escriure(new Xarxa.Missatges.PenjarJugador(f));
+        s.Escriure(new Xarxa.Missatges.PenjarJugador(new FitxerJugador(f)));
         if (!s.Llegir().PenjarJugadorResponseCast().valid) throw new FitxerInvalid();
 	}
 	
@@ -61,7 +61,7 @@ public class Solicitant implements CapaDominiInterface {
 	
 	public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException{
 		s.Escriure(new Xarxa.Missatges.VisualitzarPartida(ID));
-		return s.Llegir().VisualitzarPartidaResponseCast().getPartida();
+		return s.Llegir().VisualitzarPartidaResponseCast().getPartida().getFile();
 	}
     
    

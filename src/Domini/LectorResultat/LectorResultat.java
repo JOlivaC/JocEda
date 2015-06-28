@@ -3,7 +3,6 @@ package Domini.LectorResultat;
 import java.io.File;
 
 import Comunicacio.InfoJugadorPartida;
-import Domini.Model.Resultat;
 import Presentacio.Controladors.ControladorPrincipal;
 
 import java.io.BufferedReader;
