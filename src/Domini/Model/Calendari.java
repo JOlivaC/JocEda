@@ -12,7 +12,7 @@ import java.util.Set;
  * @author JOAN
  */
 public class Calendari {
-    private Set<Ronda> Rondes;
+
     
     
 }
