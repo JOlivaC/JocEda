@@ -1,6 +1,6 @@
 package Comunicacio;
 
-public class InfoJugadorRanking implements Comparable {
+public class InfoJugadorRanking extends Tipus implements Comparable {
 	private InfoJugadorPosicio Pos;
 	private InfoJugadorNPartides N;
 	

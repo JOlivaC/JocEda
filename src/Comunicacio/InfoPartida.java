@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class InfoPartida implements Comparable{
+public class InfoPartida extends Tipus implements Comparable{
 	public int IDPartida;
 	public Set<InfoJugadorPartida> Jugadors;
 	

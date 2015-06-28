@@ -17,6 +17,12 @@ public abstract class Paquet implements Serializable {
     public boolean EsPenjarJugador(){return false;}
     public boolean EsLoginResponse(){return false;}
     public boolean EsPenjarJugadorResponse(){return false;}
+    public boolean EsConsultarResultats(){return false;}
+    public boolean EsConsultarResultatsResponse(){return false;}
+    public boolean EsConsultarClassificacio(){return false;}
+    public boolean EsConsultarClassificacioResponse(){return false;}
+    public boolean EsVisualitzarPartida(){return false;}
+    public boolean EsVisualitzarPartidaResponse(){return false;}
     
     
     
@@ -25,6 +31,12 @@ public abstract class Paquet implements Serializable {
     public PenjarJugador PenjarJugadorCast(){return (PenjarJugador) this;}
     public LoginResponse LoginResponseCast(){return (LoginResponse) this;}
     public PenjarJugadorResponse PenjarJugadorResponseCast(){return (PenjarJugadorResponse) this;}
+    public ConsultarResultats ConsultarResultatsCast(){return (ConsultarResultats) this;}
+    public ConsultarResultatsResponse ConsultarResultatsResponseCast(){return (ConsultarResultatsResponse) this;}
+    public ConsultarClassificacio ConsultarClassificacioCast(){return (ConsultarClassificacio) this;}
+    public ConsultarClassificacioResponse ConsultarClassificacioResponseCast(){return (ConsultarClassificacioResponse) this;}
+    public VisualitzarPartida VisualitzarPartidaCast(){return (VisualitzarPartida) this;}
+    public VisualitzarPartidaResponse VisualitzarPartidaResponseCast(){return (VisualitzarPartidaResponse) this;}
     
     
     

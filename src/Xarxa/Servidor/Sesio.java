@@ -5,22 +5,21 @@
  */
 package Xarxa.Servidor;
 
+import java.io.IOException;
+
 import Domini.CasosUs.CasUsSessio;
-import Xarxa.Missatges.Finalitzar;
+import Xarxa.Missatges.ConsultarClassificacio;
+import Xarxa.Missatges.ConsultarClassificacioResponse;
+import Xarxa.Missatges.ConsultarResultats;
+import Xarxa.Missatges.ConsultarResultatsResponse;
 import Xarxa.Missatges.Login;
 import Xarxa.Missatges.LoginResponse;
 import Xarxa.Missatges.Paquet;
 import Xarxa.Missatges.PenjarJugador;
 import Xarxa.Missatges.PenjarJugadorResponse;
+import Xarxa.Missatges.VisualitzarPartida;
+import Xarxa.Missatges.VisualitzarPartidaResponse;
 import Xarxa.Sockets.PaquetSocket;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -50,6 +49,9 @@ public class Sesio extends Thread {
                         
                     }
                     else if (dada.EsPenjarJugador()) Penjar(dada.PenjarJugadorCast());
+                    else if (dada.EsConsultarResultats()) ConsultarResultats(dada.ConsultarResultatsCast());
+                    else if (dada.EsConsultarClassificacio()) ConsultarClassificacio(dada.ConsultarClassificacioCast());
+                    else if (dada.EsVisualitzarPartida()) VisualitzarPartida(dada.VisualitzarPartidaCast());
                 } catch (IOException | ClassNotFoundException ex) {
                     end = true;
                 } 
@@ -78,5 +80,17 @@ public class Sesio extends Thread {
         
         connexio.Escriure(R);
     }
+    private void ConsultarResultats(ConsultarResultats CR) throws IOException{
+    	ConsultarResultatsResponse R = new ConsultarResultatsResponse(CUSessio.ConsultarResultats());
+    	connexio.Escriure(R);
+    }
     
+    private void ConsultarClassificacio(ConsultarClassificacio CC) throws IOException{
+    	ConsultarClassificacioResponse R = new ConsultarClassificacioResponse(CUSessio.ConsultarClassificacio());
+    	connexio.Escriure(R);
+    }
+    private void VisualitzarPartida(VisualitzarPartida VP) throws IOException{
+    	VisualitzarPartidaResponse R = new VisualitzarPartidaResponse(CUSessio.VisualitzarPartida(VP.getID()));
+    	connexio.Escriure(R);
+    }
 }

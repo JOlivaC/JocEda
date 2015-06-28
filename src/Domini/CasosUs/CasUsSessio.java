@@ -7,7 +7,10 @@ package Domini.CasosUs;
 
 import java.io.File;
 import java.net.Socket;
+import java.util.SortedSet;
 
+import Comunicacio.InfoJugadorRanking;
+import Comunicacio.InfoPartida;
 import Domini.LectorResultat.InfoResultat;
 import Domini.LectorResultat.LectorResultat;
 
@@ -30,5 +33,17 @@ public class CasUsSessio {
 			e.printStackTrace();
 		}
 
+    }
+    
+    public  SortedSet<InfoPartida> ConsultarResultats(){
+    	return new CasUsConsultarResultats().ConsultarResultats();
+    }
+    
+    public  SortedSet<InfoJugadorRanking> ConsultarClassificacio(){
+    	return new CasUsConsultarClassificacio().ConsultarClassificacio();
+    }
+    
+    public File VisualitzarPartida(int IDPartida){
+    	return new CasUsVisualitzarPartida().VisualitzarPartida(IDPartida);
     }
 }

@@ -1,4 +1,4 @@
-package Xarxa.Utils;
+package Comunicacio;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class Fitxer implements Serializable {
+public class Fitxer extends Tipus {
 	private byte[] dades;
 	private String nom;
 	
@@ -18,6 +18,7 @@ public class Fitxer implements Serializable {
 		dades = new byte[(int)f.length()];
 		in.read(dades);
 		nom = f.getName();
+		in.close();
 	}
 	
 	public File getFile() throws IOException{

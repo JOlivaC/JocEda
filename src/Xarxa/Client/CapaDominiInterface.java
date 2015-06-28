@@ -5,12 +5,15 @@
  */
 package Xarxa.Client;
 
+import Comunicacio.InfoJugadorRanking;
+import Comunicacio.InfoPartida;
 import Domini.Fitxers.FitxerJugador;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.SortedSet;
 
 /**
  *
@@ -21,4 +24,9 @@ public interface CapaDominiInterface {
     
     public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid;
     
+    public SortedSet<InfoPartida> ConsultarResultats() throws IOException, ClassNotFoundException;
+    
+    public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws IOException, ClassNotFoundException;
+    
+    public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException;
 }

@@ -2,6 +2,6 @@ package Comunicacio;
 
 import java.util.SortedSet;
 
-public class InfoJugadorNPartides {
+public class InfoJugadorNPartides extends Tipus {
 	public SortedSet<Integer> PosicionsEnPartides;
 }

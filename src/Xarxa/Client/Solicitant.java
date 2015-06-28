@@ -5,6 +5,8 @@
  */
 package Xarxa.Client;
 
+import Comunicacio.InfoJugadorRanking;
+import Comunicacio.InfoPartida;
 import Domini.Fitxers.FitxerJugador;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.SortedSet;
 
 /**
  *
@@ -39,14 +42,26 @@ public class Solicitant implements CapaDominiInterface {
     	 if (! r.autoritzat) throw new InvalidLogin();   
     }
     
-    public static void Escriure(Socket s,Paquet p) throws IOException{
-    	new ObjectOutputStream(s.getOutputStream()).writeObject(p);
-    }
 
 	@Override
 	public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid{
         s.Escriure(new Xarxa.Missatges.PenjarJugador(f));
         if (!s.Llegir().PenjarJugadorResponseCast().valid) throw new FitxerInvalid();
+	}
+	
+	public SortedSet<InfoPartida> ConsultarResultats() throws IOException, ClassNotFoundException {
+		s.Escriure(new Xarxa.Missatges.ConsultarResultats());
+		return s.Llegir().ConsultarResultatsResponseCast().getInfo();
+	}
+	
+	public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws IOException, ClassNotFoundException{
+		s.Escriure(new Xarxa.Missatges.ConsultarClassificacio());
+		return s.Llegir().ConsultarClassificacioResponseCast().getInfo();
+	}
+	
+	public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException{
+		s.Escriure(new Xarxa.Missatges.VisualitzarPartida(ID));
+		return s.Llegir().VisualitzarPartidaResponseCast().getPartida();
 	}
     
    

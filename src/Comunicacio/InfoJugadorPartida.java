@@ -2,7 +2,7 @@ package Comunicacio;
 
 import java.util.Comparator;
 
-public class InfoJugadorPartida {
+public class InfoJugadorPartida extends Tipus implements Comparable {
     private String nom;
     private int puntuacio;
 
@@ -22,11 +22,9 @@ public class InfoJugadorPartida {
     public String toString(){
             return nom + ": " + String.valueOf(puntuacio);
     }
+    
+    public int compareTo(Object o){
+    	return Integer.compare(((InfoJugadorPartida)o).puntuacio,this.puntuacio);
+    }
 
-    public static Comparator<InfoJugadorPartida> PUNTUACIO = new Comparator<InfoJugadorPartida>() {
-        @Override
-        public int compare(InfoJugadorPartida o1, InfoJugadorPartida o2) {
-            return Integer.valueOf(o2.puntuacio).compareTo(o1.puntuacio);
-        }
-    };
 }

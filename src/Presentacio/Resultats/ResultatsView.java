@@ -24,12 +24,13 @@ public class ResultatsView extends PanellGeneral {
 	
 	private ActionListener Visualitzar;
 	private int LastId;
-	public ResultatsView(ActionListener Retrocedir,ActionListener Visualitzar,int n){
+	public ResultatsView(ActionListener Retrocedir,ActionListener Visualitzar,SortedSet<InfoPartida> Info){
 		super(Retrocedir);
 		
 		this.Visualitzar = Visualitzar;
+		n = Info.first().Jugadors.size();
 		t = new TaulaResultats(n);
-		this.n = n;
+		SetResultats(Info);
 		this.add(t);
 	}
 	public int getLastID(){return LastId;}

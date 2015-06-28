@@ -5,6 +5,12 @@
  */
 package Presentacio.Controladors;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.SortedSet;
+
 import Comunicacio.InfoPartida;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
@@ -13,15 +19,6 @@ import Presentacio.Comuns.Finestra;
 import Presentacio.Comuns.PanellContenidor;
 import Xarxa.Client.CapaDominiInterface;
 import Xarxa.Client.Solicitant;
-import Xarxa.Missatges.Login;
-
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -56,8 +53,8 @@ public class ControladorPrincipal {
     	VistaMenu = new Presentacio.MenuPrincipalView.MenuPrincipal(new Penjar(), new Resultats(), new Ranking());
     	CanviarContext("Menu",VistaMenu);
     }
-    private void MostrarResultats(int n){
-    	VistaResultats = new Presentacio.Resultats.ResultatsView(new Retrocedir(),new VisualitzarPartida(), n);
+    private void MostrarResultats( SortedSet<InfoPartida> Info){
+    	VistaResultats = new Presentacio.Resultats.ResultatsView(new Retrocedir(),new VisualitzarPartida(),Info);
     	CanviarContext("Resultats",VistaResultats);
     }
     private void MostrarRanking(int n){
@@ -65,15 +62,34 @@ public class ControladorPrincipal {
     	CanviarContext("Classificacio",VistaRanking);
     }
     public void VeureResultats(){
-    	MostrarResultats(4);
-    	//VistaResultats.SetResultats(InfoPartida.ConjStub());
+
+    		try {
+				MostrarResultats(Domini.ConsultarResultats());
+			} catch (ClassNotFoundException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
+
+
     }
     public void VisualitzarPartida(int IDPartida){
-    	System.out.print(IDPartida);
-    	
+    	try {
+			Domini.VisualitzarPartida(IDPartida);
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			VistaResultats.MostraMsg("Error");
+		}
     }
     public void VeureRanking(){
-    	MostrarRanking(4);
+    	try {
+			Domini.ConsultarClassificacio();
+			MostrarRanking(4);
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     	
     }
     public void Login(String User,String Pass){

@@ -17,7 +17,7 @@ public class InfoResultat {
     }
 
     public void ordenar(){
-        Collections.sort(resultat,InfoJugadorPartida.PUNTUACIO);
+        Collections.sort(resultat);
     }
 
     public String toString(){

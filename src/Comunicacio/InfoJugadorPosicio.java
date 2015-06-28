@@ -1,6 +1,6 @@
 package Comunicacio;
 
-public class InfoJugadorPosicio implements Comparable {
+public class InfoJugadorPosicio extends Tipus implements Comparable {
 	 private String nom;
 	 private int Punts;
 	

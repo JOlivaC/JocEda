@@ -8,7 +8,7 @@ package Xarxa.Missatges;
 import java.io.File;
 import java.io.IOException;
 
-import Xarxa.Utils.Fitxer;
+import Comunicacio.Fitxer;
 import Domini.Fitxers.FitxerJugador;
 
 /**
