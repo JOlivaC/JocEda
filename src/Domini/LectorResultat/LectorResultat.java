@@ -36,6 +36,7 @@ public class LectorResultat {
                 if(aux[0].equals("names")) names = aux;
                 if(aux[0].equals("score")) score = aux;
             }
+            r.close();
             if (names.length==0 || score.length==0)
                 throw new Exception("El fitxer no és un fitxer de Battle Royale vàlid.");
 
