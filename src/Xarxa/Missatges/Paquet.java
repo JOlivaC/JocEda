@@ -6,12 +6,23 @@
 package Xarxa.Missatges;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author JOAN
  */
 public abstract class Paquet implements Serializable {
+	public Paquet(){}
+	
+	 private Exception excepcio;
+	 public void Throw() throws Exception{
+		 if (excepcio != null) throw excepcio;
+	 }
+	public Paquet(Exception e){
+		excepcio = e;
+	}
     public boolean EsLogin(){return false;}
     public boolean EsFinalitzar(){return false;}
     public boolean EsPenjarJugador(){return false;}
@@ -38,6 +49,7 @@ public abstract class Paquet implements Serializable {
     public VisualitzarPartida VisualitzarPartidaCast(){return (VisualitzarPartida) this;}
     public VisualitzarPartidaResponse VisualitzarPartidaResponseCast(){return (VisualitzarPartidaResponse) this;}
     
+   
     
     
     

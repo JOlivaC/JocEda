@@ -7,7 +7,9 @@ package Xarxa.Servidor;
 
 import java.io.IOException;
 
+import Dades.Excepcions.NoExisteixPartida;
 import Domini.CasosUs.CasUsSessio;
+import Excepcions.PartidaNoJugada;
 import Xarxa.Missatges.ConsultarClassificacio;
 import Xarxa.Missatges.ConsultarClassificacioResponse;
 import Xarxa.Missatges.ConsultarResultats;
@@ -90,7 +92,13 @@ public class Sesio extends Thread {
     	connexio.Escriure(R);
     }
     private void VisualitzarPartida(VisualitzarPartida VP) throws IOException{
-    	VisualitzarPartidaResponse R = new VisualitzarPartidaResponse(CUSessio.VisualitzarPartida(VP.getID()));
+    	VisualitzarPartidaResponse R;
+		try {
+			R = new VisualitzarPartidaResponse(CUSessio.VisualitzarPartida(VP.getID()));
+		} catch (PartidaNoJugada | NoExisteixPartida e) {
+			// TODO Auto-generated catch block
+			R = new VisualitzarPartidaResponse(e);
+		}
     	connexio.Escriure(R);
     }
 }

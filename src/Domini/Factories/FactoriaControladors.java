@@ -1,6 +1,7 @@
 package Domini.Factories;
 
 import Domini.InterficieBD.CtrlPartida;
+import Domini.InterficieBD.CtrlResultat;
 import Domini.InterficieBD.CtrlUsuari;
 
 public class FactoriaControladors {
@@ -9,4 +10,5 @@ public class FactoriaControladors {
 	
 	public CtrlUsuari getCtrlUsuari(){return null;}
 	public CtrlPartida getCtrlPartida(){return null;}
+	public CtrlResultat getCtrlResultats(){return null;}
 }

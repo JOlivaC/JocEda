@@ -12,7 +12,10 @@ public class VisualitzarPartidaResponse extends Paquet {
     public VisualitzarPartidaResponse(FitxerResultat F) throws IOException{
         this.F = F;
     }
-    public boolean EsVisualitzarPartidaResponse(){return true;}
+    public VisualitzarPartidaResponse(Exception e) {
+		super(e);
+	}
+	public boolean EsVisualitzarPartidaResponse(){return true;}
     public FitxerResultat getPartida() throws IOException{
     	return F;
     }

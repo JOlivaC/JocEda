@@ -1,7 +1,15 @@
 package Comunicacio;
 
-import java.util.SortedSet;
+import java.util.Map;
 
 public class InfoJugadorNPartides extends Tipus {
-	public SortedSet<Integer> PosicionsEnPartides;
+	private Map<Integer,Integer> Posicions;
+
+	public Map<Integer, Integer> getPosicions() {
+		return Posicions;
+	}
+
+	public void setPosicions(Map<Integer, Integer> posicions) {
+		Posicions = posicions;
+	}
 }

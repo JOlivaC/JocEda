@@ -6,7 +6,9 @@
 package Domini.Model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -36,6 +38,10 @@ public class Usuari {
 	}
 	public void setJugadors(List<Jugador> jugadors) {
 		this.jugadors = jugadors;
+	}
+	
+	public Set<Jugador> getSetJugadors(){
+		return new HashSet<Jugador>(jugadors);
 	}
 	
 	public void AfegirJugador(Jugador j){

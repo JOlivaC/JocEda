@@ -21,6 +21,7 @@ public class Partida {
 	private int ID;
     private IEstatPartida Estat;
     private Set<ResultatJugador> Resultat;
+    private Set<Jugador> Participants;
     private FitxerResultat PartidaResultant;
     
 	public int getID() {
