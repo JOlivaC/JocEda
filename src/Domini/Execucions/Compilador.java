@@ -57,9 +57,10 @@ public class Compilador {
             if (aux[0].equals("#define") && aux[1].equals("PLAYER_NAME"))
                 playername = aux[2];
         }
+        r.close();
         if(playername==null || (!playername.equals(filename))) 
             throw new Exception("Jugador no vàlid. Comprova que el nom del "
-                    + " fitxer es corresonpongui amb el nom indicat al codi(sense el \"AI\").");
+                    + "fitxer es correspon amb el nom indicat al codi.");
         
     }
 }
