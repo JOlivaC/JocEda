@@ -46,4 +46,17 @@ public class AlarmaJugar {
 		}
 		
 	}
+
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+	public int getIDPartida() {
+		return IDPartida;
+	}
+	public void setIDPartida(int iDPartida) {
+		IDPartida = iDPartida;
+	}
 }
