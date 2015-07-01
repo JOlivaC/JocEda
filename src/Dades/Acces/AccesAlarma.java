@@ -4,126 +4,102 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import Dades.Connexio.ConnexioBD;
 import Dades.Controladors.TaulaPartida;
+import Dades.Factories.ConnexioBD;
 import Dades.Tipus.Alarma;
 
-public class AccesAlarma {
-public static String tableName = "alarma";
+public class AccesAlarma extends AccesClauPrimariaUnica {
+	public static String tableName = "alarma";
 	
 	public static String[] ColumnNames = {"IDPartida","data"};
 	public static String[] ColumnTypes = {"INTEGER","TIMESTAMP"};
 
-	public static String[] Constraints = {"PRIMARY KEY (" + ColumnNames[0] + ")",
-											"FOREIGN KEY (" + ColumnNames[0] + ") REFERENCES " + TaulaPartida.TableName};
+	public static String PKIdentifier = ColumnNames[0];
+	public static String PKType = ColumnTypes[0];
 	
+	public static String[] Constraints = {"PRIMARY KEY (" + PKIdentifier + ")",
+											"FOREIGN KEY (" + PKIdentifier + ") REFERENCES " + TaulaPartida.TableName};
 	
-
-	public static void CreateTable(Connection con) throws Exception{
-		String statement = "CREATE TABLE " + 
-				tableName + " (" +
-				getColumnsDefinition() +
-				getConstraints() +	
-				");";
-		con.createStatement().executeUpdate(statement);		
+	@Override
+	public  String getPKIdentifier() {
+		return PKIdentifier;
 	}
-	private static String getColumnsDefinition(){
-		String ret = "";
-		for (int i = 0; i < ColumnNames.length; i++){
-			ret += ColumnNames[i] + " " + ColumnTypes[i] + ", ";
-		}
-		return ret;
+	@Override
+	public  String getPKType() {
+		return PKType;
 	}
-	private static String getConstraints(){
-		String ret = "";
-		for (int i = 0; i < Constraints.length; i++){
-			ret += Constraints[i];
-			if (i < Constraints.length - 1) ret += ", ";
-		}
-		return ret;
-	}
-	
-	
-	public static boolean TableExists(Connection con) throws Exception{
-		DatabaseMetaData meta = con.getMetaData();
-	    ResultSet rs = meta.getTables(null,null,tableName.toLowerCase(),null);
-		return rs.next();
-		
-	}
-	public static void DropTable(Connection con) throws Exception{
-		con.createStatement().executeUpdate("DROP TABLE " + tableName);
+	@Override
+	protected String[] getColumnNames() {
+		return ColumnNames;
 	}
 
-	public void DeleteAll() throws Exception{
-		 Connection con = ConnexioBD.getInstance().getConnexio();
-		 con.createStatement().executeUpdate("TRUNCATE TABLE " + tableName);
-		 con.close();
+	@Override
+	protected String[] getColumnTypes() {
+		// TODO Auto-generated method stub
+		return ColumnTypes;
 	}
-	public void Create() throws Exception{
-		Connection con = ConnexioBD.getInstance().getConnexio();
-		CreateTable(con);
-		con.close();
+
+	@Override
+	protected String[] getConstraints() {
+		// TODO Auto-generated method stub
+		return Constraints;
 	}
+
+	@Override
+	protected String getTableName() {
+		// TODO Auto-generated method stub
+		return tableName;
+	}
+	
+	private static Alarma Llegir(ResultSet rs) throws SQLException{
+		return new Alarma(rs.getInt(1),new Date(rs.getTimestamp(2).getTime()));
+	}
+	private static void Escriure(PreparedStatement ps,Alarma a) throws SQLException{
+		java.sql.Timestamp sqlInstant = new java.sql.Timestamp(a.getData().getTime());
+		ps.setInt(1, a.getIDPartida());
+	    ps.setTimestamp(2, sqlInstant);
+	}
+	
 	public void Insert(Alarma a) throws Exception {          
-	            Connection con = ConnexioBD.getInstance().getConnexio();
-	            PreparedStatement ps = con.prepareStatement("INSERT INTO " + tableName + " VALUES (?,?)");
-
-	            java.sql.Timestamp sqlInstant = new java.sql.Timestamp(a.getData().getTime());
-	            ps.setInt(1, a.getIDPartida());
-	            ps.setTimestamp(2, sqlInstant);
-
-	            ps.executeUpdate();
-
-	            ps.close();
-	            con.close();
+        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (?,?)");
+        Escriure(ps,a);
+        ps.executeUpdate();
+        ps.close();
 	}
 	
-	public Set<Alarma> getAll() throws Exception {
-		Connection con = ConnexioBD.getInstance().getConnexio();
-		
+	public  Set<Alarma> getAll() throws Exception {
 		Set<Alarma> ret = new HashSet<>();
 		ResultSet rs;
-		rs = con.createStatement().executeQuery("SELECT * FROM " + tableName);
-
-		while (rs.next()){
-			Alarma a = new Alarma(
-					rs.getInt(1),
-					new Date(rs.getTimestamp(2).getTime())
-									
-			);	
-			ret.add(a);
-		}
-		
-		con.close();
+		rs = con.createStatement().executeQuery("SELECT * FROM " + getTableName());
+		while (rs.next()) ret.add(Llegir(rs));	
 		return ret;
 	}
 	
-	public Alarma get(int IDPartida) throws Exception {
-		Connection con = ConnexioBD.getInstance().getConnexio();
-		
-		
+	public Alarma get(int IDPartida) throws Exception {		
 		ResultSet rs;
-		rs = con.createStatement().executeQuery("SELECT FROM " + tableName + " WHERE " + ColumnNames[0] + " = " + IDPartida);
-		con.close();
-		Alarma ret;
-		if (rs.next()){
-			ret = new Alarma(rs.getInt(1),new Date(rs.getTimestamp(2).getTime()));
-		} 
-		else throw new Exception("La alarma amb id: " + IDPartida + " no s'ha trobat");
-		
-		
-		return ret;
+		PreparedStatement ps = con.prepareStatement("SELECT FROM " + getTableName() + " WHERE " + ColumnNames[0] + " = ?");
+		ps.setInt(1, IDPartida);
+		rs = ps.executeQuery();	
+		return Llegir(rs);
 	}
 	
-	public void Delete(Alarma a) throws Exception {
-		Connection con = ConnexioBD.getInstance().getConnexio();
-		PreparedStatement ps = con.prepareStatement("DELETE FROM " + tableName + " WHERE ID = ?");
+	public  void Delete(Alarma a) throws Exception {
+		PreparedStatement ps = con.prepareStatement("DELETE FROM " + getTableName() + " WHERE " + ColumnNames[0] + " = ?");
 		ps.setInt(1, a.getIDPartida());
 		ps.executeUpdate();
-		con.close();
 	}
+	
+
+	
+
+	
+	
+				
+
+	
 }

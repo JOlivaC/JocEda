@@ -3,7 +3,7 @@ package Dades.Controladors;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import Dades.Connexio.ConnexioBD;
+import Dades.Factories.ConnexioBD;
 
 public class Esquema {
 	

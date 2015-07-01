@@ -1,4 +1,4 @@
-package Dades.Connexio;
+package Dades.Factories;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

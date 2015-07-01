@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Actors.Alarmes.AlarmaJugar;
-import Dades.Connexio.ConnexioBD;
+import Dades.Factories.ConnexioBD;
 import Domini.InterficieBD.CtrlAlarma;
 
 public class TaulaAlarma implements CtrlAlarma {
