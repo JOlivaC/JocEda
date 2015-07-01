@@ -21,6 +21,12 @@ public class Fitxer extends Tipus {
 		
 		in.close();
 	}
+	public Fitxer(String nom,byte[] dades){
+		this.nom = nom;
+		this.dades = dades;
+	}
+	
+	public byte[] getDades(){return dades;}
 	
 	public File getFile() throws IOException{
 		File f = new File(System.getProperty("user.dir") + File.separator + nom);

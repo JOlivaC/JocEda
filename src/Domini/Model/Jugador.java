@@ -14,7 +14,6 @@ import Domini.Fitxers.FitxerJugador;
  * @author JOAN
  */
 public class Jugador {
-	private int ID;
     private String name;
     private FitxerJugador jugador;
     private Usuari owner;

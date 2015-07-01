@@ -13,4 +13,5 @@ public class FactoriaAccessos {
 	private AccesPartida p = new AccesPartida();
 	
 	public AccesAlarma getAccesAlarma(){return a;}
+	public AccesFitxer getAccesFitxer(){return f;}
 }

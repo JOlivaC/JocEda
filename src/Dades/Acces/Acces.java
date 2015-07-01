@@ -2,15 +2,8 @@ package Dades.Acces;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import Dades.Factories.ConnexioBD;
-import Dades.Tipus.Alarma;
 
 public abstract class Acces {
 	
