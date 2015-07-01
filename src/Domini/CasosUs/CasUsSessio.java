@@ -39,7 +39,7 @@ public class CasUsSessio {
 
     }
     
-    public  SortedSet<InfoPartida> ConsultarResultats(){
+    public  SortedSet<InfoPartida> ConsultarResultats() throws Exception{
     	return new CasUsConsultarResultats().ConsultarResultats();
     }
     
@@ -47,7 +47,7 @@ public class CasUsSessio {
     	return new CasUsConsultarClassificacio().ConsultarClassificacio();
     }
     
-    public FitxerResultat VisualitzarPartida(int IDPartida) throws IOException, PartidaNoJugada, NoExisteixPartida{
+    public FitxerResultat VisualitzarPartida(int IDPartida) throws Exception{
     	return new CasUsVisualitzarPartida().VisualitzarPartida(IDPartida);
     }
 }

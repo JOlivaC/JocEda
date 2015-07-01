@@ -83,7 +83,13 @@ public class Sesio extends Thread {
         connexio.Escriure(R);
     }
     private void ConsultarResultats(ConsultarResultats CR) throws IOException{
-    	ConsultarResultatsResponse R = new ConsultarResultatsResponse(CUSessio.ConsultarResultats());
+    	ConsultarResultatsResponse R;
+		try {
+			R = new ConsultarResultatsResponse(CUSessio.ConsultarResultats());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			R = new ConsultarResultatsResponse(e);
+		}
     	connexio.Escriure(R);
     }
     
@@ -95,7 +101,7 @@ public class Sesio extends Thread {
     	VisualitzarPartidaResponse R;
 		try {
 			R = new VisualitzarPartidaResponse(CUSessio.VisualitzarPartida(VP.getID()));
-		} catch (PartidaNoJugada | NoExisteixPartida e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			R = new VisualitzarPartidaResponse(e);
 		}

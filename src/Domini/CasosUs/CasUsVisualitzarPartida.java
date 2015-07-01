@@ -10,7 +10,7 @@ import Domini.Model.Partida;
 import Excepcions.PartidaNoJugada;
 
 public class CasUsVisualitzarPartida {
-	public FitxerResultat VisualitzarPartida(int IDPartida) throws IOException, PartidaNoJugada, NoExisteixPartida{
+	public FitxerResultat VisualitzarPartida(int IDPartida) throws Exception{
 		
 		Partida p = FactoriaControladors.getInstance().getCtrlPartida().get(IDPartida);
 		if (p.EstaJugada())  return p.getPartidaResultant();

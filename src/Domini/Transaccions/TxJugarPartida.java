@@ -1,5 +1,7 @@
 package Domini.Transaccions;
 
+import Domini.Factories.FactoriaControladors;
+import Domini.InterficieBD.CtrlAlarma;
 import Excepcions.ErrorPartida;
 
 public class TxJugarPartida {
@@ -8,5 +10,7 @@ public class TxJugarPartida {
 	public void Executar() throws ErrorPartida {
 		//Fer la partida
 		// Borrar l'alarma
+		CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
+
 	}
 }

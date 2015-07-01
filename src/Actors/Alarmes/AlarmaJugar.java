@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import Domini.Factories.FactoriaControladors;
+import Domini.InterficieBD.CtrlAlarma;
 import Domini.Transaccions.TxJugarPartida;
 import Excepcions.ErrorPartida;
 
@@ -19,6 +21,7 @@ import Excepcions.ErrorPartida;
 public class AlarmaJugar {
 	private Date data;
 	private int IDPartida;
+	private Timer t;
 	public AlarmaJugar(Date data,int IDPartida){
 		this.data = data;
 		this.IDPartida = IDPartida;
@@ -28,13 +31,17 @@ public class AlarmaJugar {
 
 		try {
 			TJP.Executar();
-		} catch (ErrorPartida e) {
+			CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
+			ctrl.Delete(this);
+			t.cancel();
+			
+		} catch (Exception e) {
 			System.out.print(e);
 		}
 	}
 	
 	public void Programar(){
-		Timer t = new Timer();
+		t = new Timer();
 		t.schedule(new Sonar(), data);
 	}
 	
@@ -42,7 +49,7 @@ public class AlarmaJugar {
 
 		@Override
 		public void run() {
-			Sonar();			
+			Sonar();
 		}
 		
 	}

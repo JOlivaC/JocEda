@@ -9,7 +9,7 @@ import Domini.Factories.FactoriaControladors;
 import Domini.Model.Partida;
 
 public class CasUsConsultarResultats {
-	public SortedSet<InfoPartida> ConsultarResultats(){
+	public SortedSet<InfoPartida> ConsultarResultats() throws Exception{
 		Set<Partida> partides = FactoriaControladors.getInstance().getCtrlPartida().getAll();
 		SortedSet<InfoPartida> ret = new TreeSet<>();
 		for (Partida p: partides){
