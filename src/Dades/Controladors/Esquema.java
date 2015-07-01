@@ -10,9 +10,9 @@ public class Esquema {
 	public static String Alarma_TableName = "alarma";
 	
 	public void CrearEsquema() throws Exception{
-		Connection con = ConnexioBD.getInstance().getConnexio();
+		/*Connection con = ConnexioBD.getInstance().getConnexio();
 		if (TaulaAlarma.TableExists(con))TaulaAlarma.DropTable(con);
-		TaulaAlarma.CreateTable(con);
+		TaulaAlarma.CreateTable(con);*/
 		
 	}
 }

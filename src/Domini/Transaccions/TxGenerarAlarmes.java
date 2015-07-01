@@ -22,7 +22,7 @@ public class TxGenerarAlarmes {
 		for (int i = 0; i < n; i++){
 			Date d = Calendar.getInstance().getTime();
 			d.setSeconds(d.getSeconds() + 10);
-			ctrl.Insert(new AlarmaJugar(d,i+1));
+			//ctrl.Insert(new AlarmaJugar(d,i+1));
 		}
 	}
 	

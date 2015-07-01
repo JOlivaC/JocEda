@@ -11,6 +11,7 @@ import java.util.TimerTask;
 
 import Domini.Factories.FactoriaControladors;
 import Domini.InterficieBD.CtrlAlarma;
+import Domini.Model.Partida;
 import Domini.Transaccions.TxJugarPartida;
 import Excepcions.ErrorPartida;
 
@@ -20,17 +21,21 @@ import Excepcions.ErrorPartida;
  */
 public class AlarmaJugar {
 	private Date data;
-	private int IDPartida;
+	private Partida p;
 	private Timer t;
-	public AlarmaJugar(Date data,int IDPartida){
+	public AlarmaJugar(Date data,Partida p){
 		this.data = data;
-		this.IDPartida = IDPartida;
+		this.p = p;
+	}
+	public AlarmaJugar() {
+		// TODO Auto-generated constructor stub
 	}
 	public void Sonar() {
-		TxJugarPartida TJP = new TxJugarPartida(IDPartida);
+		//TODO
+		//TxJugarPartida TJP = new TxJugarPartida(IDPartida);
 
 		try {
-			TJP.Executar();
+			//TJP.Executar();
 			CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
 			ctrl.Delete(this);
 			t.cancel();
@@ -60,10 +65,10 @@ public class AlarmaJugar {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public int getIDPartida() {
-		return IDPartida;
+	public Partida getPartida() {
+		return p;
 	}
-	public void setIDPartida(int iDPartida) {
-		IDPartida = iDPartida;
+	public void setPartida(Partida p) {
+		this.p = p;
 	}
 }
