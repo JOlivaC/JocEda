@@ -1,5 +1,9 @@
 package Dades.Tipus;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 
 public class Resultat extends PartidaJugador{
 	private int Posicio;
@@ -25,6 +29,17 @@ public class Resultat extends PartidaJugador{
 	}
 	public void setPuntuacio(int puntuacio) {
 		Puntuacio = puntuacio;
+	}
+	
+	public void Llegir(ResultSet rs) throws SQLException{
+		super.Llegir(rs);
+		Posicio = rs.getInt(3);
+		Puntuacio = rs.getInt(4);
+	}
+	public void Escriure(PreparedStatement ps) throws SQLException{
+		super.Escriure(ps);
+		ps.setInt(1,Posicio);
+	    ps.setInt(2,Puntuacio);
 	}
 
 	

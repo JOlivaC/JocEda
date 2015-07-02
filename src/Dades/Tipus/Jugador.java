@@ -1,6 +1,10 @@
 package Dades.Tipus;
 
-public class Jugador {
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Jugador extends TipusBD {
 	
 	private String nom;
 	private String nomFitxer;
@@ -38,5 +42,17 @@ public class Jugador {
 
 	public void setNomUsuari(String nomUsuari) {
 		this.nomUsuari = nomUsuari;
+	}
+
+	@Override
+	public void Llegir(ResultSet rs) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Escriure(PreparedStatement ps) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -2,8 +2,13 @@ package Dades.Acces;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import Dades.Tipus.Alarma;
+import Dades.Tipus.PartidaJugador;
+import Dades.Tipus.TipusBD;
 
 public abstract class Acces {
 	
@@ -45,6 +50,18 @@ public abstract class Acces {
 		return ret;
 	}
 	
+	public int getNBColumns(){
+		return getColumnNames().length;
+	}
+	
+	public String getPreparedInsert(){
+		String ret = "";
+		for (int i = 0; i < getNBColumns();i++){
+			ret += "?";
+			if (i < getNBColumns()) ret+= ",";
+		}
+		return ret;
+	}
 	
 	public boolean TableExists() throws Exception{
 		DatabaseMetaData meta = con.getMetaData();
@@ -59,5 +76,13 @@ public abstract class Acces {
 	public void DeleteAll() throws Exception{
 		 con.createStatement().executeUpdate("TRUNCATE TABLE " + getTableName());
 	}
+	
+	public void Insert(TipusBD t) throws Exception {          
+        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (" + getPreparedInsert() +")");
+        t.Escriure(ps);
+        ps.executeUpdate();
+	}
+	
+	
 	
 }

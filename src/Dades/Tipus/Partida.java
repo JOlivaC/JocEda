@@ -1,6 +1,10 @@
 package Dades.Tipus;
 
-public class Partida {
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Partida extends TipusBD {
 	private int IDPartida;
 	private String fitxer;
 	private int Estat;
@@ -23,5 +27,15 @@ public class Partida {
 	}
 	public void setEstat(int estat) {
 		Estat = estat;
+	}
+	@Override
+	public void Llegir(ResultSet rs) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void Escriure(PreparedStatement ps) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 }

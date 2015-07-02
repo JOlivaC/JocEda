@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Dades.Tipus.Partida;
+import Dades.Tipus.PartidaJugador;
 
 public class AccesPartidaJugador extends AccesClauPrimariaComposta {
 		
@@ -50,20 +51,12 @@ public class AccesPartidaJugador extends AccesClauPrimariaComposta {
 			// TODO Auto-generated method stub
 			return Constraints;
 		}
+		
 
 		
-		private static Partida Llegir(ResultSet rs) throws SQLException{
-			return new Partida(rs.getInt(1),rs.getString(2),rs.getInt(3));
-		}
-		private static void Escriure(PreparedStatement ps,Partida p) throws SQLException{
-			ps.setInt(1,p.getIDPartida());
-		    ps.setString(2, p.getFitxer());
-		    ps.setInt(3, p.getEstat());
-		}
-		
-		public void Insert(Partida p) throws Exception {          
-	        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (?,?,?)");
-	        Escriure(ps,p);
+		public void Insert(PartidaJugador pj) throws Exception {          
+	        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (" + super.getPreparedInsert() +")");
+	        pj.Escriure(ps);
 	        ps.executeUpdate();
 	        ps.close();
 		}
@@ -72,7 +65,7 @@ public class AccesPartidaJugador extends AccesClauPrimariaComposta {
 			Set<Partida> ret = new HashSet<>();
 			ResultSet rs;
 			rs = con.createStatement().executeQuery("SELECT * FROM " + getTableName());
-			while (rs.next()) ret.add(Llegir(rs));	
+			while (rs.next()) ret.add(new PartidaJugador);	
 			return ret;
 		}
 		

@@ -68,7 +68,7 @@ public class AccesParticipants extends AccesClauPrimariaComposta {
 	}
 	
 	public void Insert(Partida p) throws Exception {          
-        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (?,?,?)");
+        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (" + super.getPreparedInsert() + ")");
         Escriure(ps,p);
         ps.executeUpdate();
         ps.close();

@@ -1,6 +1,10 @@
 package Dades.Tipus;
 
-public class Fitxer {
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Fitxer extends TipusBD{
 	private String nom;
 	private byte[] dades;
 	public Fitxer(){
@@ -19,6 +23,16 @@ public class Fitxer {
 	}
 	public void setDades(byte[] dades) {
 		this.dades = dades;
+	}
+	@Override
+	public void Llegir(ResultSet rs) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void Escriure(PreparedStatement ps) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
