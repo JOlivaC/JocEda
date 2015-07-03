@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Dades.Claus.PKPartidaJugador;
+import Dades.Claus.PrimaryKey;
+
 public abstract class PartidaJugador extends TipusBD {
 	private int IDPartida;
 	private String nomJugador;
@@ -34,6 +37,11 @@ public abstract class PartidaJugador extends TipusBD {
 	public void Escriure(PreparedStatement ps) throws SQLException{
 		ps.setInt(1,IDPartida);
 	    ps.setString(2,nomJugador);
+	}
+	
+	@Override
+	public PrimaryKey getPK() {
+		return new PKPartidaJugador(this.getIDPartida(),this.getNomJugador());
 	}
 	
 	

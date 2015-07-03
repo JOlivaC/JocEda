@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Dades.Claus.PKJugador;
+import Dades.Claus.PrimaryKey;
+
 public class Jugador extends TipusBD {
 	
 	private String nom;
@@ -46,13 +49,21 @@ public class Jugador extends TipusBD {
 
 	@Override
 	public void Llegir(ResultSet rs) throws SQLException {
-		// TODO Auto-generated method stub
+		this.setNom(rs.getString(1));
+		this.setNomFitxer(rs.getString(2));
+		this.setNomUsuari(rs.getString(3));
 		
 	}
 
 	@Override
 	public void Escriure(PreparedStatement ps) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		ps.setString(1, this.getNom());
+		ps.setString(2, this.getNomFitxer());
+		ps.setString(3, this.getNomUsuari());	
+	}
+
+	@Override
+	public PrimaryKey getPK() {
+		return new PKJugador(this.getNom());
 	}
 }

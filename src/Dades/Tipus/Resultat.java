@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Dades.Claus.PrimaryKey;
+
 
 public class Resultat extends PartidaJugador{
 	private int Posicio;
@@ -41,6 +43,8 @@ public class Resultat extends PartidaJugador{
 		ps.setInt(1,Posicio);
 	    ps.setInt(2,Puntuacio);
 	}
+
+	
 
 	
 

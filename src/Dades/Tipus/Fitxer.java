@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Dades.Claus.PKFitxer;
+import Dades.Claus.PrimaryKey;
+
 public class Fitxer extends TipusBD{
 	private String nom;
 	private byte[] dades;
@@ -26,13 +29,18 @@ public class Fitxer extends TipusBD{
 	}
 	@Override
 	public void Llegir(ResultSet rs) throws SQLException {
-		// TODO Auto-generated method stub
+		setNom(rs.getString(1));
+		setDades(rs.getBytes(2));
 		
 	}
 	@Override
 	public void Escriure(PreparedStatement ps) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		ps.setString(1, getNom());
+		ps.setBytes(2, getDades());
+	}
+	@Override
+	public PrimaryKey getPK() {
+		return new PKFitxer(getNom());
 	}
 	
 }

@@ -6,10 +6,12 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+import Dades.Tipus.Alarma;
 import Dades.Tipus.Partida;
 import Dades.Tipus.PartidaJugador;
+import Dades.Tipus.TipusBD;
 
-public class AccesPartidaJugador extends AccesClauPrimariaComposta {
+public abstract class AccesPartidaJugador extends AccesClauPrimariaComposta {
 		
 		public static String[] ColumnNames = {AccesPartida.PKIdentifier,AccesJugador.PKIdentifier};
 		public static String[] ColumnTypes = {AccesPartida.PKType,AccesJugador.PKType};
@@ -53,28 +55,7 @@ public class AccesPartidaJugador extends AccesClauPrimariaComposta {
 		}
 		
 
+
 		
-		public void Insert(PartidaJugador pj) throws Exception {          
-	        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (" + super.getPreparedInsert() +")");
-	        pj.Escriure(ps);
-	        ps.executeUpdate();
-	        ps.close();
-		}
-		
-		public  Set<Partida> getAll() throws Exception {
-			Set<Partida> ret = new HashSet<>();
-			ResultSet rs;
-			rs = con.createStatement().executeQuery("SELECT * FROM " + getTableName());
-			while (rs.next()) ret.add(new PartidaJugador);	
-			return ret;
-		}
-		
-		public Partida get(int IDPartida) throws Exception {		
-			ResultSet rs;
-			PreparedStatement ps = con.prepareStatement("SELECT FROM " + getTableName() + " WHERE " + PKIdentifier + " = ?");
-			ps.setInt(1, IDPartida);
-			rs = ps.executeQuery();	
-			return Llegir(rs);
-		}
 
 }

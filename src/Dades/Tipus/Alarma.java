@@ -3,7 +3,11 @@ package Dades.Tipus;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
+
+import Dades.Claus.PKAlarma;
+import Dades.Claus.PrimaryKey;
 
 public class Alarma extends TipusBD{
 	private int IDPartida;
@@ -27,13 +31,18 @@ public class Alarma extends TipusBD{
 	}
 	@Override
 	public void Llegir(ResultSet rs) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		setIDPartida(rs.getInt(1));
+		setData(new Date(rs.getTimestamp(2).getTime()));
 	}
 	@Override
 	public void Escriure(PreparedStatement ps) throws SQLException {
-		// TODO Auto-generated method stub
+		ps.setInt(1,getIDPartida());
+		ps.setTimestamp(2, new Timestamp(getData().getTime()));
 		
+	}
+	@Override
+	public PrimaryKey getPK() {
+		return new PKAlarma(this.getIDPartida());
 	}
 	
 	

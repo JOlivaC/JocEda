@@ -5,7 +5,10 @@ import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
+import Dades.Claus.PrimaryKey;
 import Dades.Tipus.Alarma;
 import Dades.Tipus.PartidaJugador;
 import Dades.Tipus.TipusBD;
@@ -58,8 +61,13 @@ public abstract class Acces {
 		String ret = "";
 		for (int i = 0; i < getNBColumns();i++){
 			ret += "?";
-			if (i < getNBColumns()) ret+= ",";
+			if (i < getNBColumns() - 1) ret+= ",";
 		}
+		return ret;
+	}
+	
+	public String getPreparedAttributes(){
+		String ret = "";
 		return ret;
 	}
 	
@@ -82,6 +90,36 @@ public abstract class Acces {
         t.Escriure(ps);
         ps.executeUpdate();
 	}
+	
+	public void Update(TipusBD t) throws Exception {          
+		PreparedStatement ps = con.prepareStatement("UPDATE " + getTableName() + " WHERE " + getPreparedSelect() + " SET " );
+        t.Escriure(ps);
+        ps.executeUpdate();
+	}
+	public TipusBD get(PrimaryKey PK) throws Exception {		
+		ResultSet rs;
+		PreparedStatement ps = con.prepareStatement("SELECT FROM " + getTableName() + " WHERE " + getPreparedSelect());
+		PK.EscriurePK(ps);
+		rs = ps.executeQuery();	
+		return LlegirResultat(rs);
+	}
+	
+	public  void Delete(PrimaryKey PK) throws Exception {
+		PreparedStatement ps = con.prepareStatement("DELETE FROM " + getTableName() + " WHERE " + getPreparedSelect());
+		PK.EscriurePK(ps);
+		ps.executeUpdate();
+	}
+	
+	public  Set<TipusBD> getAll() throws Exception {
+		Set<TipusBD> ret = new HashSet<>();
+		ResultSet rs;
+		rs = con.createStatement().executeQuery("SELECT * FROM " + getTableName());
+		while (rs.next()) ret.add(LlegirResultat(rs));	
+		return ret;
+	}
+	
+	protected abstract String getPreparedSelect();
+	protected abstract TipusBD LlegirResultat(ResultSet rs) throws SQLException;
 	
 	
 	

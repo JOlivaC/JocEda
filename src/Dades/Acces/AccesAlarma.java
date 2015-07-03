@@ -12,6 +12,7 @@ import java.util.Set;
 import Dades.Controladors.TaulaPartida;
 import Dades.Factories.ConnexioBD;
 import Dades.Tipus.Alarma;
+import Dades.Tipus.TipusBD;
 
 public class AccesAlarma extends AccesClauPrimariaUnica {
 	public static String tableName = "alarma";
@@ -56,42 +57,12 @@ public class AccesAlarma extends AccesClauPrimariaUnica {
 		return tableName;
 	}
 	
-	private static Alarma Llegir(ResultSet rs) throws SQLException{
-		return new Alarma(rs.getInt(1),new Date(rs.getTimestamp(2).getTime()));
-	}
-	private static void Escriure(PreparedStatement ps,Alarma a) throws SQLException{
-		java.sql.Timestamp sqlInstant = new java.sql.Timestamp(a.getData().getTime());
-		ps.setInt(1, a.getIDPartida());
-	    ps.setTimestamp(2, sqlInstant);
-	}
-	
-	public void Insert(Alarma a) throws Exception {          
-        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (?,?)");
-        Escriure(ps,a);
-        ps.executeUpdate();
-        ps.close();
-	}
-	
-	public  Set<Alarma> getAll() throws Exception {
-		Set<Alarma> ret = new HashSet<>();
-		ResultSet rs;
-		rs = con.createStatement().executeQuery("SELECT * FROM " + getTableName());
-		while (rs.next()) ret.add(Llegir(rs));	
+
+	@Override
+	protected TipusBD LlegirResultat(ResultSet rs) throws SQLException {
+		Alarma ret = new Alarma();
+		ret.Llegir(rs);
 		return ret;
-	}
-	
-	public Alarma get(int IDPartida) throws Exception {		
-		ResultSet rs;
-		PreparedStatement ps = con.prepareStatement("SELECT FROM " + getTableName() + " WHERE " + ColumnNames[0] + " = ?");
-		ps.setInt(1, IDPartida);
-		rs = ps.executeQuery();	
-		return Llegir(rs);
-	}
-	
-	public  void Delete(Alarma a) throws Exception {
-		PreparedStatement ps = con.prepareStatement("DELETE FROM " + getTableName() + " WHERE " + ColumnNames[0] + " = ?");
-		ps.setInt(1, a.getIDPartida());
-		ps.executeUpdate();
 	}
 	
 

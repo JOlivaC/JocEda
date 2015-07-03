@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import Dades.Claus.PrimaryKey;
+
 public class Partida extends TipusBD {
 	private int IDPartida;
 	private String fitxer;
@@ -37,5 +39,10 @@ public class Partida extends TipusBD {
 	public void Escriure(PreparedStatement ps) throws SQLException {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public PrimaryKey getPK() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

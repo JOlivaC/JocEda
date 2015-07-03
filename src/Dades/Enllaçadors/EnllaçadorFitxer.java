@@ -2,11 +2,12 @@ package Dades.Enllaçadors;
 
 import Comunicacio.Fitxer;
 import Dades.Acces.AccesFitxer;
+import Dades.Claus.PKFitxer;
 
 public class EnllaçadorFitxer {
 	private AccesFitxer ACFitxer = Dades.Factories.FactoriaAccessos.getInstance().getAccesFitxer();
 	public Fitxer get(String name) throws Exception{
-		Dades.Tipus.Fitxer f = ACFitxer.get(name);
+		Dades.Tipus.Fitxer f = (Dades.Tipus.Fitxer) ACFitxer.get(new PKFitxer(name));
 		return new Comunicacio.Fitxer(f.getNom(),f.getDades());
 	}
 	

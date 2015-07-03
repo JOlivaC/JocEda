@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+import Dades.Tipus.Alarma;
 import Dades.Tipus.Jugador;
+import Dades.Tipus.TipusBD;
 
 public class AccesJugador extends AccesClauPrimariaUnica {
 	public static String tableName = "jugador";
@@ -49,37 +51,13 @@ public class AccesJugador extends AccesClauPrimariaUnica {
 		// TODO Auto-generated method stub
 		return tableName;
 	}
-	
-	private static Jugador Llegir(ResultSet rs) throws SQLException{
-		return new Jugador(rs.getString(1),rs.getString(2),rs.getString(3));
-	}
-	private static void Escriure(PreparedStatement ps,Jugador j) throws SQLException{
-		ps.setString(1,j.getNom());
-	    ps.setString(2, j.getNomFitxer());
-	    ps.setString(3, j.getNomUsuari());
-	}
-	
-	public void Insert(Jugador j) throws Exception {          
-        PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (?,?,?)");
-        Escriure(ps,j);
-        ps.executeUpdate();
-        ps.close();
-	}
-	
-	public  Set<Jugador> getAll() throws Exception {
-		Set<Jugador> ret = new HashSet<>();
-		ResultSet rs;
-		rs = con.createStatement().executeQuery("SELECT * FROM " + getTableName());
-		while (rs.next()) ret.add(Llegir(rs));	
+	@Override
+	protected TipusBD LlegirResultat(ResultSet rs) throws SQLException {
+		Jugador ret = new Jugador();
+		ret.Llegir(rs);
 		return ret;
 	}
 	
-	public Jugador get(String nom) throws Exception {		
-		ResultSet rs;
-		PreparedStatement ps = con.prepareStatement("SELECT FROM " + getTableName() + " WHERE " + PKIdentifier + " = ?");
-		ps.setString(1, nom);
-		rs = ps.executeQuery();	
-		return Llegir(rs);
-	}
+	
 
 }
