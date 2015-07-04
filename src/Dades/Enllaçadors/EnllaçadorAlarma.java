@@ -7,6 +7,7 @@ import java.util.Set;
 
 import Actors.Alarmes.AlarmaJugar;
 import Dades.Acces.AccesAlarma;
+import Dades.Claus.PKAlarma;
 import Dades.Claus.PKPartida;
 import Dades.Claus.PrimaryKey;
 import Dades.Factories.FactoriaAccessos;
@@ -20,7 +21,7 @@ public class EnllaçadorAlarma {
 	private EnllaçadorPartida EnPartida = FactoriaEnllaçadors.getInstance().getEnllaçadorPartida();
 	
 
-	public AlarmaJugar get(int IDPartida) throws Exception{
+	public AlarmaJugar Get(int IDPartida) throws Exception{
 		
 		AlarmaJugar ret;
 		if ((ret = Prefetch(IDPartida)) == null){
@@ -30,14 +31,25 @@ public class EnllaçadorAlarma {
 			Cache.put(IDPartida, ret);
 			
 			ret.setData(al.getData());
-			ret.setPartida(EnPartida.get(IDPartida));
+			ret.setPartida(EnPartida.Get(IDPartida));
 		}
 		
 		return ret;
 	}
 	
 	public void Insert(AlarmaJugar a) throws Exception{
-		
+		EnPartida.InsertIf(a.getPartida());
+		acces.Insert(new Dades.Tipus.Alarma(a.getPartida().getID(),a.getData()));
+	}
+	
+	public void Update(AlarmaJugar a) throws Exception{
+		EnPartida.InsertIf(a.getPartida());
+		EnPartida.Update(a.getPartida());
+		acces.Update(new Dades.Tipus.Alarma(a.getPartida().getID(),a.getData()));
+	}
+	
+	public void Delete(AlarmaJugar a) throws Exception {
+		acces.Delete(new PKAlarma(a.getPartida().getID()));
 	}
 	
 	public Set<AlarmaJugar> getAll() throws Exception{
@@ -48,7 +60,7 @@ public class EnllaçadorAlarma {
 			if (!Cache.containsKey(a.getIDPartida())) {
 				al = new AlarmaJugar();
 				Cache.put(a.getIDPartida(), al);
-				EnPartida.get(a.getIDPartida());
+				EnPartida.Get(a.getIDPartida());
 			} else {
 				al = Cache.get(a.getIDPartida());
 

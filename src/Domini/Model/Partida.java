@@ -19,7 +19,7 @@ import Domini.Model.EstatPartida.IEstatPartida;
  */
 public class Partida {
 	private int ID;
-    private IEstatPartida Estat;
+    private int Estat;
     private Set<ResultatJugador> Resultat;
     private Set<Jugador> Participants;
     private FitxerResultat PartidaResultant;
@@ -46,6 +46,9 @@ public class Partida {
 		// TODO 
 		return false;
 	}
+	
+	public int getEstat(){return Estat;}
+	
     
 	public InfoPartida getInfo(){
 		InfoPartida ret = new InfoPartida();

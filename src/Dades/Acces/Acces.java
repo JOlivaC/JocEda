@@ -84,6 +84,11 @@ public abstract class Acces {
 	public void DeleteAll() throws Exception{
 		 con.createStatement().executeUpdate("TRUNCATE TABLE " + getTableName());
 	}
+	public boolean Exists(PrimaryKey PK) throws Exception{
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM " + getTableName() + " WHERE " + getPreparedSelect());
+        PK.EscriurePK(ps);
+        return(ps.executeQuery().next());
+	}
 	
 	public void Insert(TipusBD t) throws Exception {          
         PreparedStatement ps = con.prepareStatement("INSERT INTO " + getTableName() + " VALUES (" + getPreparedInsert() +")");
