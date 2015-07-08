@@ -13,13 +13,12 @@ import java.util.SortedSet;
  * @author JOAN
  */
 public class GeneradorCombinacions {
-	private int NJug;
-	private int NJugPar;
-	private int NPar;
-    public GeneradorCombinacions(int NJugadors,int NJugadorsPartida,int NPartides){
-    	NJug = NJugadors;
-    	NJugPar = NJugadorsPartida;
-    	NPar = NPartides;
+	
+	private Set<Integer> IDSJugadors;
+	private int JugadorsPerPartida;
+    public GeneradorCombinacions(Set<Integer> IDSJugadors,int NJugadorsPartida){
+    	this.IDSJugadors = IDSJugadors;
+    	JugadorsPerPartida = NJugadorsPartida;
     }
     public SortedSet<Set<Integer>> Generar(){
     	return null;
