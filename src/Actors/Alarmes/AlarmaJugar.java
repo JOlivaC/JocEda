@@ -20,12 +20,14 @@ import Excepcions.ErrorPartida;
  * @author JOAN
  */
 public class AlarmaJugar {
+	private int id;
+	private Partida partida;
 	private Date data;
-	private Partida p;
-	private Timer t;
+	private transient Timer t;
 	public AlarmaJugar(Date data,Partida p){
 		this.data = data;
-		this.p = p;
+		this.partida = p;
+		this.id = p.getID();
 	}
 	public AlarmaJugar() {
 		// TODO Auto-generated constructor stub
@@ -59,16 +61,24 @@ public class AlarmaJugar {
 		
 	}
 
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Partida getPartida() {
+		return partida;
+	}
+	public void setPartida(Partida partida) {
+		this.partida = partida;
+	}
 	public Date getData() {
 		return data;
 	}
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public Partida getPartida() {
-		return p;
-	}
-	public void setPartida(Partida p) {
-		this.p = p;
-	}
+
+
 }

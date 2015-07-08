@@ -4,12 +4,11 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class Fitxer extends Tipus {
+public class Fitxer implements Serializable {
 	private byte[] dades;
 	private String nom;
 	
@@ -26,6 +25,11 @@ public class Fitxer extends Tipus {
 		this.dades = dades;
 	}
 	
+	public Fitxer() {
+		nom = "abc";
+		dades = new byte[5];
+		
+	}
 	public byte[] getDades(){return dades;}
 	
 	public File getFile() throws IOException{
@@ -50,5 +54,11 @@ public class Fitxer extends Tipus {
         if (pos == -1) return str;
         return str.substring(0, pos);
     }
+	public void setDades(byte[] dades) {
+		this.dades = dades;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 	
 }

@@ -8,6 +8,7 @@ package Domini.Model;
 import java.util.HashSet;
 import java.util.Set;
 
+import Comunicacio.Fitxer;
 import Comunicacio.InfoJugadorPartida;
 import Comunicacio.InfoPartida;
 import Domini.Fitxers.FitxerResultat;
@@ -22,7 +23,7 @@ public class Partida {
     private int Estat;
     private Set<ResultatJugador> Resultat;
     private Set<Jugador> Participants;
-    private FitxerResultat PartidaResultant;
+    private Fitxer PartidaResultant;
     
 	public int getID() {
 		return ID;
@@ -36,10 +37,10 @@ public class Partida {
 	public void setResultat(Set<ResultatJugador> resultat) {
 		Resultat = resultat;
 	}
-	public FitxerResultat getPartidaResultant() {
+	public Fitxer getPartidaResultant() {
 		return PartidaResultant;
 	}
-	public void setPartidaResultant(FitxerResultat partidaResultant) {
+	public void setPartidaResultant(Fitxer partidaResultant) {
 		PartidaResultant = partidaResultant;
 	}
 	public boolean EstaJugada(){
@@ -60,6 +61,15 @@ public class Partida {
 		ret.setJugadors(IJ);
 		
 		return ret;
+	}
+	public Set<Jugador> getParticipants() {
+		return Participants;
+	}
+	public void setParticipants(Set<Jugador> participants) {
+		Participants = participants;
+	}
+	public void setEstat(int estat) {
+		Estat = estat;
 	}
     
     

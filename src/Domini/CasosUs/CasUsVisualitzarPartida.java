@@ -13,7 +13,7 @@ public class CasUsVisualitzarPartida {
 	public FitxerResultat VisualitzarPartida(int IDPartida) throws Exception{
 		
 		Partida p = FactoriaControladors.getInstance().getCtrlPartida().get(IDPartida);
-		if (p.EstaJugada())  return p.getPartidaResultant();
+		if (p.EstaJugada())  return (FitxerResultat)p.getPartidaResultant();
 		else throw new PartidaNoJugada();
 	}
 }

@@ -15,17 +15,17 @@ import java.util.Set;
  * @author JOAN
  */
 public class Usuari {
-    private String user;
+    private String username;
     private String pass;
     private List<Jugador> jugadors;
     public Usuari(){
     	jugadors = new ArrayList<>();
     }
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsername(String user) {
+		this.username = user;
 	}
 	public String getPass() {
 		return pass;

@@ -6,17 +6,33 @@
 package Domini.Model;
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import Actors.Alarmes.AlarmaJugar;
+import Comunicacio.Fitxer;
+import Dades.Factories.HibernateUtil;
 import Domini.Fitxers.FitxerJugador;
 
 /**
  *
  * @author JOAN
  */
+
 public class Jugador {
     private String name;
-    private FitxerJugador jugador;
+    private Fitxer jugador;
     private Usuari owner;
+    private Set<Partida> PartidesJugades;
     
 	public String getName() {
 		return name;
@@ -24,14 +40,35 @@ public class Jugador {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public FitxerJugador getJugador() {
+	public Fitxer getJugador() {
 		return jugador;
 	}
-	public void setJugador(FitxerJugador jugador) {
+	public void setJugador(Fitxer jugador) {
 		this.jugador = jugador;
+	}
+	public Usuari getOwner() {
+		return owner;
+	}
+	public void setOwner(Usuari owner) {
+		this.owner = owner;
 	}
     
     
-    
+    @SuppressWarnings("deprecation")
+	public static void main(String argv[]){
+    	SessionFactory s = HibernateUtil.getSessionFactory();
+    	Session se = s.openSession();
+    	Transaction tx;
+    	tx = se.beginTransaction();
+    	tx.commit();
+    	s.close();
+    	
+    }
+	public Set<Partida> getPartidesJugades() {
+		return PartidesJugades;
+	}
+	public void setPartidesJugades(Set<Partida> partidesJugades) {
+		PartidesJugades = partidesJugades;
+	}
     
 }

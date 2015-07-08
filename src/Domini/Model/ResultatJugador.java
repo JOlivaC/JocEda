@@ -3,6 +3,7 @@ package Domini.Model;
 import Comunicacio.InfoJugadorPartida;
 
 public class ResultatJugador {
+	private int ID;
 	private int Posicio;
 	private int Puntuacio;
 	private Jugador j;
@@ -34,6 +35,12 @@ public class ResultatJugador {
 	
 	public InfoJugadorPartida getInfo(){
 		return new InfoJugadorPartida(j.getName(),this.Puntuacio);
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
 	}
 	
 	

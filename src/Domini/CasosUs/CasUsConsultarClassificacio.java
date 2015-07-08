@@ -42,7 +42,7 @@ public class CasUsConsultarClassificacio {
 			InfoJugadorNPartides IN = new InfoJugadorNPartides();
 			InfoJugadorPosicio IP = new InfoJugadorPosicio();
 			
-			IP.setNom(u.getUser());
+			IP.setNom(u.getUsername());
 			
 			Map<Integer,Integer> Pos = new HashMap<>();
 			int punts = 0;

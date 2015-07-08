@@ -5,10 +5,23 @@
  */
 package Domini.Generadors;
 
+import java.util.Set;
+import java.util.SortedSet;
+
 /**
  *
  * @author JOAN
  */
 public class GeneradorCombinacions {
-    
+	private int NJug;
+	private int NJugPar;
+	private int NPar;
+    public GeneradorCombinacions(int NJugadors,int NJugadorsPartida,int NPartides){
+    	NJug = NJugadors;
+    	NJugPar = NJugadorsPartida;
+    	NPar = NPartides;
+    }
+    public SortedSet<Set<Integer>> Generar(){
+    	return null;
+    }
 }
