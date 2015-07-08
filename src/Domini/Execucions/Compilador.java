@@ -16,7 +16,7 @@ public class Compilador {
     public static void main(String[] args) throws IOException {
         Compilador c = new Compilador();
         try {
-            //c.compilarJugador("/home/jose/Documentos/Games/game/Demo.cc");
+            c.compilarJugador("/home/jose/Documentos/Games/game/Prueba.cc");
             c.compilarJoc("/home/jose/Documentos/Games/game");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -24,12 +24,12 @@ public class Compilador {
     }
     
     public void compilarJoc(String ruta) throws IOException, Exception{
-        Process p = Runtime.getRuntime().exec(new String[]{"/bin/sh","-c", "g++ -o "+ruta+"/Game "+ruta+"/*.o"});
+        Process p = Runtime.getRuntime().exec(new String[]{"/bin/sh","-c", "g++ -o "+ruta+"/Game "+ruta+"/*.o "+ruta+"/*.o-LINUX64"});
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
         String s;
         String e = "";
         while ((s = stdError.readLine()) != null) e += s+"\n";
-        if(!e.equals("")) throw new Exception("Error al compilar el joc:\n"+e);
+        if(p.waitFor()!=0) throw new Exception("Error al compilar el joc:\n"+e);
     }
 
     public void compilarJugador(String ruta) throws FileNotFoundException, Exception{
@@ -38,13 +38,18 @@ public class Compilador {
         String parent = f.getParent()+"/";
         if (parent == null) parent = "/";
         String fnwe = f.getName().split("\\.")[0];
-        Process p = Runtime.getRuntime().exec("g++ -c -o "+parent+fnwe+".o "+ruta);
+        Process p = Runtime.getRuntime().exec("g++ -std=c++0x -c -o "+parent+fnwe+".o "+ruta);
         BufferedReader stdError = new BufferedReader(new
                 InputStreamReader(p.getErrorStream()));
         String s;
         String e = "";
         while ((s = stdError.readLine()) != null) e += s+"\n";
-        if(!e.equals("")) throw new Exception("Error al compilar el jugador:\n"+e);
+        if(p.waitFor()!=0) throw new Exception("Error al compilar el jugador:\n"+e);
+        
+        // Comprobar que al executar una partida de prova el joc no es penja.
+        // Si es penja, restaurar jugador anterior.
+        //Executor ex = new Executor();
+        //ex.executarJoc(fnwe,"Dummy","Dummy","Dummy",parent);
     }
 
     private void validarJugador(File f) throws FileNotFoundException, IOException, Exception {
