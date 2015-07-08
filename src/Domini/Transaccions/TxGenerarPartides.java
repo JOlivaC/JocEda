@@ -11,6 +11,7 @@ import Domini.Model.Partida;
 public class TxGenerarPartides {
 	
 	public void executar(){
+		//TODO
 		Set<Jugador> tots = null;
 		// Agafar tots els jugadors
 		// Agafar els id's dels jugadors

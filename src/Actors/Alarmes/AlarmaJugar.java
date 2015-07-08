@@ -30,18 +30,13 @@ public class AlarmaJugar {
 		this.id = p.getID();
 	}
 	public AlarmaJugar() {
-		// TODO Auto-generated constructor stub
+
 	}
 	public void Sonar() {
-		//TODO
-		//TxJugarPartida TJP = new TxJugarPartida(IDPartida);
+		TxJugarPartida TJP = new TxJugarPartida(partida.getID());
 
 		try {
-			//TJP.Executar();
-			CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
-			ctrl.Delete(this);
-			t.cancel();
-			
+			TJP.Executar();	
 		} catch (Exception e) {
 			System.out.print(e);
 		}
