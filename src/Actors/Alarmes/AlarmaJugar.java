@@ -20,20 +20,19 @@ import Excepcions.ErrorPartida;
  * @author JOAN
  */
 public class AlarmaJugar {
-	private int id;
+	private int ID;
 	private Partida partida;
 	private Date data;
 	private transient Timer t;
 	public AlarmaJugar(Date data,Partida p){
 		this.data = data;
 		this.partida = p;
-		this.id = p.getID();
 	}
 	public AlarmaJugar() {
 
 	}
 	public void Sonar() {
-		TxJugarPartida TJP = new TxJugarPartida(partida.getID());
+		TxJugarPartida TJP = new TxJugarPartida(partida);
 
 		try {
 			TJP.Executar();	
@@ -56,12 +55,7 @@ public class AlarmaJugar {
 		
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public Partida getPartida() {
 		return partida;
 	}
@@ -73,6 +67,12 @@ public class AlarmaJugar {
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
 	}
 
 

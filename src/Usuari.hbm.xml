@@ -11,7 +11,7 @@
         <property name="pass" type="java.lang.String">
             <column name="PASS" />
         </property>
-        <list name="jugadors" inverse="false" table="JUGADOR" lazy="true">
+        <list name="jugadors" inverse="false" table="JUGADOR" lazy="true" cascade="save-update">
             <key>
                 <column name="USERNAME" />
             </key>

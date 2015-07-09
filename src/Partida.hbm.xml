@@ -11,20 +11,20 @@
         <property name="Estat" type="int">
             <column name="ESTAT" />
         </property>
-        <set name="Resultat" table="RESULTATJUGADOR" inverse="false" lazy="true">
+        <set name="Resultat" table="RESULTATJUGADOR" inverse="false" lazy="true" cascade="save-update">
             <key>
                 <column name="ID" />
             </key>
             <one-to-many class="Domini.Model.ResultatJugador" />
         </set>
-        <set name="Participants" table="PARTIDAJUGADOR" inverse="false" lazy="true">
+        <set name="Participants" table="PARTICIPANTS" inverse="false" lazy="true" cascade="save-update">
             <key>
                 <column name="ID" />
             </key>
-            <many-to-many column = "NAME" 
-                class="Domini.Model.Jugador" />
+            <many-to-many column = "USERNAME" 
+                class="Domini.Model.Usuari" />
         </set>
-        <many-to-one name="PartidaResultant" class="Comunicacio.Fitxer" fetch="join">
+        <many-to-one name="PartidaResultant" class="Comunicacio.Fitxer" fetch="join" cascade="save-update">
             <column name="PARTIDARESULTANT" />
         </many-to-one>
     </class>

@@ -22,9 +22,13 @@ public class Partida {
 	private int ID;
     private int Estat;
     private Set<ResultatJugador> Resultat;
-    private Set<Jugador> Participants;
+    private Set<Usuari> Participants;
     private Fitxer PartidaResultant;
     
+    public Partida(){
+    	Resultat = new HashSet<>();
+    	Participants = new HashSet<>();
+    }
 	public int getID() {
 		return ID;
 	}
@@ -62,10 +66,13 @@ public class Partida {
 		
 		return ret;
 	}
-	public Set<Jugador> getParticipants() {
+	public void Acabar(){
+		Estat = 1;
+	}
+	public Set<Usuari> getParticipants() {
 		return Participants;
 	}
-	public void setParticipants(Set<Jugador> participants) {
+	public void setParticipants(Set<Usuari> participants) {
 		Participants = participants;
 	}
 	public void setEstat(int estat) {

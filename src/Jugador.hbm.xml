@@ -6,12 +6,12 @@
     <class name="Domini.Model.Jugador" table="JUGADOR">
         <id name="name" type="java.lang.String">
             <column name="NAME" />
-            <generator class="assigned" />
+            <generator class="assigned"/>
         </id>
-        <many-to-one name="jugador" class="Comunicacio.Fitxer" fetch="join">
+        <many-to-one name="jugador" class="Comunicacio.Fitxer" fetch="join" cascade="save-update">
             <column name="JUGADOR" />
         </many-to-one>
-        <many-to-one name="owner" class="Domini.Model.Usuari" fetch="join">
+        <many-to-one name="owner" class="Domini.Model.Usuari" fetch="join" cascade="save-update">
             <column name="OWNER" />
         </many-to-one>
     </class>

@@ -4,15 +4,13 @@
 <!-- Generated Jul 8, 2015 3:18:30 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="Actors.Alarmes.AlarmaJugar" table="ALARMAJUGAR">
-        <id name="id" type="int">
-            <column name="ID" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="partida" class="Domini.Model.Partida" fetch="join">
-            <column name="PARTIDA" />
-        </many-to-one>
+        <id name="ID" type = "int">
+            	<column name="ID" />
+            	<generator class="increment"/>
+        </id>       
         <property name="data" type="java.util.Date">
-            <column name="DATA" />
+            <column name="DATA"/>
         </property>
+        <one-to-one name="partida" class="Domini.Model.Partida" constrained="true" cascade="save-update"/>
     </class>
 </hibernate-mapping>

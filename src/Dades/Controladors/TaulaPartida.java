@@ -27,4 +27,10 @@ public class TaulaPartida implements CtrlPartida {
 		
 	}
 
+	@Override
+	public void Insert(Partida p) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -9,4 +9,5 @@ public interface CtrlPartida {
 	public Set<Partida> getAll() throws Exception;
 	public Partida get(int id) throws Exception;
 	public void update(Partida p) throws Exception;
+	public void Insert(Partida p) throws Exception;
 }

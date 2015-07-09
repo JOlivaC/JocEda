@@ -6,7 +6,7 @@
     <class name="Domini.Model.ResultatJugador" table="RESULTATJUGADOR">
         <id name="ID" type="int">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="increment"/>
         </id>
         <property name="Posicio" type="int">
             <column name="POSICIO" />
@@ -14,10 +14,10 @@
         <property name="Puntuacio" type="int">
             <column name="PUNTUACIO" />
         </property>
-        <many-to-one name="j" class="Domini.Model.Jugador" fetch="join">
+        <many-to-one name="j" class="Domini.Model.Jugador" fetch="join" cascade="save-update">
             <column name="J" />
         </many-to-one>
-        <many-to-one name="p" class="Domini.Model.Partida" fetch="join">
+        <many-to-one name="p" class="Domini.Model.Partida" fetch="join" cascade="save-update">
             <column name="P" />
         </many-to-one>
     </class>

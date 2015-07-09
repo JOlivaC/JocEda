@@ -45,6 +45,12 @@ public class TaulaAlarma implements CtrlAlarma {
 		
 	}
 
+	@Override
+	public void Delete(int IDPartida) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 }
