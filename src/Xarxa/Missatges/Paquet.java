@@ -34,6 +34,8 @@ public abstract class Paquet implements Serializable {
     public boolean EsConsultarClassificacioResponse(){return false;}
     public boolean EsVisualitzarPartida(){return false;}
     public boolean EsVisualitzarPartidaResponse(){return false;}
+    public boolean EsRegistrarse(){return false;}
+    public boolean EsRegistrarseResponse(){return false;}
     
     
     
@@ -48,6 +50,8 @@ public abstract class Paquet implements Serializable {
     public ConsultarClassificacioResponse ConsultarClassificacioResponseCast(){return (ConsultarClassificacioResponse) this;}
     public VisualitzarPartida VisualitzarPartidaCast(){return (VisualitzarPartida) this;}
     public VisualitzarPartidaResponse VisualitzarPartidaResponseCast(){return (VisualitzarPartidaResponse) this;}
+    public Registrarse RegistrarseCast(){return (Registrarse) this;}
+    public RegistrarseResponse RegistrarseResponseCast(){return (RegistrarseResponse) this;}
     
    
     

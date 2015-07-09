@@ -63,6 +63,12 @@ public class Solicitant implements CapaDominiInterface {
 		s.Escriure(new Xarxa.Missatges.VisualitzarPartida(ID));
 		return s.Llegir().VisualitzarPartidaResponseCast().getPartida().getFile();
 	}
+
+	@Override
+	public void Registrarse(String User, String pass) throws Exception {
+		s.Escriure(new Xarxa.Missatges.Registrarse(User, pass));
+		s.Llegir().Throw();	
+	}
     
    
 }

@@ -29,4 +29,6 @@ public interface CapaDominiInterface {
     public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws IOException, ClassNotFoundException;
     
     public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException;
+    
+    public void Registrarse(String User,String pass) throws Exception;
 }

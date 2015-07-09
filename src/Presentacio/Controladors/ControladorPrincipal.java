@@ -30,6 +30,7 @@ public class ControladorPrincipal {
     private Presentacio.MenuPrincipalView.MenuPrincipal VistaMenu;
     private Presentacio.Resultats.ResultatsView VistaResultats;
     private Presentacio.Classificacio.ClassificacioView VistaRanking;
+    private Presentacio.RegisterView.Registrar VistaRegistrar;
     private CapaDominiInterface Domini;
     private Finestra Vista;
     private GestorContextual Gestor;
@@ -42,9 +43,13 @@ public class ControladorPrincipal {
     }
     
     private void MostrarLogin(){
-    	 VistaLogin = new Presentacio.LoginView.Login(new LoginOK());
+    	 VistaLogin = new Presentacio.LoginView.Login(new LoginOK(),new Registrarse());
          CanviarContext("Login",VistaLogin);
     }
+    private void MostrarRegistrar(){
+   	 VistaRegistrar = new Presentacio.RegisterView.Registrar(new RegistrarOK(),new Retrocedir());
+   	 CanviarContext("Registrar-se",VistaRegistrar);
+   }
     private void MostrarPenjar(){
     	 VistaPenjar = new Presentacio.PenjarView.Penjar(new FitxerOK(),new Retrocedir());
     	 CanviarContext("Penjar Jugador",VistaPenjar);
@@ -72,6 +77,14 @@ public class ControladorPrincipal {
     		
 
 
+    }
+    public void Registrar(String user,String pass){
+    	try {
+			Domini.Registrarse(user, pass);
+		} catch (Exception e) {
+			VistaRegistrar.MostraMsg(e.getMessage());
+		}
+    	MostrarLogin();
     }
     public void VisualitzarPartida(int IDPartida){
     	try {
@@ -148,6 +161,23 @@ public class ControladorPrincipal {
 		public void actionPerformed(ActionEvent e) {
 			MostrarPenjar();
 			
+		}
+    	
+    }
+    private class Registrarse implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MostrarRegistrar();
+			
+		}
+    	
+    }
+    private class RegistrarOK implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			Registrar(VistaRegistrar.getUserName(), VistaRegistrar.getPassword());
 		}
     	
     }

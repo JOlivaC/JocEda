@@ -9,17 +9,7 @@ import java.io.IOException;
 
 import Domini.CasosUs.CasUsSessio;
 import Excepcions.FitxerInvalid;
-import Xarxa.Missatges.ConsultarClassificacio;
-import Xarxa.Missatges.ConsultarClassificacioResponse;
-import Xarxa.Missatges.ConsultarResultats;
-import Xarxa.Missatges.ConsultarResultatsResponse;
-import Xarxa.Missatges.Login;
-import Xarxa.Missatges.LoginResponse;
-import Xarxa.Missatges.Paquet;
-import Xarxa.Missatges.PenjarJugador;
-import Xarxa.Missatges.PenjarJugadorResponse;
-import Xarxa.Missatges.VisualitzarPartida;
-import Xarxa.Missatges.VisualitzarPartidaResponse;
+import Xarxa.Missatges.*;
 import Xarxa.Sockets.PaquetSocket;
 
 /**
@@ -53,6 +43,8 @@ public class Sesio extends Thread {
                     else if (dada.EsConsultarResultats()) ConsultarResultats(dada.ConsultarResultatsCast());
                     else if (dada.EsConsultarClassificacio()) ConsultarClassificacio(dada.ConsultarClassificacioCast());
                     else if (dada.EsVisualitzarPartida()) VisualitzarPartida(dada.VisualitzarPartidaCast());
+                    else if (dada.EsRegistrarse()) Registrarse(dada.RegistrarseCast());
+                    
                 } catch (IOException | ClassNotFoundException ex) {
                     end = true;
                 } 
@@ -96,6 +88,17 @@ public class Sesio extends Thread {
 			R = new ConsultarResultatsResponse(e);
 		}
     	connexio.Escriure(R);
+    }
+    private void Registrarse(Registrarse R) throws IOException{
+    	RegistrarseResponse Res;
+    	try {
+    		CUSessio.Regisrarse(R.getUser(), R.getPass());
+    		Res = new RegistrarseResponse();
+    	} 
+    	catch(Exception e){
+    		Res = new RegistrarseResponse(e);
+    	}
+    	connexio.Escriure(Res);
     }
     
     private void ConsultarClassificacio(ConsultarClassificacio CC) throws IOException{

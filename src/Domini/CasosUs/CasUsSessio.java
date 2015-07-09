@@ -24,7 +24,10 @@ public class CasUsSessio {
     {
         loguejat = new CasUsLogin().Login(User, Pass);    
     }
-    
+    public void Regisrarse(String user,String pass) throws Exception
+    {
+    	new CasUsRegistrarse().Registrarse(user, pass);
+    }
     public void Penjar(FitxerJugador f) throws FitxerInvalid{
     	CasUsPenjarJugador u = new CasUsPenjarJugador(loguejat);
     	u.PenjarJugador(f);	
