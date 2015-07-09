@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -121,14 +122,23 @@ public class Executor {
     public static void main(String[] args) throws IOException {
         Executor e = new Executor();
         try {
-            File f = e.executarJoc("Prueba","Dummy","Dummy","Dummy","/home/jose/Documentos/Games/game");
+            ArrayList<String> players = new ArrayList<String>();
+            players.add("Prueba");
+            File f = e.executarJoc(players,"/home/jose/Documentos/Games/game");
             System.out.println(f.getAbsolutePath());
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
     
-    public File executarJoc(String p1, String p2, String p3, String p4, String ruta) throws IOException, Exception{
+    private void comprovar_jugadors(ArrayList<String> players) throws Exception {
+        if (players.isEmpty()) throw new Exception("Cal indicar almenys un jugador per executar el joc.");
+        else if(players.size()>4) throw new Exception("El joc admet com a màxim 4 jugadors.");
+        for(int i=players.size(); i<4; ++i) players.add("Dummy");
+    }
+    
+    public File executarJoc(ArrayList<String> players, String ruta) throws IOException, Exception{
+        comprovar_jugadors(players);
         File f = new File(ruta);
         String map = maps[new Random().nextInt(8)];
         // Guardar mapa a un string.
@@ -140,7 +150,7 @@ public class Executor {
         entrada.close();
         
         // Executar procés.
-        Process p = Runtime.getRuntime().exec(ruta+"/./Game "+p1+" "+p2+" "+p3+" "+p4);
+        Process p = Runtime.getRuntime().exec(ruta+"/./Game "+players.get(0)+" "+players.get(1)+" "+players.get(2)+" "+players.get(3));
 
         // Crear threads.
         ThreadStdIn stdIn = new ThreadStdIn(p.getOutputStream(),fitxer);

@@ -1,29 +1,27 @@
 package Domini.Execucions;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 public class Compilador {
         
     public static void main(String[] args) throws IOException {
         Compilador c = new Compilador();
         try {
-            c.compilarJugador("/home/jose/Documentos/Games/game/Prueba.cc");
-            c.compilarJoc("/home/jose/Documentos/Games/game");
+            File f = c.compilarJugador("/home/jose/Documentos/Games/game/Prueba.cc");
+            System.out.println("Jugador compilat: "+f.getAbsolutePath());
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
     
-    public void compilarJoc(String ruta) throws IOException, Exception{
+    // Enllaça els .o del joc per crear l'executable "Game".
+    private void compilarJoc(String ruta) throws IOException, Exception{
         Process p = Runtime.getRuntime().exec(new String[]{"/bin/sh","-c", "g++ -o "+ruta+"/Game "+ruta+"/*.o "+ruta+"/*.o-LINUX64"});
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
         String s;
@@ -32,7 +30,8 @@ public class Compilador {
         if(p.waitFor()!=0) throw new Exception("Error al compilar el joc:\n"+e);
     }
 
-    public void compilarJugador(String ruta) throws FileNotFoundException, Exception{
+    // Compila el jugador indicat a "ruta" a la mateixa carpeta. Retorna el .o del jugador.
+    public File compilarJugador(String ruta) throws FileNotFoundException, Exception{
         File f = new File(ruta);
         validarJugador(f);
         String parent = f.getParent()+"/";
@@ -47,9 +46,14 @@ public class Compilador {
         if(p.waitFor()!=0) throw new Exception("Error al compilar el jugador:\n"+e);
         
         // Comprobar que al executar una partida de prova el joc no es penja.
-        // Si es penja, restaurar jugador anterior.
-        //Executor ex = new Executor();
-        //ex.executarJoc(fnwe,"Dummy","Dummy","Dummy",parent);
+        // Si es penja, executarJoc retorna excepció.
+        compilarJoc(f.getParent());
+        Executor ex = new Executor();
+        ArrayList<String> players = new ArrayList<String>();
+        players.add(fnwe);
+        ex.executarJoc(players,parent);
+        
+        return new File(parent+fnwe+".o");
     }
 
     private void validarJugador(File f) throws FileNotFoundException, IOException, Exception {
@@ -66,6 +70,5 @@ public class Compilador {
         if(playername==null || (!playername.equals(filename))) 
             throw new Exception("Jugador no vàlid. Comprova que el nom del "
                     + "fitxer es correspon amb el nom indicat al codi.");
-        
     }
 }
