@@ -5,7 +5,7 @@ import java.util.Set;
 import Actors.Alarmes.AlarmaJugar;
 import Domini.InterficieBD.CtrlAlarma;
 
-public class TaulaAlarma implements CtrlAlarma {
+public class Alarma implements CtrlAlarma {
 
 	@Override
 	public Set<AlarmaJugar> getAll() throws Exception {
@@ -42,6 +42,7 @@ public class TaulaAlarma implements CtrlAlarma {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 	

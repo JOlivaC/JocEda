@@ -56,20 +56,7 @@ public class Jugador {
     
     @SuppressWarnings("deprecation")
 	public static void main(String argv[]){
-    	SessionFactory s = HibernateUtil.getSessionFactory();
-    	Session se = s.openSession();
-    	Transaction tx;
-    	tx = se.beginTransaction();
-    	Partida p = new Partida();
-    	p.setID(1);
-    	AlarmaJugar a = new AlarmaJugar();
-    	a.setPartida(p);
-    	Usuari u = new Usuari();
-    	u.setUsername("Roger");
-    	p.getParticipants().add(u);
-    	se.save(a);
-    	tx.commit();
-    	s.close();
+    	
     	
     }
 	public Set<Partida> getPartidesJugades() {

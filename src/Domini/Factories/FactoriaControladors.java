@@ -1,6 +1,6 @@
 package Domini.Factories;
 
-import Dades.Controladors.TaulaAlarma;
+import Dades.Controladors.Alarma;
 import Domini.InterficieBD.CtrlAlarma;
 import Domini.InterficieBD.CtrlJugador;
 import Domini.InterficieBD.CtrlPartida;
@@ -15,5 +15,5 @@ public class FactoriaControladors {
 	public CtrlPartida getCtrlPartida(){return null;}
 	public CtrlResultat getCtrlResultats(){return null;}
 	public CtrlJugador getCtrlJugador(){return null;}
-	public CtrlAlarma getCtrlAlarma(){return new TaulaAlarma();}
+	public CtrlAlarma getCtrlAlarma(){return new Alarma();}
 }
