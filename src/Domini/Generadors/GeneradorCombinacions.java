@@ -21,6 +21,7 @@ public class GeneradorCombinacions {
     	JugadorsPerPartida = NJugadorsPartida;
     }
     public SortedSet<Set<Integer>> Generar(){
+    	//TODO
     	return null;
     }
 }

@@ -7,9 +7,8 @@ package Xarxa.Servidor;
 
 import java.io.IOException;
 
-import Dades.Excepcions.NoExisteixPartida;
 import Domini.CasosUs.CasUsSessio;
-import Excepcions.PartidaNoJugada;
+import Excepcions.FitxerInvalid;
 import Xarxa.Missatges.ConsultarClassificacio;
 import Xarxa.Missatges.ConsultarClassificacioResponse;
 import Xarxa.Missatges.ConsultarResultats;
@@ -62,10 +61,17 @@ public class Sesio extends Thread {
 
     }
     
-    private void Penjar(PenjarJugador PJ) throws IOException{
-    	PenjarJugadorResponse R = new PenjarJugadorResponse(true);
-    	CUSessio.Penjar(PJ.getPenjarJugador());
-    	System.out.print("Fitxer Rebut\n");
+    private void Penjar(PenjarJugador PJ) throws IOException {
+    	PenjarJugadorResponse R;
+    	try {
+			CUSessio.Penjar(PJ.getPenjarJugador());
+			R = new PenjarJugadorResponse(true);
+			System.out.print("Fitxer Rebut\n");
+		} catch (FitxerInvalid e) {
+			R = new PenjarJugadorResponse(false);
+			System.out.print("Fitxer Invalid\n");
+		}
+    	
     	connexio.Escriure(R);
     }
     
@@ -87,7 +93,6 @@ public class Sesio extends Thread {
 		try {
 			R = new ConsultarResultatsResponse(CUSessio.ConsultarResultats());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			R = new ConsultarResultatsResponse(e);
 		}
     	connexio.Escriure(R);
@@ -102,7 +107,6 @@ public class Sesio extends Thread {
 		try {
 			R = new VisualitzarPartidaResponse(CUSessio.VisualitzarPartida(VP.getID()));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			R = new VisualitzarPartidaResponse(e);
 		}
     	connexio.Escriure(R);

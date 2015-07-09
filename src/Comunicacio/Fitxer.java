@@ -39,6 +39,14 @@ public class Fitxer implements Serializable {
 		out.close();
 		return f;
 	}
+	public File WriteFile(String Ruta) throws IOException{
+		File f = new File(Ruta);
+		BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(f));
+		out.write(dades);
+		out.close();
+		return f;
+	}
+	
 	public String getNomSenseExt(){
 		return stripExtension(nom);
 	}

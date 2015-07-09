@@ -1,9 +1,5 @@
 package Domini.CasosUs;
 
-import java.io.File;
-import java.io.IOException;
-
-import Dades.Excepcions.NoExisteixPartida;
 import Domini.Factories.FactoriaControladors;
 import Domini.Fitxers.FitxerResultat;
 import Domini.Model.Partida;

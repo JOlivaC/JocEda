@@ -5,17 +5,14 @@
  */
 package Domini.CasosUs;
 
-import java.io.IOException;
 import java.util.SortedSet;
 
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
-import Dades.Excepcions.NoExisteixPartida;
 import Domini.Fitxers.FitxerJugador;
 import Domini.Fitxers.FitxerResultat;
-import Domini.LectorResultat.LectorResultat;
 import Domini.Model.Usuari;
-import Excepcions.PartidaNoJugada;
+import Excepcions.FitxerInvalid;
 
 /**
  *
@@ -28,15 +25,9 @@ public class CasUsSessio {
         loguejat = new CasUsLogin().Login(User, Pass);    
     }
     
-    public void Penjar(FitxerJugador f){
-    	LectorResultat LR = new LectorResultat();
-    	try {
-			System.out.printf(LR.Llegir(f.getFile()).toString());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+    public void Penjar(FitxerJugador f) throws FitxerInvalid{
+    	CasUsPenjarJugador u = new CasUsPenjarJugador(loguejat);
+    	u.PenjarJugador(f);	
     }
     
     public  SortedSet<InfoPartida> ConsultarResultats() throws Exception{

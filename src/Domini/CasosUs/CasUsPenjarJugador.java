@@ -5,9 +5,12 @@
  */
 package Domini.CasosUs;
 
+import Comunicacio.Fitxer;
+import Domini.Factories.FactoriaControladors;
 import Domini.Fitxers.FitxerJugador;
 import Domini.Model.Jugador;
 import Domini.Model.Usuari;
+import Domini.Transaccions.TxCompilarJugador;
 import Excepcions.FitxerInvalid;
 
 /**
@@ -18,11 +21,19 @@ public class CasUsPenjarJugador {
 	private Usuari u;
     public CasUsPenjarJugador(Usuari u){}
     public void PenjarJugador(FitxerJugador f) throws FitxerInvalid{
-    	 Jugador j = new Jugador();
-    	 j.setJugador(f);
-    	 j.setName(f.getNomSenseExt());
-    	 u.AfegirJugador(j);
-    	 
-    	 // Guardar U i J, prevenir rollback en cas de nom repetit
+    	try{
+    		TxCompilarJugador t = new TxCompilarJugador(f);
+    		t.Executar();
+    		Fitxer oo = t.getResultat();
+    		Jugador j = new Jugador();
+       	 	j.setJugador(f);
+       	 	j.setName(f.getNomSenseExt());
+       	 	u.AfegirJugador(j);
+       	 	
+       	 	FactoriaControladors.getInstance().getCtrlUsuari().Update(u);   	 	
+    	}
+    	catch (Exception e){
+    		throw new FitxerInvalid();
+    	}
     }
 }

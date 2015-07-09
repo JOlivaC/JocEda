@@ -1,16 +1,8 @@
 package Dades.Controladors;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import Actors.Alarmes.AlarmaJugar;
-import Dades.Factories.ConnexioBD;
 import Domini.InterficieBD.CtrlAlarma;
 
 public class TaulaAlarma implements CtrlAlarma {

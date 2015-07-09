@@ -16,11 +16,11 @@ public class TxJugarPartida {
 		ctrl.Delete(p.getID());
 		
 		CtrlPartida ctrlp = FactoriaControladors.getInstance().getCtrlPartida();
-		ctrlp.update(p);
+		ctrlp.Update(p);
 	}
 	
 	private void FerPartida(){
-		
+		//TODO
 	}
 	private void CanviarEstatPartida(){
 		p.Acabar();
