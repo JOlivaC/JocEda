@@ -47,6 +47,14 @@ public class Fitxer implements Serializable {
 		return f;
 	}
 	
+	public File WriteFileInDir(String Dir) throws IOException{
+		File f = new File(Dir + File.separator + nom);
+		BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(f));
+		out.write(dades);
+		out.close();
+		return f;
+	}
+	
 	public String getNomSenseExt(){
 		return stripExtension(nom);
 	}

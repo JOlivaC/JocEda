@@ -48,8 +48,7 @@ public class Partida {
 		PartidaResultant = partidaResultant;
 	}
 	public boolean EstaJugada(){
-		// TODO 
-		return false;
+		return Estat == 1;
 	}
 	
 	public int getEstat(){return Estat;}

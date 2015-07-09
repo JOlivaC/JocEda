@@ -19,6 +19,8 @@ public class InfoResultat {
     public void ordenar(){
         Collections.sort(resultat);
     }
+    
+    public Vector<InfoJugadorPartida> getResultat(){return resultat;}
 
     public String toString(){
         String s = "Resultat: \n";

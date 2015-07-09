@@ -47,6 +47,11 @@ public class Usuari {
 	public void AfegirJugador(Jugador j){
 		jugadors.add(0,j);
 	}
+	
+	public Jugador GetJugadorActual() throws Exception{
+		if (jugadors.size() > 0) return jugadors.get(0);
+		else throw new Exception("No hi han jugadors");
+	}
 
 	
 	

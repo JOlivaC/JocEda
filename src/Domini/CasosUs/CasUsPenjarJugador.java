@@ -26,7 +26,7 @@ public class CasUsPenjarJugador {
     		t.Executar();
     		Fitxer oo = t.getResultat();
     		Jugador j = new Jugador();
-       	 	j.setJugador(f);
+       	 	j.setJugador(oo);
        	 	j.setName(f.getNomSenseExt());
        	 	u.AfegirJugador(j);
        	 	
