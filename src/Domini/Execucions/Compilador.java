@@ -21,7 +21,7 @@ public class Compilador {
     }
     
     // Enllaça els .o del joc per crear l'executable "Game".
-    private void compilarJoc(String ruta) throws IOException, Exception{
+    public void compilarJoc(String ruta) throws IOException, Exception{
         Process p = Runtime.getRuntime().exec(new String[]{"/bin/sh","-c", "g++ -o "+ruta+"/Game "+ruta+"/*.o "+ruta+"/*.o-LINUX64"});
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
         String s;

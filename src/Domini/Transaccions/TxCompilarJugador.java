@@ -21,10 +21,8 @@ public class TxCompilarJugador {
 		DirectoriCompilacioJugador dir = new DirectoriCompilacioJugador();
 		dir.AfegirFitxer(cc);
 		Compilador c = new Compilador();
-		// TODO CAL QUE COMPILADOR RETORNI UN RESULTAT FILE
-		c.compilarJugador(dir.getDir());
+		File f = c.compilarJugador(dir.getDir());
 		dir.Natejar();
-		File f = null;
 		object = new Fitxer(f);
 	}
 	

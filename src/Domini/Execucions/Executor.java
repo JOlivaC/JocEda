@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -131,13 +132,13 @@ public class Executor {
         }
     }
     
-    private void comprovar_jugadors(ArrayList<String> players) throws Exception {
+    private void comprovar_jugadors(List<String> players) throws Exception {
         if (players.isEmpty()) throw new Exception("Cal indicar almenys un jugador per executar el joc.");
         else if(players.size()>4) throw new Exception("El joc admet com a màxim 4 jugadors.");
         for(int i=players.size(); i<4; ++i) players.add("Dummy");
     }
     
-    public File executarJoc(ArrayList<String> players, String ruta) throws IOException, Exception{
+    public File executarJoc(List<String> players, String ruta) throws IOException, Exception{
         comprovar_jugadors(players);
         File f = new File(ruta);
         String map = maps[new Random().nextInt(8)];

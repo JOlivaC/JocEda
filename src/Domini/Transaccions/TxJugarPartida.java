@@ -3,8 +3,10 @@ package Domini.Transaccions;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -79,11 +81,11 @@ public class TxJugarPartida {
 		Compilador c = new Compilador();
 		c.compilarJoc(dir.getDir());
 	}
-	private void RealitzarPartida(){
+	private void RealitzarPartida() throws IOException, Exception{	
+		List<String> jugadors = new ArrayList<String>();
+		jugadors.addAll(inscritsMap.keySet());
 		Executor e = new Executor();
-		//TODO
-		// e.executarJoc(Inscrits. tostring...,dir.getDir());
-		//e.executarJoc(p1, p2, p3, p4, ruta)
+		resultat = e.executarJoc(jugadors, dir.getDir());
 	}
 	
 	private void LlegirResultat() throws FileNotFoundException, IOException, Exception{
