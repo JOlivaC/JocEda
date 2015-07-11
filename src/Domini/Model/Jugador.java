@@ -33,7 +33,9 @@ public class Jugador {
     private Fitxer jugador;
     private Usuari owner;
     private Set<Partida> PartidesJugades;
-    
+    public Jugador(){
+    	PartidesJugades = new HashSet<>();
+    }
 	public String getName() {
 		return name;
 	}
@@ -53,12 +55,6 @@ public class Jugador {
 		this.owner = owner;
 	}
     
-    
-    @SuppressWarnings("deprecation")
-	public static void main(String argv[]){
-    	
-    	
-    }
 	public Set<Partida> getPartidesJugades() {
 		return PartidesJugades;
 	}

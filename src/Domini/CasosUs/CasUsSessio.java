@@ -28,7 +28,7 @@ public class CasUsSessio {
     {
     	new CasUsRegistrarse().Registrarse(user, pass);
     }
-    public void Penjar(FitxerJugador f) throws FitxerInvalid{
+    public void Penjar(FitxerJugador f) throws Exception{
     	CasUsPenjarJugador u = new CasUsPenjarJugador(loguejat);
     	u.PenjarJugador(f);	
     }

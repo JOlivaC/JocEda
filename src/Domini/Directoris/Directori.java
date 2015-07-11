@@ -21,5 +21,5 @@ public abstract class Directori {
 		f.WriteFileInDir(directori.getAbsolutePath());
 	}
 	
-	public String getDir(){return directori.getAbsolutePath();}
+	public String getDir(){return directori.getPath();}
 }

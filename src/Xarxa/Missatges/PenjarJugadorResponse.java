@@ -17,5 +17,8 @@ public class PenjarJugadorResponse extends Paquet {
     public PenjarJugadorResponse(boolean valid){
         this.valid = valid;
     }
-    public boolean EsPenjarJugadorResponse(){return true;}
+    public PenjarJugadorResponse(Exception e) {
+		super(e);
+	}
+	public boolean EsPenjarJugadorResponse(){return true;}
 }

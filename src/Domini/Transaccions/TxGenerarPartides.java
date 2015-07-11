@@ -13,6 +13,10 @@ import Domini.Model.Usuari;
 
 public class TxGenerarPartides {
 	private Map<Integer,Usuari> Correspondencia;
+	
+	public static void main(String argv[]) throws Exception{
+		new TxGenerarPartides().executar();
+	}
 	public void executar() throws Exception{
 		Set<Usuari> tots = FactoriaControladors.getInstance().getCtrlUsuari().getAll();
 		Assigna(tots);

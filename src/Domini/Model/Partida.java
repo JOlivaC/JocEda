@@ -18,7 +18,7 @@ import Domini.Model.EstatPartida.IEstatPartida;
  *
  * @author JOAN
  */
-public class Partida {
+public class Partida implements Comparable{
 	private int ID;
     private int Estat;
     private Set<ResultatJugador> Resultat;
@@ -76,6 +76,10 @@ public class Partida {
 	}
 	public void setEstat(int estat) {
 		Estat = estat;
+	}
+	@Override
+	public int compareTo(Object arg0) {
+		return Integer.compare(this.ID,((Partida)arg0).ID);
 	}
     
     

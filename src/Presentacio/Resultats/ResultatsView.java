@@ -28,10 +28,12 @@ public class ResultatsView extends PanellGeneral {
 		super(Retrocedir);
 		
 		this.Visualitzar = Visualitzar;
-		n = Info.first().Jugadors.size();
-		t = new TaulaResultats(n);
-		SetResultats(Info);
-		this.add(t);
+		if (Info.size() > 0){
+			n = Info.first().Jugadors.size();
+			t = new TaulaResultats(n);
+			SetResultats(Info);
+			this.add(t);
+		}
 	}
 	public int getLastID(){return LastId;}
 	public void SetResultats(SortedSet<InfoPartida> Info){

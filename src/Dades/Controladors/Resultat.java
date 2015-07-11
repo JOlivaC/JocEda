@@ -5,12 +5,11 @@ import java.util.Set;
 import Domini.InterficieBD.CtrlResultat;
 import Domini.Model.ResultatJugador;
 
-public class Resultat implements CtrlResultat {
+public class Resultat extends Controlador implements CtrlResultat {
 
 	@Override
 	public Set<ResultatJugador> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Set<Domini.Model.ResultatJugador>) (Set<?>) super.getAll(Domini.Model.ResultatJugador.class);
 	}
 
 }

@@ -7,7 +7,7 @@ public class Registrarse extends Paquet {
     public Registrarse(){}
     public Registrarse(String Name,String Pass){
         User = Name;
-        Pass = Pass;
+        this.Pass = Pass;
     }
     public boolean EsRegistrarse(){return true;}
 	public String getUser() {

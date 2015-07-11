@@ -45,7 +45,7 @@ public class Sesio extends Thread {
                     else if (dada.EsVisualitzarPartida()) VisualitzarPartida(dada.VisualitzarPartidaCast());
                     else if (dada.EsRegistrarse()) Registrarse(dada.RegistrarseCast());
                     
-                } catch (IOException | ClassNotFoundException ex) {
+                } catch (Exception ex) {
                     end = true;
                 } 
                            
@@ -62,6 +62,8 @@ public class Sesio extends Thread {
 		} catch (FitxerInvalid e) {
 			R = new PenjarJugadorResponse(false);
 			System.out.print("Fitxer Invalid\n");
+		} catch (Exception e) {
+			R = new PenjarJugadorResponse(e);
 		}
     	
     	connexio.Escriure(R);

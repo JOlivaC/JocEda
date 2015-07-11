@@ -17,9 +17,17 @@ public class HibernateUtil {
                     .applySettings(configuration.getProperties()).build();
              
             // builds a session factory from the service registry
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);           
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);       
+            openSession();
         }
          
         return sessionFactory;
+    }
+    
+    public static void openSession(){
+    	sessionFactory.openSession();
+    }
+    public static void closeSession(){
+    	sessionFactory.getCurrentSession().close();
     }
 }

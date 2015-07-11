@@ -2,25 +2,24 @@ package Dades.Controladors;
 
 import java.util.Set;
 
+import Actors.Alarmes.AlarmaJugar;
 import Domini.InterficieBD.CtrlUsuari;
 
-public class Usuari implements CtrlUsuari{
+public class Usuari  extends Controlador implements CtrlUsuari{
 
 	@Override
 	public Domini.Model.Usuari get(String User) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return (Domini.Model.Usuari) super.get(Domini.Model.Usuari.class, User);
 	}
 
 	@Override
 	public Set<Domini.Model.Usuari> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Set<Domini.Model.Usuari>)(Set<?>)super.getAll(Domini.Model.Usuari.class);
 	}
 
 	@Override
 	public void Insert(Domini.Model.Usuari u) throws Exception {
-		// TODO Auto-generated method stub
+		super.Insert(u);
 		
 	}
 
@@ -32,7 +31,7 @@ public class Usuari implements CtrlUsuari{
 
 	@Override
 	public void Update(Domini.Model.Usuari u) throws Exception {
-		// TODO Auto-generated method stub
+		super.Update(u);
 		
 	}
 

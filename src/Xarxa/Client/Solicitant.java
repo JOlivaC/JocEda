@@ -36,7 +36,7 @@ public class Solicitant implements CapaDominiInterface {
     }
     
     @Override
-    public void Login(String User,String Pass) throws IOException, ClassNotFoundException, InvalidLogin{
+    public void Login(String User,String Pass) throws Exception{
          s.Escriure(new Xarxa.Missatges.Login(User,Pass));
     	 LoginResponse r = s.Llegir().LoginResponseCast();
     	 if (! r.autoritzat) throw new InvalidLogin();   
@@ -44,22 +44,22 @@ public class Solicitant implements CapaDominiInterface {
     
 
 	@Override
-	public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid{
+	public void EnviarFitxer(File f) throws Exception{
         s.Escriure(new Xarxa.Missatges.PenjarJugador(new FitxerJugador(f)));
         if (!s.Llegir().PenjarJugadorResponseCast().valid) throw new FitxerInvalid();
 	}
 	
-	public SortedSet<InfoPartida> ConsultarResultats() throws IOException, ClassNotFoundException {
+	public SortedSet<InfoPartida> ConsultarResultats() throws Exception {
 		s.Escriure(new Xarxa.Missatges.ConsultarResultats());
 		return s.Llegir().ConsultarResultatsResponseCast().getInfo();
 	}
 	
-	public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws IOException, ClassNotFoundException{
+	public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws Exception{
 		s.Escriure(new Xarxa.Missatges.ConsultarClassificacio());
 		return s.Llegir().ConsultarClassificacioResponseCast().getInfo();
 	}
 	
-	public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException{
+	public File VisualitzarPartida(int ID) throws Exception{
 		s.Escriure(new Xarxa.Missatges.VisualitzarPartida(ID));
 		return s.Llegir().VisualitzarPartidaResponseCast().getPartida().getFile();
 	}
@@ -67,7 +67,7 @@ public class Solicitant implements CapaDominiInterface {
 	@Override
 	public void Registrarse(String User, String pass) throws Exception {
 		s.Escriure(new Xarxa.Missatges.Registrarse(User, pass));
-		s.Llegir().Throw();	
+		s.Llegir();
 	}
     
    

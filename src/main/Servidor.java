@@ -5,7 +5,9 @@
  */
 package main;
 
+import Dades.Factories.HibernateUtil;
 import Xarxa.Servidor.Escoltador;
+
 import java.util.Scanner;
 
 /**
@@ -22,6 +24,7 @@ public class Servidor {
         new Escoltador().start();
         Scanner in = new Scanner(System.in);
         while (in.nextLine().compareTo("exit") != 0);
+        HibernateUtil.getSessionFactory().close();
     }
     
 }

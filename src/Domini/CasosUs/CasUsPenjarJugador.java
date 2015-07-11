@@ -19,21 +19,28 @@ import Excepcions.FitxerInvalid;
  */
 public class CasUsPenjarJugador {
 	private Usuari u;
-    public CasUsPenjarJugador(Usuari u){}
-    public void PenjarJugador(FitxerJugador f) throws FitxerInvalid{
+    public CasUsPenjarJugador(Usuari u){this.u = u;}
+    public void PenjarJugador(FitxerJugador f) throws Exception{
+    	Fitxer oo;
     	try{
     		TxCompilarJugador t = new TxCompilarJugador(f);
     		t.Executar();
-    		Fitxer oo = t.getResultat();
-    		Jugador j = new Jugador();
-       	 	j.setJugador(oo);
-       	 	j.setName(f.getNomSenseExt());
-       	 	u.AfegirJugador(j);
-       	 	
-       	 	FactoriaControladors.getInstance().getCtrlUsuari().Update(u);   	 	
+    		oo = t.getResultat();
     	}
     	catch (Exception e){
     		throw new FitxerInvalid();
+    		
     	}
+    	
+    	Jugador j = new Jugador();
+    	if (!FactoriaControladors.getInstance().getCtrlJugador().Exists(f.getNomSenseExt())){
+       	 	j.setJugador(oo);
+       	 	j.setName(f.getNomSenseExt());
+       	 	j.setOwner(u);
+       	 	u.AfegirJugador(j);
+       	 	FactoriaControladors.getInstance().getCtrlUsuari().Update(u);   
+    	}
+    	else throw new Exception("El nom del jugador ja existeix");
+    
     }
 }

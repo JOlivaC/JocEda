@@ -36,8 +36,10 @@ public class PaquetSocket extends Socket {
          out.writeObject(p);
     }
     
-    public Paquet Llegir() throws IOException, ClassNotFoundException{
+    public Paquet Llegir() throws IOException, ClassNotFoundException, Exception{
         in = new ObjectInputStream(getInputStream());
-        return (Paquet) in.readObject();
+        Paquet ret = (Paquet) in.readObject();
+        ret.Throw();
+        return ret;
     }
 }

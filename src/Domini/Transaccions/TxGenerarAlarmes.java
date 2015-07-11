@@ -21,7 +21,6 @@ public class TxGenerarAlarmes {
 	private Date Fi;
 	private LocalTime HoraInici;
 	private LocalTime HoraFi;
-	
 	public TxGenerarAlarmes(Date I,Date F,LocalTime HI,LocalTime HF){
 		Inici = I;
 		Fi = F;
@@ -29,8 +28,8 @@ public class TxGenerarAlarmes {
 		HoraFi = HF;
 	}
 	public void Executar() throws Exception{
-		CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
-		ctrl.DeleteAll();
+		//CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
+		//ctrl.DeleteAll();
 		
 		
 		Calendar cal = Calendar.getInstance();
@@ -39,7 +38,6 @@ public class TxGenerarAlarmes {
 		CtrlPartida ctrlp = FactoriaControladors.getInstance().getCtrlPartida(); 
 		SortedSet<Partida> s = new TreeSet<>();
 		s.addAll(ctrlp.getAll());
-		
 		n = s.size();
 		Iterator<Partida> it = s.iterator();
 		

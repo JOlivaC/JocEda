@@ -5,6 +5,7 @@
  */
 package Domini.Generadors;
 
+import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 
@@ -20,8 +21,9 @@ public class GeneradorCombinacions {
     	this.IDSJugadors = IDSJugadors;
     	JugadorsPerPartida = NJugadorsPartida;
     }
-    public SortedSet<Set<Integer>> Generar(){
-    	//TODO
-    	return null;
+    public List<Set<Integer>> Generar() throws Exception{
+    	GeneradorJose j = new GeneradorJose();
+    	List<Set<Integer>> ret = j.Sort(IDSJugadors.size());
+    	return ret;
     }
 }

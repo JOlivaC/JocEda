@@ -18,7 +18,7 @@ public class Login extends Paquet {
     public Login(){}
     public Login(String Name,String Pass){
         User = Name;
-        Pass = Pass;
+        this.Pass = Pass;
     }
     public boolean EsLogin(){return true;}
     

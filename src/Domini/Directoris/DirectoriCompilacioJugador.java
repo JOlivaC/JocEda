@@ -17,7 +17,7 @@ public class DirectoriCompilacioJugador extends Directori{
 	
 	public void AfegirFitxer(Fitxer f) throws IOException{
 		String path = super.directori.getAbsolutePath();
-		String loc = path + File.separator + f.getNomSenseExt();
+		String loc =  File.separator + f.getNomSenseExt();
 		String ext = ".cc";
 		String Ruta = path + loc + ext;
 		cc = f.WriteFile(Ruta);
@@ -26,11 +26,12 @@ public class DirectoriCompilacioJugador extends Directori{
 		//TODO
 		return null;
 	}
+	public String getDirFitxer(){
+		return cc.getPath();
+	}
 	
 	public void Natejar(){
-		for (File f: super.directori.listFiles()){
-			f.delete();
-		}
+		cc.delete();
 	}
 
 

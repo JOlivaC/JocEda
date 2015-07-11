@@ -70,9 +70,8 @@ public class ControladorPrincipal {
 
     		try {
 				MostrarResultats(Domini.ConsultarResultats());
-			} catch (ClassNotFoundException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e) {
+				
 			}
     		
 
@@ -89,18 +88,17 @@ public class ControladorPrincipal {
     public void VisualitzarPartida(int IDPartida){
     	try {
 			Domini.VisualitzarPartida(IDPartida);
-		} catch (ClassNotFoundException | IOException e) {
+		} catch ( Exception e) {
 			// TODO Auto-generated catch block
-			VistaResultats.MostraMsg("Error");
+			VistaResultats.MostraMsg(e.getMessage());
 		}
     }
     public void VeureRanking(){
     	try {
 			Domini.ConsultarClassificacio();
 			MostrarRanking(4);
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+
 		}
     	
     	
@@ -115,20 +113,25 @@ public class ControladorPrincipal {
             
         } catch (InvalidLogin ex) {
             VistaLogin.MostraMsg("Login Incorrecte");
-        }
+        } catch (Exception e) {
+			VistaLogin.MostraMsg(e.getMessage());
+		}
     }
     
     public void PenjarFitxer(){
     	try {
     		File f = VistaPenjar.getFitxer();
     		Domini.EnviarFitxer(f);
-    		MostrarLogin();
+    		MostrarMenu();
     	}
     	catch (NoHiHaFitxer e){
     		VistaPenjar.MostraMsg("No hi ha fitxer");
     	} catch (ClassNotFoundException e) {
 		} catch (IOException e) {
 		} catch (FitxerInvalid e) {
+			VistaPenjar.MostraMsg("Fitxer Invalid");
+		} catch (Exception e) {
+			VistaPenjar.MostraMsg(e.getMessage());
 		}
     }
     

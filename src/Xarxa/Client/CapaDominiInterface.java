@@ -20,15 +20,15 @@ import java.util.SortedSet;
  * @author JOAN
  */
 public interface CapaDominiInterface {
-    public void Login(String User,String Pass) throws IOException, ClassNotFoundException, InvalidLogin;
+    public void Login(String User,String Pass) throws IOException, ClassNotFoundException, InvalidLogin, Exception;
     
-    public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid;
+    public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid, Exception;
     
-    public SortedSet<InfoPartida> ConsultarResultats() throws IOException, ClassNotFoundException;
+    public SortedSet<InfoPartida> ConsultarResultats() throws IOException, ClassNotFoundException, Exception;
     
-    public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws IOException, ClassNotFoundException;
+    public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws IOException, ClassNotFoundException, Exception;
     
-    public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException;
+    public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException, Exception;
     
     public void Registrarse(String User,String pass) throws Exception;
 }

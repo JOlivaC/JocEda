@@ -17,10 +17,17 @@ import java.util.Set;
 public class Usuari {
     private String username;
     private String pass;
-    private List<Jugador> jugadors;
+    private Set<Jugador> jugadors;
+    private Jugador jugadorActual;
     public Usuari(){
-    	jugadors = new ArrayList<>();
+    	jugadors = new HashSet<>();
     }
+	public Usuari(String user, String pass) {
+		jugadors = new HashSet<>();
+		this.username = user;
+		this.pass = pass;
+
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -33,10 +40,10 @@ public class Usuari {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public List<Jugador> getJugadors() {
+	public Set<Jugador> getJugadors() {
 		return jugadors;
 	}
-	public void setJugadors(List<Jugador> jugadors) {
+	public void setJugadors(Set<Jugador> jugadors) {
 		this.jugadors = jugadors;
 	}
 	
@@ -45,12 +52,19 @@ public class Usuari {
 	}
 	
 	public void AfegirJugador(Jugador j){
-		jugadors.add(0,j);
+		jugadors.add(j);
+		jugadorActual = j;
 	}
 	
 	public Jugador GetJugadorActual() throws Exception{
-		if (jugadors.size() > 0) return jugadors.get(0);
+		if (jugadors.size() > 0) return jugadorActual;
 		else throw new Exception("No hi han jugadors");
+	}
+	public Jugador getJugadorActual() {
+		return jugadorActual;
+	}
+	public void setJugadorActual(Jugador jugadorActual) {
+		this.jugadorActual = jugadorActual;
 	}
 
 	

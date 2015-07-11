@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Compilador {
         
@@ -29,31 +30,43 @@ public class Compilador {
         while ((s = stdError.readLine()) != null) e += s+"\n";
         if(p.waitFor()!=0) throw new Exception("Error al compilar el joc:\n"+e);
     }
+    
+    private Exception WriteException(Process p){
+    	String msg = "";
+    	BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+        Scanner in = new Scanner(stdError);
+        while (in.hasNext()){
+        	msg += in.nextLine() + "\n";
+        }
+        return new Exception(msg);
+    }
 
     // Compila el jugador indicat a "ruta" a la mateixa carpeta. Retorna el .o del jugador.
     public File compilarJugador(String ruta) throws FileNotFoundException, Exception{
         File f = new File(ruta);
         validarJugador(f);
-        String parent = f.getParent()+"/";
-        if (parent == null) parent = "/";
+        String parent = f.getParent()+ File.separator;
         String fnwe = f.getName().split("\\.")[0];
-        Process p = Runtime.getRuntime().exec("g++ -std=c++0x -c -o "+parent+fnwe+".o "+ruta);
-        BufferedReader stdError = new BufferedReader(new
-                InputStreamReader(p.getErrorStream()));
-        String s;
-        String e = "";
-        while ((s = stdError.readLine()) != null) e += s+"\n";
-        if(p.waitFor()!=0) throw new Exception("Error al compilar el jugador:\n"+e);
+        
+        String exe = "cmd /c g++ -std=c++0x -c -o "+parent+fnwe+".o "+ruta;
+        Process p = Runtime.getRuntime().exec(exe);
+        if (p.waitFor() != 0) throw WriteException(p);
+        
+        return new File(parent+fnwe+".o");
+        
+        
+
+        //while (stdError.)
+        //while ((s = stdError.readLine()) != null) e += s+"\n";
+        //if(p.waitFor()!=0) throw new Exception("Error al compilar el jugador:\n"+e);
         
         // Comprobar que al executar una partida de prova el joc no es penja.
         // Si es penja, executarJoc retorna excepció.
-        compilarJoc(f.getParent());
+        /*compilarJoc(f.getParent());
         Executor ex = new Executor();
         ArrayList<String> players = new ArrayList<String>();
         players.add(fnwe);
-        ex.executarJoc(players,parent);
-        
-        return new File(parent+fnwe+".o");
+        ex.executarJoc(players,parent);*/
     }
 
     private void validarJugador(File f) throws FileNotFoundException, IOException, Exception {
@@ -68,7 +81,7 @@ public class Compilador {
         }
         r.close();
         if(playername==null || (!playername.equals(filename))) 
-            throw new Exception("Jugador no vàlid. Comprova que el nom del "
+            throw new Exception("Jugador invalid. Comprova que el nom del "
                     + "fitxer es correspon amb el nom indicat al codi.");
     }
 }
