@@ -20,6 +20,7 @@ public class Fitxer implements Serializable {
 		
 		in.close();
 	}
+
 	public Fitxer(String nom,byte[] dades){
 		this.nom = nom;
 		this.dades = dades;

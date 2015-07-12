@@ -17,6 +17,8 @@
             </key>
             <one-to-many class="Domini.Model.Jugador" />
         </set>
-        <one-to-one name="jugadorActual" class="Domini.Model.Jugador"></one-to-one>
+        <many-to-one name="jugadorActual" class="Domini.Model.Jugador" fetch="join" cascade="save-update">
+            <column name="JUGADORACTUAL" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

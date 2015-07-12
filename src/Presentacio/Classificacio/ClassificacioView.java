@@ -1,15 +1,18 @@
 package Presentacio.Classificacio;
 
 import java.awt.event.ActionListener;
+import java.util.SortedSet;
 
+import Comunicacio.InfoJugadorRanking;
 import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Taula.Taula;
 
 public class ClassificacioView extends PanellGeneral{
 	private Taula t;
-	public ClassificacioView(ActionListener Retrocedir,int n){
+	public ClassificacioView(ActionListener Retrocedir,SortedSet<InfoJugadorRanking> info){
 		super(Retrocedir);
-		t = new Taula("Classificacio", getHeaders(n));
+		t = new Taula("Classificacio", getHeaders(4));
+		AfegirInfoTaula(info);
 		this.add(t);
 	}
 	
@@ -18,9 +21,21 @@ public class ClassificacioView extends PanellGeneral{
 		ret[0] = "Jugador";
 		ret[1] = "Punts";
 		for (int k = 0;k < n; k++){
-			ret[2 + k] = "Nº" + String.valueOf(k+1);
+			ret[2 + k] = "Cops: " + String.valueOf(k+1);
 		}
 		return ret;
+	}
+	
+	private void AfegirInfoTaula(SortedSet<InfoJugadorRanking> info){
+		for (InfoJugadorRanking i : info){
+			String[] rows = new String[6];
+			rows[0] = i.getPos().getNom();
+			rows[1] = String.valueOf(i.getPos().getPunts());
+			for (int x :i.getN().getPosicions().keySet()){
+				rows[1 + x] = String.valueOf(i.getN().getPosicions().get(x));
+			}
+			t.Insereix(rows);
+		}
 	}
 
 }

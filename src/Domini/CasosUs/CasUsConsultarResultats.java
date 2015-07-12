@@ -13,6 +13,7 @@ public class CasUsConsultarResultats {
 		Set<Partida> partides = FactoriaControladors.getInstance().getCtrlPartida().getAll();
 		SortedSet<InfoPartida> ret = new TreeSet<>();
 		for (Partida p: partides){
+			if (p.EstaJugada())
 			ret.add(p.getInfo());
 		}
 		return ret;

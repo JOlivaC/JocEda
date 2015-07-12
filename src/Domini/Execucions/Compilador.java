@@ -23,7 +23,9 @@ public class Compilador {
     
     // Enllaça els .o del joc per crear l'executable "Game".
     public void compilarJoc(String ruta) throws IOException, Exception{
-        Process p = Runtime.getRuntime().exec(new String[]{"/bin/sh","-c", "g++ -o "+ruta+"/Game "+ruta+"/*.o "+ruta+"/*.o-LINUX64"});
+    	String exe = "cmd /c g++ -o " + ruta + File.separator + "Game " + ruta + File.separator + "*.o";
+    	//new String[]{"/bin/sh","-c", "g++ -o "+ruta+"/Game "+ruta+"/*.o "+ruta+"/*.o-LINUX64"}
+        Process p = Runtime.getRuntime().exec(exe);
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
         String s;
         String e = "";
@@ -49,6 +51,7 @@ public class Compilador {
         String fnwe = f.getName().split("\\.")[0];
         
         String exe = "cmd /c g++ -std=c++0x -c -o "+parent+fnwe+".o "+ruta;
+        //String exe = "cmd /c g++ -c " + ruta;
         Process p = Runtime.getRuntime().exec(exe);
         if (p.waitFor() != 0) throw WriteException(p);
         

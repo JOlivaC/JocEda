@@ -7,16 +7,16 @@ import Comunicacio.Fitxer;
 import Domini.Fitxers.FitxerResultat;
 
 public class VisualitzarPartidaResponse extends Paquet {
-	private FitxerResultat F;
+	private Fitxer F;
 
-    public VisualitzarPartidaResponse(FitxerResultat F) throws IOException{
+    public VisualitzarPartidaResponse(Fitxer F) throws IOException{
         this.F = F;
     }
     public VisualitzarPartidaResponse(Exception e) {
 		super(e);
 	}
 	public boolean EsVisualitzarPartidaResponse(){return true;}
-    public FitxerResultat getPartida() throws IOException{
+    public Fitxer getPartida() throws IOException{
     	return F;
     }
 }

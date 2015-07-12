@@ -7,6 +7,7 @@ package Domini.CasosUs;
 
 import java.util.SortedSet;
 
+import Comunicacio.Fitxer;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
 import Domini.Fitxers.FitxerJugador;
@@ -41,7 +42,7 @@ public class CasUsSessio {
     	return new CasUsConsultarClassificacio().ConsultarClassificacio();
     }
     
-    public FitxerResultat VisualitzarPartida(int IDPartida) throws Exception{
+    public Fitxer VisualitzarPartida(int IDPartida) throws Exception{
     	return new CasUsVisualitzarPartida().VisualitzarPartida(IDPartida);
     }
 }

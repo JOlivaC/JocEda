@@ -19,11 +19,12 @@ public class Controlador  {
 	public Set<Object> getAll(Class c){
 		Set<Object> ret = new HashSet<>();
 		SessionFactory s = HibernateUtil.getSessionFactory();
-    	Session se = s.getCurrentSession();
+		Session se = s.openSession();
     	Transaction tx;
     	tx = se.beginTransaction();
     	ret.addAll(se.createCriteria(c).list());
     	tx.commit();
+    	se.close();
     	return ret;
 	}
 	
@@ -61,7 +62,6 @@ public class Controlador  {
 	}
 	
 	public boolean Exists(Class c,Serializable ser){
-		boolean ret;
 		Transaction tx;
 		SessionFactory s = HibernateUtil.getSessionFactory();
 		Session se = s.openSession();
@@ -74,11 +74,14 @@ public class Controlador  {
 	
 	public void Delete(Object o){
 		SessionFactory s = HibernateUtil.getSessionFactory();
-		Session se = s.getCurrentSession();
+		Session se = s.openSession();
     	Transaction tx;
     	tx = se.beginTransaction();
     	
     	se.delete(o);
+    	
     	tx.commit();
+    	se.close();
 	}
+
 }

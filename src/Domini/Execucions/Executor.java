@@ -120,17 +120,7 @@ public class Executor {
     final private static String[] maps = {"akamatsu.cnf","default.cnf","kitano.cnf","nanahara.cnf",
         "chigusa.cnf","kiriyama.cnf","nakagawa.cnf","utsumi.cnf"};
     
-    public static void main(String[] args) throws IOException {
-        Executor e = new Executor();
-        try {
-            ArrayList<String> players = new ArrayList<String>();
-            players.add("Prueba");
-            File f = e.executarJoc(players,"/home/jose/Documentos/Games/game");
-            System.out.println(f.getAbsolutePath());
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+
     
     private void comprovar_jugadors(List<String> players) throws Exception {
         if (players.isEmpty()) throw new Exception("Cal indicar almenys un jugador per executar el joc.");
@@ -151,7 +141,7 @@ public class Executor {
         entrada.close();
         
         // Executar procés.
-        Process p = Runtime.getRuntime().exec(ruta+"/./Game "+players.get(0)+" "+players.get(1)+" "+players.get(2)+" "+players.get(3));
+        Process p = Runtime.getRuntime().exec(ruta+"/Game.exe "+players.get(0)+" "+players.get(1)+" "+players.get(2)+" "+players.get(3));
 
         // Crear threads.
         ThreadStdIn stdIn = new ThreadStdIn(p.getOutputStream(),fitxer);

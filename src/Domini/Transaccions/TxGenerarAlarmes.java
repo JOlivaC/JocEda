@@ -28,10 +28,6 @@ public class TxGenerarAlarmes {
 		HoraFi = HF;
 	}
 	public void Executar() throws Exception{
-		//CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
-		//ctrl.DeleteAll();
-		
-		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(Inici);
 		
@@ -43,6 +39,7 @@ public class TxGenerarAlarmes {
 		
 		for (int j = 0; j < GetDiesFranja(); j++){
 			cal.set(Calendar.HOUR_OF_DAY, HoraInici.getHour());
+			cal.set(Calendar.MINUTE, HoraInici.getMinute());
 			for (int k = 0; k < GetCopsDia(); k++){
 				Date d = cal.getTime();
 				CrearAlarma(it.next(),d);

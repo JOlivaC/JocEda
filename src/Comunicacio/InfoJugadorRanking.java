@@ -8,7 +8,10 @@ public class InfoJugadorRanking extends Tipus implements Comparable {
 	
 	@Override
 	public int compareTo(Object o) {
-		return ((InfoJugadorRanking) o).Pos.compareTo(Pos); 
+		InfoJugadorRanking x = ((InfoJugadorRanking) o);
+		int i = x.Pos.compareTo(Pos); 
+		if (i == 0) i = x.Pos.getNom().compareTo(Pos.getNom());
+		return i;
 	}
 
 

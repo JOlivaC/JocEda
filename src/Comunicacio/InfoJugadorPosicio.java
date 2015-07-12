@@ -7,7 +7,7 @@ public class InfoJugadorPosicio extends Tipus implements Comparable {
 	 
 	 @Override
 	public int compareTo(Object o) {
-		return Integer.compare(((InfoJugadorPosicio) o).Punts,Punts);
+		return -1 * Integer.compare(((InfoJugadorPosicio) o).Punts,Punts);
 	}
 
 

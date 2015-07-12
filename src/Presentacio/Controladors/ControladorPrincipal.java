@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.SortedSet;
 
+import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
@@ -62,8 +63,8 @@ public class ControladorPrincipal {
     	VistaResultats = new Presentacio.Resultats.ResultatsView(new Retrocedir(),new VisualitzarPartida(),Info);
     	CanviarContext("Resultats",VistaResultats);
     }
-    private void MostrarRanking(int n){
-    	VistaRanking = new Presentacio.Classificacio.ClassificacioView(new Retrocedir(),n);
+    private void MostrarRanking(SortedSet<InfoJugadorRanking> info){
+    	VistaRanking = new Presentacio.Classificacio.ClassificacioView(new Retrocedir(),info);
     	CanviarContext("Classificacio",VistaRanking);
     }
     public void VeureResultats(){
@@ -95,8 +96,8 @@ public class ControladorPrincipal {
     }
     public void VeureRanking(){
     	try {
-			Domini.ConsultarClassificacio();
-			MostrarRanking(4);
+			
+			MostrarRanking(Domini.ConsultarClassificacio());
 		} catch (Exception e) {
 
 		}

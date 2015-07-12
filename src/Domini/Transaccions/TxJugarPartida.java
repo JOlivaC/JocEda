@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+import Comunicacio.Fitxer;
 import Comunicacio.InfoJugadorPartida;
 import Domini.Directoris.DirectoriPartida;
 import Domini.Execucions.Compilador;
@@ -32,7 +33,10 @@ public class TxJugarPartida {
 	private DirectoriPartida dir;
 	private Map<String,Jugador> inscritsMap;
 	private File resultat;
-	
+	public static void main(String[] argv) throws Exception{
+		for (Partida par: FactoriaControladors.getInstance().getCtrlPartida().getAll())
+			new TxJugarPartida(par).Executar();
+	}
 	public TxJugarPartida(Partida p){
 		this.p = p; 
 		dir = new DirectoriPartida();
@@ -41,11 +45,12 @@ public class TxJugarPartida {
 	
 	public void Executar() throws Exception {
 		FerPartida();
-		CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
-		ctrl.Delete(p.getID());
 		
 		CtrlPartida ctrlp = FactoriaControladors.getInstance().getCtrlPartida();
 		ctrlp.Update(p);
+		
+		CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
+		ctrl.Delete(p.getID());
 	}
 	
 	private void FerPartida() throws Exception{
@@ -55,11 +60,12 @@ public class TxJugarPartida {
 		LlegirResultat();
 		FinalitzarPartida();
 	}
-	private void SituarFitxers() throws IOException{
+	private void SituarFitxers() throws Exception{
 		Set<Usuari> participants = p.getParticipants();
 		Set<Jugador> jugadors = new HashSet<>();
 		Set<Usuari> invalids = new HashSet<>();
-		
+		Set<Jugador> all = FactoriaControladors.getInstance().getCtrlJugador().getAll();
+
 		for (Usuari u: participants){
 			try {
 				Jugador j = u.GetJugadorActual();
@@ -93,9 +99,12 @@ public class TxJugarPartida {
 		InfoResultat r = l.Llegir(resultat);
 		Vector<InfoJugadorPartida> res  = r.getResultat();
 		for (int i = 0; i < res.size(); i ++){
-			InfoJugadorPartida infoj = res.get(0);
+			InfoJugadorPartida infoj = res.get(i);
 			AfegirPuntuacio(i+1,infoj.getNom(),infoj.getPuntuacio());
 		}
+		Fitxer re = new Fitxer(resultat);
+		re.setNom("Partida" + p.getID() + ".br");
+		p.setPartidaResultant(re);
 	}
 	
 	private void AfegirPuntuacio(int posicio,String nomJugador,int Puntuacio){
@@ -105,6 +114,8 @@ public class TxJugarPartida {
 		R.setP(p);
 		R.setPosicio(posicio);
 		R.setPuntuacio(Puntuacio);
+		j.getPartidesJugades().add(p);
+		p.getResultat().add(R);
 	}
 	private void FinalitzarPartida(){
 		dir.Natejar();

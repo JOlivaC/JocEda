@@ -22,7 +22,7 @@ public class DirectoriPartida extends Directori {
 
 	public void AfegirJugador(Fitxer j) throws IOException{
 		String path = super.directori.getAbsolutePath();
-		String loc = path + File.separator + j.getNomSenseExt();
+		String loc = File.separator + j.getNomSenseExt();
 		String ext = ".o";
 		String Ruta = path + loc + ext;
 		jugadors.add(j.WriteFile(Ruta));

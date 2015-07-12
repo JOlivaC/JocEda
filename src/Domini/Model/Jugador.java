@@ -62,4 +62,7 @@ public class Jugador {
 		PartidesJugades = partidesJugades;
 	}
     
+	public boolean equals(Object other){
+		return name.equals(((Jugador)other).name);
+	}
 }

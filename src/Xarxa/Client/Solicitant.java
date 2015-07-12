@@ -30,9 +30,7 @@ public class Solicitant implements CapaDominiInterface {
     private PaquetSocket s;
     
     public Solicitant() throws IOException{
-        //llegir ip i port d'algun lloc
-         s = new PaquetSocket("92.59.7.175",4000);
-        //this.s = new PaquetSocket(s);
+         s = new PaquetSocket("localhost",4000);
     }
     
     @Override

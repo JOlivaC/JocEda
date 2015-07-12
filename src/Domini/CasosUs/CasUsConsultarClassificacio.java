@@ -28,12 +28,13 @@ public class CasUsConsultarClassificacio {
 			for (Jugador j: jugadors){
 				Set<ResultatJugador> Descartats = new HashSet<>();
 				for (ResultatJugador RJ: resultats){
-					if (RJ.getJ() == j){
+					if (RJ.getJ().equals(j)){
 						partidesJugades.add(RJ);
 						Descartats.add(RJ);
 					}
-					resultats.removeAll(Descartats);
+					
 				}
+				resultats.removeAll(Descartats);
 				
 			}
 			
@@ -54,6 +55,7 @@ public class CasUsConsultarClassificacio {
 				
 			}
 			
+			IN.setPosicions(Pos);
 			IP.setPunts(punts);
 			
 			IJ.setN(IN);
