@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import Domini.CasosUs.CasUsSessio;
 import Excepcions.FitxerInvalid;
+import Log.LogServidor;
 import Xarxa.Missatges.*;
 import Xarxa.Sockets.PaquetSocket;
 
@@ -34,11 +35,8 @@ public class Sesio extends Thread {
                 try {
                     Paquet dada;
                     dada = connexio.Llegir();
-                    if (dada.EsLogin()) Login(dada.LoginCast());
-                    
-                    else if (dada.EsFinalitzar()){
-                        
-                    }
+                    if (dada.EsLogin()) Login(dada.LoginCast());           
+                    else if (dada.EsFinalitzar()) end = true;
                     else if (dada.EsPenjarJugador()) Penjar(dada.PenjarJugadorCast());
                     else if (dada.EsConsultarResultats()) ConsultarResultats(dada.ConsultarResultatsCast());
                     else if (dada.EsConsultarClassificacio()) ConsultarClassificacio(dada.ConsultarClassificacioCast());
@@ -50,6 +48,14 @@ public class Sesio extends Thread {
                 } 
                            
             }
+            
+            try {
+            	LogServidor.WriteLine("Connexio Tancada: " + connexio.getInetAddress());
+				connexio.close();	
+			} catch (IOException e) {
+				
+			}
+            
 
     }
     
@@ -58,10 +64,8 @@ public class Sesio extends Thread {
     	try {
 			CUSessio.Penjar(PJ.getPenjarJugador());
 			R = new PenjarJugadorResponse(true);
-			System.out.print("Fitxer Rebut\n");
 		} catch (FitxerInvalid e) {
 			R = new PenjarJugadorResponse(false);
-			System.out.print("Fitxer Invalid\n");
 		} catch (Exception e) {
 			R = new PenjarJugadorResponse(e);
 		}
@@ -74,10 +78,8 @@ public class Sesio extends Thread {
         try {
             CUSessio.Login(l.User, l.Pass);
             R.autoritzat = true;
-            System.out.print("Login Successful\n");
         } catch (Exception ex) {
             R.autoritzat = false;
-            System.out.print("Login Failed\n");
         }
         
         connexio.Escriure(R);

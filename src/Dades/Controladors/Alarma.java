@@ -20,20 +20,19 @@ public class Alarma extends Controlador implements CtrlAlarma {
 
 	@Override
 	public void DeleteAll() throws Exception {
-		// TODO Auto-generated method stub
+		super.DeleteAll("Actors.Alarmes.AlarmaJugar");
 		
 	}
 
 	@Override
 	public void Delete(AlarmaJugar a) throws Exception {
-		// TODO Auto-generated method stub
+		super.Delete(a);
 		
 	}
 
 	@Override
 	public void Delete(int IDPartida) throws Exception {
-		// TODO Auto-generated method stub
-		
+		super.Delete(Actors.Alarmes.AlarmaJugar.class, IDPartida);	
 	}
 
 

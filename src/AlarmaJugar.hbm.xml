@@ -6,7 +6,7 @@
     <class name="Actors.Alarmes.AlarmaJugar" table="ALARMAJUGAR">
         <id name="ID" type = "int">
             	<column name="ID" />
-            	<generator class="increment"/>
+            	<generator class="assigned"/>
         </id>       
         <property name="data" type="java.util.Date">
             <column name="DATA"/>

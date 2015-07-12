@@ -31,4 +31,6 @@ public interface CapaDominiInterface {
     public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException, Exception;
     
     public void Registrarse(String User,String pass) throws Exception;
+    
+    public void Finalitzar() throws Exception;
 }

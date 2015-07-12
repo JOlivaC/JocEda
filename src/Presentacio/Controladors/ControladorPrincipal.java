@@ -7,6 +7,8 @@ package Presentacio.Controladors;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.SortedSet;
@@ -38,9 +40,10 @@ public class ControladorPrincipal {
     
     public ControladorPrincipal() throws IOException{
     	Gestor = new GestorContextual();
-        Domini = new Solicitant();
         Vista = new Finestra();
+        Vista.addWindowListener(new EscoltadorFinestra());
         MostrarLogin();   
+        Domini = new Solicitant();
     }
     
     private void MostrarLogin(){
@@ -116,6 +119,14 @@ public class ControladorPrincipal {
             VistaLogin.MostraMsg("Login Incorrecte");
         } catch (Exception e) {
 			VistaLogin.MostraMsg(e.getMessage());
+		}
+    }
+    public void Finalitzar(){
+    	try {
+			Domini.Finalitzar();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
     }
     
@@ -223,6 +234,52 @@ public class ControladorPrincipal {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			Retrocedir();
+		}
+    	
+    }
+    
+    private class EscoltadorFinestra implements WindowListener{
+
+		@Override
+		public void windowActivated(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowClosed(WindowEvent arg0) {
+			Finalitzar();
+			
+		}
+
+		@Override
+		public void windowClosing(WindowEvent arg0) {
+			Finalitzar();
+			
+		}
+
+		@Override
+		public void windowDeactivated(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowDeiconified(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowIconified(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void windowOpened(WindowEvent arg0) {
+			// TODO Auto-generated method stub
+			
 		}
     	
     }

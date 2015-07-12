@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -82,6 +83,25 @@ public class Controlador  {
     	
     	tx.commit();
     	se.close();
+	}
+	
+	public void Delete(Class c,Serializable ser){
+		SessionFactory s = HibernateUtil.getSessionFactory();
+		Session se = s.openSession();
+    	Transaction tx;
+    	tx = se.beginTransaction(); 	
+    	Object o = se.get(c, ser);
+    	se.delete(o);
+    	tx.commit();
+    	se.close();
+	}
+	
+	public void DeleteAll(String tableName){
+		 String hql = String.format("delete from %s",tableName);
+		 SessionFactory s = HibernateUtil.getSessionFactory();
+		 Session se = s.openSession();
+		 Query query = se.createQuery(hql);
+		 query.executeUpdate();
 	}
 
 }

@@ -5,6 +5,7 @@
  */
 package Xarxa.Servidor;
 
+import Log.LogServidor;
 import Xarxa.Sockets.PaquetSocket;
 import Xarxa.Sockets.SocketServidor;
 
@@ -13,6 +14,8 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +25,8 @@ import java.util.logging.Logger;
  */
 public class Escoltador extends Thread {
 
-    
+	private Set<Sesio> Sessions = new HashSet<>();
+    private static final int MAX_SESSIONS = 20;
     public Escoltador(){
         setDaemon(true);
     }
@@ -31,12 +35,18 @@ public class Escoltador extends Thread {
     @Override
     public void run() {
     	SocketServidor SS;
+    	
 		try {
 			SS = new SocketServidor(4000);
 			for (;;){         	    
 	               	PaquetSocket s = SS.accept();
-	                System.out.print("Nova Connexio\n");
-	                new Sesio(s).start();
+	               	if (Sessions.size() < MAX_SESSIONS){
+	               		LogServidor.WriteLine("Nova Connexio: " + s.getInetAddress());
+	               		Sesio se = new Sesio(s);
+	               		Sessions.add(se);
+	               		se.start();
+	               	}
+	               	else s.close();
 
 	        }
 		} catch (IOException e) {

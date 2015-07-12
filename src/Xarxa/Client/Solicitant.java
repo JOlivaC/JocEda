@@ -67,6 +67,10 @@ public class Solicitant implements CapaDominiInterface {
 		s.Escriure(new Xarxa.Missatges.Registrarse(User, pass));
 		s.Llegir();
 	}
+	
+	public void Finalitzar() throws Exception {
+		s.Escriure(new Xarxa.Missatges.Finalitzar());
+	}
     
    
 }
