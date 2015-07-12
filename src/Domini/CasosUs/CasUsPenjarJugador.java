@@ -7,7 +7,6 @@ package Domini.CasosUs;
 
 import Comunicacio.Fitxer;
 import Domini.Factories.FactoriaControladors;
-import Domini.Fitxers.FitxerJugador;
 import Domini.Model.Jugador;
 import Domini.Model.Usuari;
 import Domini.Transaccions.TxCompilarJugador;
@@ -20,7 +19,7 @@ import Excepcions.FitxerInvalid;
 public class CasUsPenjarJugador {
 	private Usuari u;
     public CasUsPenjarJugador(Usuari u){this.u = u;}
-    public void PenjarJugador(FitxerJugador f) throws Exception{
+    public void PenjarJugador(Fitxer f) throws Exception{
     	Fitxer oo;
     	try{
     		TxCompilarJugador t = new TxCompilarJugador(f);

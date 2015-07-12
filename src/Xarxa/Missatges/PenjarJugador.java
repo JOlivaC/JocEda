@@ -9,20 +9,20 @@ import java.io.File;
 import java.io.IOException;
 
 import Comunicacio.Fitxer;
-import Domini.Fitxers.FitxerJugador;
+
 
 /**
  *
  * @author JOAN
  */
 public class PenjarJugador extends Paquet {
-    public FitxerJugador F;
+    public Fitxer F;
 
-    public PenjarJugador(FitxerJugador F) throws IOException{
+    public PenjarJugador(Fitxer F) throws IOException{
         this.F = F;
     }
     public boolean EsPenjarJugador(){return true;}
-    public FitxerJugador getPenjarJugador() throws IOException{
+    public Fitxer getPenjarJugador() throws IOException{
     	return F;
     }
     

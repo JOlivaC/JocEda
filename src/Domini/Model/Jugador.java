@@ -5,23 +5,10 @@
  */
 package Domini.Model;
 
-import java.io.File;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import Actors.Alarmes.AlarmaJugar;
 import Comunicacio.Fitxer;
-import Dades.Factories.HibernateUtil;
-import Domini.Fitxers.FitxerJugador;
 
 /**
  *

@@ -2,7 +2,6 @@ package Domini.CasosUs;
 
 import Comunicacio.Fitxer;
 import Domini.Factories.FactoriaControladors;
-import Domini.Fitxers.FitxerResultat;
 import Domini.Model.Partida;
 import Excepcions.PartidaNoJugada;
 

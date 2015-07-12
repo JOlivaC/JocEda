@@ -5,22 +5,17 @@
  */
 package Xarxa.Client;
 
-import Comunicacio.InfoJugadorRanking;
-import Comunicacio.InfoPartida;
-import Domini.Fitxers.FitxerJugador;
-import Excepcions.FitxerInvalid;
-import Excepcions.InvalidLogin;
-import Xarxa.Missatges.Login;
-import Xarxa.Missatges.LoginResponse;
-import Xarxa.Missatges.Paquet;
-import Xarxa.Sockets.PaquetSocket;
-
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.Scanner;
 import java.util.SortedSet;
+
+import Comunicacio.Fitxer;
+import Comunicacio.InfoJugadorRanking;
+import Comunicacio.InfoPartida;
+import Excepcions.FitxerInvalid;
+import Excepcions.InvalidLogin;
+import Xarxa.Missatges.LoginResponse;
+import Xarxa.Sockets.PaquetSocket;
 
 /**
  *
@@ -43,7 +38,7 @@ public class Solicitant implements CapaDominiInterface {
 
 	@Override
 	public void EnviarFitxer(File f) throws Exception{
-        s.Escriure(new Xarxa.Missatges.PenjarJugador(new FitxerJugador(f)));
+        s.Escriure(new Xarxa.Missatges.PenjarJugador(new Fitxer(f)));
         if (!s.Llegir().PenjarJugadorResponseCast().valid) throw new FitxerInvalid();
 	}
 	

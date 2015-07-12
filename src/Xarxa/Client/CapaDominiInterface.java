@@ -5,15 +5,14 @@
  */
 package Xarxa.Client;
 
-import Comunicacio.InfoJugadorRanking;
-import Comunicacio.InfoPartida;
-import Domini.Fitxers.FitxerJugador;
-import Excepcions.FitxerInvalid;
-import Excepcions.InvalidLogin;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.SortedSet;
+
+import Comunicacio.InfoJugadorRanking;
+import Comunicacio.InfoPartida;
+import Excepcions.FitxerInvalid;
+import Excepcions.InvalidLogin;
 
 /**
  *

@@ -10,10 +10,7 @@ import java.util.SortedSet;
 import Comunicacio.Fitxer;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
-import Domini.Fitxers.FitxerJugador;
-import Domini.Fitxers.FitxerResultat;
 import Domini.Model.Usuari;
-import Excepcions.FitxerInvalid;
 
 /**
  *
@@ -29,7 +26,7 @@ public class CasUsSessio {
     {
     	new CasUsRegistrarse().Registrarse(user, pass);
     }
-    public void Penjar(FitxerJugador f) throws Exception{
+    public void Penjar(Fitxer f) throws Exception{
     	CasUsPenjarJugador u = new CasUsPenjarJugador(loguejat);
     	u.PenjarJugador(f);	
     }

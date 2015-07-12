@@ -5,7 +5,7 @@
  */
 package Xarxa.Missatges;
 
-import Domini.Fitxers.FitxerJugador;
+
 
 /**
  *

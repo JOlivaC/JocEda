@@ -11,14 +11,12 @@ import java.util.Set;
 import Comunicacio.Fitxer;
 import Comunicacio.InfoJugadorPartida;
 import Comunicacio.InfoPartida;
-import Domini.Fitxers.FitxerResultat;
-import Domini.Model.EstatPartida.IEstatPartida;
 
 /**
  *
  * @author JOAN
  */
-public class Partida implements Comparable{
+public class Partida implements Comparable<Object>{
 	private int ID;
     private int Estat;
     private Set<ResultatJugador> Resultat;
