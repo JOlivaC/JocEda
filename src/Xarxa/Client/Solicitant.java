@@ -10,10 +10,12 @@ import java.io.IOException;
 import java.util.SortedSet;
 
 import Comunicacio.Fitxer;
+import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
+import Xarxa.Missatges.ConsultarClassificacio;
 import Xarxa.Missatges.LoginResponse;
 import Xarxa.Sockets.PaquetSocket;
 
@@ -25,7 +27,7 @@ public class Solicitant implements CapaDominiInterface {
     private PaquetSocket s;
     
     public Solicitant() throws IOException{
-         s = new PaquetSocket("localhost",4000);
+         s = new PaquetSocket("92.59.7.175",4000);
     }
     
     @Override
@@ -63,8 +65,15 @@ public class Solicitant implements CapaDominiInterface {
 		s.Llegir();
 	}
 	
+	
 	public void Finalitzar() throws Exception {
 		s.Escriure(new Xarxa.Missatges.Finalitzar());
+	}
+
+	@Override
+	public SortedSet<InfoCalendariPartida> ConsultarCalendari() throws Exception {
+		s.Escriure(new Xarxa.Missatges.ConsultarCalendari());
+		return s.Llegir().ConsultarCalendariResponseCast().getInfo();
 	}
     
    

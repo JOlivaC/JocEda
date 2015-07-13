@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.SortedSet;
 
+import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
 import Excepcions.FitxerInvalid;
@@ -34,6 +35,7 @@ public class ControladorPrincipal {
     private Presentacio.Resultats.ResultatsView VistaResultats;
     private Presentacio.Classificacio.ClassificacioView VistaRanking;
     private Presentacio.RegisterView.Registrar VistaRegistrar;
+    private Presentacio.Calendari.CalendariView VistaCalendari;
     private CapaDominiInterface Domini;
     private Finestra Vista;
     private GestorContextual Gestor;
@@ -59,7 +61,7 @@ public class ControladorPrincipal {
     	 CanviarContext("Penjar Jugador",VistaPenjar);
     }
     private void MostrarMenu(){
-    	VistaMenu = new Presentacio.MenuPrincipalView.MenuPrincipal(new Penjar(), new Resultats(), new Ranking());
+    	VistaMenu = new Presentacio.MenuPrincipalView.MenuPrincipal(new Penjar(), new Resultats(), new Ranking(),new Calendari());
     	CanviarContext("Menu",VistaMenu);
     }
     private void MostrarResultats( SortedSet<InfoPartida> Info){
@@ -69,6 +71,10 @@ public class ControladorPrincipal {
     private void MostrarRanking(SortedSet<InfoJugadorRanking> info){
     	VistaRanking = new Presentacio.Classificacio.ClassificacioView(new Retrocedir(),info);
     	CanviarContext("Classificacio",VistaRanking);
+    }
+    private void MostrarCalendari(SortedSet<InfoCalendariPartida> info){
+    	VistaCalendari = new Presentacio.Calendari.CalendariView(new Retrocedir(),4,info);
+    	CanviarContext("Calendari",VistaCalendari);
     }
     public void VeureResultats(){
 
@@ -95,6 +101,13 @@ public class ControladorPrincipal {
 		} catch ( Exception e) {
 			// TODO Auto-generated catch block
 			VistaResultats.MostraMsg(e.getMessage());
+		}
+    }
+    public void VeureCalendari(){
+    	try {
+			MostrarCalendari(Domini.ConsultarCalendari());
+		} catch (Exception e) {
+			
 		}
     }
     public void VeureRanking(){
@@ -150,6 +163,7 @@ public class ControladorPrincipal {
     private void CanviarContext(String titol,PanellContenidor Panell){
     	Panell.setTitol(titol);
     	Vista.CanviarContext(titol, Panell);
+    	Vista.pack();
     	Gestor.NouContext(Panell);
     }
     
@@ -202,6 +216,14 @@ public class ControladorPrincipal {
 		public void actionPerformed(ActionEvent arg0) {
 			VeureResultats();
 			
+		}
+    	
+    }
+    private class Calendari implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			VeureCalendari();
 		}
     	
     }

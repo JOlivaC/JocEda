@@ -33,10 +33,7 @@ public class TxJugarPartida {
 	private DirectoriPartida dir;
 	private Map<String,Jugador> inscritsMap;
 	private File resultat;
-	public static void main(String[] argv) throws Exception{
-		for (Partida par: FactoriaControladors.getInstance().getCtrlPartida().getAll())
-			new TxJugarPartida(par).Executar();
-	}
+
 	public TxJugarPartida(Partida p){
 		this.p = p; 
 		dir = new DirectoriPartida();
@@ -49,8 +46,6 @@ public class TxJugarPartida {
 		CtrlPartida ctrlp = FactoriaControladors.getInstance().getCtrlPartida();
 		ctrlp.Update(p);
 		
-		CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
-		ctrl.Delete(p.getID());
 	}
 	
 	private void FerPartida() throws Exception{

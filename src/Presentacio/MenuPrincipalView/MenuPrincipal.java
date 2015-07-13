@@ -9,7 +9,7 @@ import Presentacio.Comuns.PanellContenidor;
 import Presentacio.Comuns.PanellSeparador;
 
 public class MenuPrincipal extends PanellContenidor {
-	public MenuPrincipal(ActionListener Penjar,ActionListener VeureResultats,ActionListener VeureRanking){
+	public MenuPrincipal(ActionListener Penjar,ActionListener VeureResultats,ActionListener VeureRanking,ActionListener VeureCalendari){
 		this.setLayout(new GridBagLayout());
 		PanellSeparador P = new PanellSeparador();
 		
@@ -24,6 +24,10 @@ public class MenuPrincipal extends PanellContenidor {
 		JButton ranking= new JButton("Veure Ranking");
 		ranking.addActionListener(VeureRanking);
 		P.afegir(ranking);
+		
+		JButton calendari= new JButton("Veure Calendari");
+		calendari.addActionListener(VeureCalendari);
+		P.afegir(calendari);
 	
 		
 		this.add(P);

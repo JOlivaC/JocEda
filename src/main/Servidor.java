@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import Dades.Factories.HibernateUtil;
+import Domini.Transaccions.TxEngegarAlarmes;
 import Domini.Transaccions.TxProgramarSessio;
 import Xarxa.Servidor.Escoltador;
 
@@ -29,6 +30,7 @@ public class Servidor {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
         new Escoltador().start();
+        new TxEngegarAlarmes().Executar();
         Scanner in = new Scanner(System.in);
         String input;
         while ((input = in.nextLine()).compareTo("exit") != 0){

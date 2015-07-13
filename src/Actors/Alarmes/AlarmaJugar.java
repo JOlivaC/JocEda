@@ -40,6 +40,8 @@ public class AlarmaJugar {
 		} catch (Exception e) {
 			System.out.print(e);
 		}
+		
+		t.cancel();
 	}
 	
 	public void Programar(){

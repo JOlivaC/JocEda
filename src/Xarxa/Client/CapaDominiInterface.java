@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.SortedSet;
 
+import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
 import Excepcions.FitxerInvalid;
@@ -31,5 +32,8 @@ public interface CapaDominiInterface {
     
     public void Registrarse(String User,String pass) throws Exception;
     
+    public SortedSet<InfoCalendariPartida> ConsultarCalendari() throws Exception;
+    
     public void Finalitzar() throws Exception;
+    
 }

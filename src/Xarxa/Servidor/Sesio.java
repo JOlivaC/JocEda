@@ -42,6 +42,7 @@ public class Sesio extends Thread {
                     else if (dada.EsConsultarClassificacio()) ConsultarClassificacio(dada.ConsultarClassificacioCast());
                     else if (dada.EsVisualitzarPartida()) VisualitzarPartida(dada.VisualitzarPartidaCast());
                     else if (dada.EsRegistrarse()) Registrarse(dada.RegistrarseCast());
+                    else if (dada.EsConsultarCalendari()) ConsultarCalendari();
                     
                 } catch (Exception ex) {
                     end = true;
@@ -53,7 +54,7 @@ public class Sesio extends Thread {
             	LogServidor.WriteLine("Connexio Tancada: " + connexio.getInetAddress());
 				connexio.close();	
 			} catch (IOException e) {
-				
+				LogServidor.WriteLine("Error al tancar la connexio de: " + connexio.getInetAddress());
 			}
             
 
@@ -116,6 +117,18 @@ public class Sesio extends Thread {
 		} catch (Exception e) {
 			R = new VisualitzarPartidaResponse(e);
 		}
+    	connexio.Escriure(R);
+    }
+    
+    private void ConsultarCalendari() throws IOException{
+    	ConsultarCalendariResponse R;
+    	
+    	try {
+			R = new ConsultarCalendariResponse(CUSessio.ConsultarCalendari());
+		} catch (Exception e) {
+			R = new ConsultarCalendariResponse(e);
+		}
+    	
     	connexio.Escriure(R);
     }
 }
