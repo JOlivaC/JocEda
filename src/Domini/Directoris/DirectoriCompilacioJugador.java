@@ -10,6 +10,10 @@ public class DirectoriCompilacioJugador extends Directori{
 	private static final String DirName = "CompilacioJugador";
 
 	private File cc;
+	public DirectoriCompilacioJugador(String nomSenseExt) throws IOException {
+		super(nomSenseExt);
+	}
+
 	@Override
 	protected String getDirName() {
 		return DirName;

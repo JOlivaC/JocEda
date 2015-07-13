@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import Comunicacio.Fitxer;
 import Comunicacio.InfoJugadorPartida;
+import Domini.Directoris.DirectoriObjectes;
 import Domini.Directoris.DirectoriPartida;
 import Domini.Execucions.Compilador;
 import Domini.Execucions.Executor;
@@ -36,7 +37,7 @@ public class TxJugarPartida {
 
 	public TxJugarPartida(Partida p){
 		this.p = p; 
-		dir = new DirectoriPartida();
+
 		inscritsMap = new HashMap<String,Jugador>();	
 	}
 	
@@ -45,6 +46,7 @@ public class TxJugarPartida {
 		
 		CtrlPartida ctrlp = FactoriaControladors.getInstance().getCtrlPartida();
 		ctrlp.Update(p);
+		
 		
 	}
 	
@@ -55,7 +57,13 @@ public class TxJugarPartida {
 		LlegirResultat();
 		FinalitzarPartida();
 	}
+	private void SituarObjectesPartida() throws Exception{
+		dir = new DirectoriPartida(p.getID());
+		DirectoriObjectes objectes = new DirectoriObjectes();
+		dir.CopyAll(objectes);
+	}
 	private void SituarFitxers() throws Exception{
+		SituarObjectesPartida();
 		Set<Usuari> participants = p.getParticipants();
 		Set<Jugador> jugadors = new HashSet<>();
 		Set<Usuari> invalids = new HashSet<>();
@@ -76,7 +84,6 @@ public class TxJugarPartida {
 			dir.AfegirJugador(j.getJugador());
 		}		
 		
-		// cal poder realitzar partides amb menys de 4 jugadors, responsabilitat del compilador / executor
 	}
 	private void CompilarPartida() throws IOException, Exception{
 		Compilador c = new Compilador();
@@ -113,7 +120,7 @@ public class TxJugarPartida {
 		p.getResultat().add(R);
 	}
 	private void FinalitzarPartida(){
-		dir.Natejar();
+		dir.DestruirDirectori();
 		p.Acabar();
 	}
 }

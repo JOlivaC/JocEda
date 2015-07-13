@@ -4,6 +4,7 @@ import java.io.File;
 
 import Comunicacio.Fitxer;
 import Domini.Directoris.DirectoriCompilacioJugador;
+import Domini.Directoris.DirectoriHeaders;
 import Domini.Execucions.Compilador;
 
 public class TxCompilarJugador {
@@ -18,12 +19,13 @@ public class TxCompilarJugador {
 	}
 	
 	public void Executar() throws Exception{
-		DirectoriCompilacioJugador dir = new DirectoriCompilacioJugador();
+		DirectoriCompilacioJugador dir = new DirectoriCompilacioJugador(cc.getNomSenseExt());
+		dir.CopyAll(new DirectoriHeaders());
 		dir.AfegirFitxer(cc);
 		Compilador c = new Compilador();
 		File f = c.compilarJugador(dir.getDirFitxer());
 		object = new Fitxer(f);
-		dir.Natejar();
+		dir.DestruirDirectori();
 		f.delete();
 	}
 	

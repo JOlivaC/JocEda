@@ -121,7 +121,7 @@ public class ControladorPrincipal {
 			
 			MostrarRanking(Domini.ConsultarClassificacio());
 		} catch (Exception e) {
-
+			
 		}
     	
     	
@@ -158,6 +158,7 @@ public class ControladorPrincipal {
     		VistaPenjar.MostraMsg("No hi ha fitxer");
     	} catch (ClassNotFoundException e) {
 		} catch (IOException e) {
+			VistaPenjar.MostraMsg("Error de xarxa");
 		} catch (FitxerInvalid e) {
 			VistaPenjar.MostraMsg("Fitxer Invalid");
 		} catch (Exception e) {

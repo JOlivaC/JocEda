@@ -14,6 +14,11 @@ public class DirectoriPartida extends Directori {
 		jugadors = new HashSet<>();
 	}
 	
+	public DirectoriPartida(int id) throws IOException {
+		super(id);
+		jugadors = new HashSet<>();
+	}
+
 	private static final String DirName = "Partida";
 	@Override
 	protected String getDirName() {
