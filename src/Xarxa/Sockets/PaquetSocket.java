@@ -30,6 +30,9 @@ public class PaquetSocket extends Socket {
 	public PaquetSocket(String string, int i) throws UnknownHostException, IOException {
 		 super(string,i);
 	}
+	public PaquetSocket(){
+		super();
+	}
 
 	public void Escriure(Paquet p) throws IOException{
 		 out = new ObjectOutputStream(getOutputStream());

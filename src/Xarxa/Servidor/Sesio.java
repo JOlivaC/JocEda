@@ -25,6 +25,7 @@ public class Sesio extends Thread {
     public Sesio(PaquetSocket s) throws IOException{
         connexio = s;
         CUSessio = new CasUsSessio();
+        connexio.setSoTimeout(1000*60*5);
         this.setDaemon(true);
     }
 

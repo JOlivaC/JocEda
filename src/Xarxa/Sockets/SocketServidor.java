@@ -10,6 +10,10 @@ public class SocketServidor extends ServerSocket {
 		super(port);
 		// TODO Auto-generated constructor stub
 	}
+	  
+	  public SocketServidor(int port,int timeout) throws IOException{
+		  super(port,timeout);
+	  }
 
 	public PaquetSocket accept() throws IOException {
 		  if (isClosed())

@@ -40,12 +40,17 @@ public class ControladorPrincipal {
     private Finestra Vista;
     private GestorContextual Gestor;
     
-    public ControladorPrincipal() throws IOException{
+    public ControladorPrincipal() {
     	Gestor = new GestorContextual();
         Vista = new Finestra();
         Vista.addWindowListener(new EscoltadorFinestra());
-        MostrarLogin();   
         Domini = new Solicitant();
+        MostrarLogin();   
+        try {
+			Domini.Connectar();
+		} catch (IOException e) {
+			VistaLogin.MostraMsg("Servidor offline");
+		}
     }
     
     private void MostrarLogin(){
@@ -90,10 +95,11 @@ public class ControladorPrincipal {
     public void Registrar(String user,String pass){
     	try {
 			Domini.Registrarse(user, pass);
+			MostrarLogin();
 		} catch (Exception e) {
 			VistaRegistrar.MostraMsg(e.getMessage());
 		}
-    	MostrarLogin();
+    	
     }
     public void VisualitzarPartida(int IDPartida){
     	try {
@@ -125,7 +131,7 @@ public class ControladorPrincipal {
             Domini.Login(User, Pass);
             MostrarMenu();
         } catch (IOException ex) {
-            ex.printStackTrace();
+        	VistaLogin.MostraMsg("Error de Xarxa");
         } catch (ClassNotFoundException ex) {
             
         } catch (InvalidLogin ex) {
@@ -138,8 +144,7 @@ public class ControladorPrincipal {
     	try {
 			Domini.Finalitzar();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
     }
     

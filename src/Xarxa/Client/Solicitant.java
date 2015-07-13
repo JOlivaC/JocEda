@@ -7,6 +7,8 @@ package Xarxa.Client;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.util.SortedSet;
 
 import Comunicacio.Fitxer;
@@ -26,8 +28,13 @@ import Xarxa.Sockets.PaquetSocket;
 public class Solicitant implements CapaDominiInterface {
     private PaquetSocket s;
     
-    public Solicitant() throws IOException{
-         s = new PaquetSocket("92.59.7.175",4000);
+    public Solicitant(){
+         s = new PaquetSocket();
+        
+    }
+    
+    public void Connectar() throws IOException{
+    	 s.connect(new InetSocketAddress("92.59.7.175",4000),5000);
     }
     
     @Override

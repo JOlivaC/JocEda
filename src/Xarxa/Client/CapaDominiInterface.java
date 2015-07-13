@@ -20,6 +20,7 @@ import Excepcions.InvalidLogin;
  * @author JOAN
  */
 public interface CapaDominiInterface {
+	public void Connectar() throws IOException;
     public void Login(String User,String Pass) throws IOException, ClassNotFoundException, InvalidLogin, Exception;
     
     public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid, Exception;
