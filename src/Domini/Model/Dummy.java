@@ -1,5 +1,5 @@
 package Domini.Model;
 
-public class Jugador {
+public class Dummy {
 
 }

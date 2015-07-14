@@ -2,12 +2,12 @@ package Domini.InterficieBD;
 
 import java.util.Set;
 
-import Domini.Model.Jugador;
+import Domini.Model.Huma;
 
 public interface CtrlJugador {
-	public Set<Jugador> getAll() throws Exception;
-	public void Insert(Jugador j) throws Exception;
-	public void Delete(Jugador j) throws Exception;
-	public void Update(Jugador j) throws Exception;
+	public Set<Huma> getAll() throws Exception;
+	public void Insert(Huma j) throws Exception;
+	public void Delete(Huma j) throws Exception;
+	public void Update(Huma j) throws Exception;
 	public boolean Exists(String name) throws Exception;
 }

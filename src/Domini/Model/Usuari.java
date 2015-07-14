@@ -15,13 +15,13 @@ import java.util.Set;
 public class Usuari {
     private String username;
     private String pass;
-    private Set<Jugador> jugadors;
-    private Jugador jugadorActual;
+    private Set<Huma> humas;
+    private Huma jugadorActual;
     public Usuari(){
-    	jugadors = new HashSet<>();
+    	humas = new HashSet<>();
     }
 	public Usuari(String user, String pass) {
-		jugadors = new HashSet<>();
+		humas = new HashSet<>();
 		this.username = user;
 		this.pass = pass;
 
@@ -38,30 +38,30 @@ public class Usuari {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public Set<Jugador> getJugadors() {
-		return jugadors;
+	public Set<Huma> getJugadors() {
+		return humas;
 	}
-	public void setJugadors(Set<Jugador> jugadors) {
-		this.jugadors = jugadors;
-	}
-	
-	public Set<Jugador> getSetJugadors(){
-		return new HashSet<Jugador>(jugadors);
+	public void setJugadors(Set<Huma> humas) {
+		this.humas = humas;
 	}
 	
-	public void AfegirJugador(Jugador j){
-		jugadors.add(j);
+	public Set<Huma> getSetJugadors(){
+		return new HashSet<Huma>(humas);
+	}
+	
+	public void AfegirJugador(Huma j){
+		humas.add(j);
 		jugadorActual = j;
 	}
 	
-	public Jugador GetJugadorActual() throws Exception{
-		if (jugadors.size() > 0) return jugadorActual;
+	public Huma GetJugadorActual() throws Exception{
+		if (humas.size() > 0) return jugadorActual;
 		else throw new Exception("No hi han jugadors");
 	}
-	public Jugador getJugadorActual() {
+	public Huma getJugadorActual() {
 		return jugadorActual;
 	}
-	public void setJugadorActual(Jugador jugadorActual) {
+	public void setJugadorActual(Huma jugadorActual) {
 		this.jugadorActual = jugadorActual;
 	}
 

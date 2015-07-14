@@ -22,7 +22,7 @@ import Domini.InterficieBD.CtrlAlarma;
 import Domini.InterficieBD.CtrlPartida;
 import Domini.LectorResultat.InfoResultat;
 import Domini.LectorResultat.LectorResultat;
-import Domini.Model.Jugador;
+import Domini.Model.Huma;
 import Domini.Model.Partida;
 import Domini.Model.ResultatJugador;
 import Domini.Model.Usuari;
@@ -32,13 +32,13 @@ public class TxJugarPartida {
 	
 	private Partida p;
 	private DirectoriPartida dir;
-	private Map<String,Jugador> inscritsMap;
+	private Map<String,Huma> inscritsMap;
 	private File resultat;
 
 	public TxJugarPartida(Partida p){
 		this.p = p; 
 
-		inscritsMap = new HashMap<String,Jugador>();	
+		inscritsMap = new HashMap<String,Huma>();	
 	}
 	
 	public void Executar() throws Exception {
@@ -65,14 +65,14 @@ public class TxJugarPartida {
 	private void SituarFitxers() throws Exception{
 		SituarObjectesPartida();
 		Set<Usuari> participants = p.getParticipants();
-		Set<Jugador> jugadors = new HashSet<>();
+		Set<Huma> humas = new HashSet<>();
 		Set<Usuari> invalids = new HashSet<>();
-		Set<Jugador> all = FactoriaControladors.getInstance().getCtrlJugador().getAll();
+		Set<Huma> all = FactoriaControladors.getInstance().getCtrlJugador().getAll();
 
 		for (Usuari u: participants){
 			try {
-				Jugador j = u.GetJugadorActual();
-				jugadors.add(j);
+				Huma j = u.GetJugadorActual();
+				humas.add(j);
 				inscritsMap.put(j.getName(),j);
 			} catch (Exception e) {
 				invalids.add(u);
@@ -80,7 +80,7 @@ public class TxJugarPartida {
 		}
 		
 		
-		for (Jugador j: jugadors){
+		for (Huma j: humas){
 			dir.AfegirJugador(j.getJugador());
 		}		
 		
@@ -110,7 +110,7 @@ public class TxJugarPartida {
 	}
 	
 	private void AfegirPuntuacio(int posicio,String nomJugador,int Puntuacio){
-		Jugador j = inscritsMap.get(nomJugador);
+		Huma j = inscritsMap.get(nomJugador);
 		ResultatJugador R = new ResultatJugador();
 		R.setJ(j);
 		R.setP(p);

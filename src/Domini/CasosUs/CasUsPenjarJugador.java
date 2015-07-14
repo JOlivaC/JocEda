@@ -7,7 +7,7 @@ package Domini.CasosUs;
 
 import Comunicacio.Fitxer;
 import Domini.Factories.FactoriaControladors;
-import Domini.Model.Jugador;
+import Domini.Model.Huma;
 import Domini.Model.Usuari;
 import Domini.Transaccions.TxCompilarJugador;
 import Excepcions.FitxerInvalid;
@@ -31,7 +31,7 @@ public class CasUsPenjarJugador {
     		
     	}
     	
-    	Jugador j = new Jugador();
+    	Huma j = new Huma();
     	if (!FactoriaControladors.getInstance().getCtrlJugador().Exists(f.getNomSenseExt())){
        	 	j.setJugador(oo);
        	 	j.setName(f.getNomSenseExt());
