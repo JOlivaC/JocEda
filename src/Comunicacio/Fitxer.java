@@ -26,9 +26,7 @@ public class Fitxer implements Serializable {
 		this.dades = dades;
 	}
 	
-	public Fitxer() {
-		nom = "abc";
-		dades = new byte[5];
+	public Fitxer(){
 		
 	}
 	public byte[] getDades(){return dades;}

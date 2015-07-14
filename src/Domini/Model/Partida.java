@@ -79,6 +79,10 @@ public class Partida implements Comparable<Object>{
 	public int compareTo(Object arg0) {
 		return Integer.compare(this.ID,((Partida)arg0).ID);
 	}
+	
+	public String toString(){
+		return String.valueOf(ID);
+	}
     
     
 }

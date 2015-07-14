@@ -1,11 +1,15 @@
 package Domini.Directoris;
 
-public class DirectoriProvaJugador extends Directori {
+import java.io.IOException;
 
+public class DirectoriProvaJugador extends DirectoriPartida {
+	private static final String DirName = "Prova";
+	public DirectoriProvaJugador(String clau) throws IOException{
+		super(clau);
+	}
 	@Override
 	protected String getDirName() {
-		// TODO Auto-generated method stub
-		return null;
+		return DirName;
 	}
 
 }

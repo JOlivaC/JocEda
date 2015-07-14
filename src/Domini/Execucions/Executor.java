@@ -99,7 +99,7 @@ public class Executor {
                 BufferedReader br = new BufferedReader(isr);
                 String line;
                 while(!acabar)
-                    while (br.ready() && (line = br.readLine()) != null) resultat.write(line+"\n");
+                    while (br.ready() && (line = br.readLine()) != null) resultat.write(line + "\n"); 
                 resultat.close();
                 br.close();
                 isr.close();
@@ -122,14 +122,15 @@ public class Executor {
     
 
     
-    private void comprovar_jugadors(List<String> players) throws Exception {
+    @SuppressWarnings("unused")
+	private void comprovar_jugadors(List<String> players) throws Exception {
         if (players.isEmpty()) throw new Exception("Cal indicar almenys un jugador per executar el joc.");
         else if(players.size()>4) throw new Exception("El joc admet com a màxim 4 jugadors.");
         for(int i=players.size(); i<4; ++i) players.add("Dummy");
     }
     
     public File executarJoc(List<String> players, String ruta) throws IOException, Exception{
-        comprovar_jugadors(players);
+        //comprovar_jugadors(players);
         File f = new File(ruta);
         String map = maps[new Random().nextInt(8)];
         // Guardar mapa a un string.
@@ -139,7 +140,6 @@ public class Executor {
         String fitxer = "";
         while((l=entrada.readLine())!=null) fitxer += l+"\n";
         entrada.close();
-        
         // Executar procés.
         Process p = Runtime.getRuntime().exec(ruta+"/Game.exe "+players.get(0)+" "+players.get(1)+" "+players.get(2)+" "+players.get(3));
 
@@ -155,15 +155,15 @@ public class Executor {
         
         // Comprovar si l'execució acaba correctament.
         if(!p.waitFor(timeout,TimeUnit.SECONDS)){
+        	p.destroy();
             stdOut.acaba();
             stdErr.acaba();
-            throw new Exception("L'execució ha tardat més de "+timeout+" segons.\nMissatges d'error:\n"+stdErr.getErr());
+            throw new Exception("L'execucio ha tardat mes de "+timeout+" segons.");
         }
         stdOut.acaba();
         stdErr.acaba();
         if(p.exitValue()!=0){
-            throw new Exception("S'ha produït un error durant l'execució del joc.\nMissatges d'error:\n"+stdErr.getErr()
-                    +"\nExit value: "+p.exitValue());
+            throw new Exception("S'ha produit un error durant l'execucio del joc.");
         }
             
         return new File(ruta+"/game.br");

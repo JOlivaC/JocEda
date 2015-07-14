@@ -14,6 +14,7 @@ import Domini.InterficieBD.CtrlAlarma;
 import Domini.Model.Partida;
 import Domini.Transaccions.TxJugarPartida;
 import Excepcions.ErrorPartida;
+import Excepcions.InsuficientsJugadors;
 
 /**
  *
@@ -38,8 +39,10 @@ public class AlarmaJugar {
 		try {
 			TJP.Executar();	
 			t.cancel();
+		} catch (InsuficientsJugadors i){
+			Log.LogServidor.WriteLine("Insuficients Jugadors per la partida" + partida);
 		} catch (Exception e) {
-			System.out.print(e);
+			Log.LogServidor.WriteException(e);
 		}
 		
 		
