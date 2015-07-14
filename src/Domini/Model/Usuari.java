@@ -15,13 +15,13 @@ import java.util.Set;
 public class Usuari {
     private String username;
     private String pass;
-    private Set<Huma> humas;
+    private Set<Huma> jugadors;
     private Huma jugadorActual;
     public Usuari(){
-    	humas = new HashSet<>();
+    	jugadors = new HashSet<>();
     }
 	public Usuari(String user, String pass) {
-		humas = new HashSet<>();
+		jugadors = new HashSet<>();
 		this.username = user;
 		this.pass = pass;
 
@@ -39,23 +39,23 @@ public class Usuari {
 		this.pass = pass;
 	}
 	public Set<Huma> getJugadors() {
-		return humas;
+		return jugadors;
 	}
 	public void setJugadors(Set<Huma> humas) {
-		this.humas = humas;
+		this.jugadors = humas;
 	}
 	
 	public Set<Huma> getSetJugadors(){
-		return new HashSet<Huma>(humas);
+		return new HashSet<Huma>(jugadors);
 	}
 	
 	public void AfegirJugador(Huma j){
-		humas.add(j);
+		jugadors.add(j);
 		jugadorActual = j;
 	}
 	
 	public Huma GetJugadorActual() throws Exception{
-		if (humas.size() > 0) return jugadorActual;
+		if (jugadors.size() > 0) return jugadorActual;
 		else throw new Exception("No hi han jugadors");
 	}
 	public Huma getJugadorActual() {

@@ -34,7 +34,7 @@ public class Solicitant implements CapaDominiInterface {
     }
     
     public void Connectar() throws IOException{
-    	 s.connect(new InetSocketAddress("92.59.7.175",4000),5000);
+    	 s.connect(new InetSocketAddress("localhost",4000),5000);
     }
     
     @Override

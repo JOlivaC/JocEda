@@ -15,41 +15,18 @@ import Comunicacio.Fitxer;
  * @author JOAN
  */
 
-public class Huma {
-    private String name;
-    private Fitxer jugador;
-    private Usuari owner;
-    private Set<Partida> PartidesJugades;
+public class Huma extends Jugador{
+	private Usuari owner;
     public Huma(){
-    	PartidesJugades = new HashSet<>();
+    	super();
     }
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Fitxer getJugador() {
-		return jugador;
-	}
-	public void setJugador(Fitxer jugador) {
-		this.jugador = jugador;
-	}
 	public Usuari getOwner() {
 		return owner;
 	}
 	public void setOwner(Usuari owner) {
 		this.owner = owner;
 	}
+	
+	public boolean EsHuma(){return true;}
     
-	public Set<Partida> getPartidesJugades() {
-		return PartidesJugades;
-	}
-	public void setPartidesJugades(Set<Partida> partidesJugades) {
-		PartidesJugades = partidesJugades;
-	}
-    
-	public boolean equals(Object other){
-		return name.equals(((Huma)other).name);
-	}
 }

@@ -32,7 +32,7 @@ public class CasUsPenjarJugador {
     	}
     	
     	Huma j = new Huma();
-    	if (!FactoriaControladors.getInstance().getCtrlJugador().Exists(f.getNomSenseExt())){
+    	if (!FactoriaControladors.getInstance().getCtrlHuma().Exists(f.getNomSenseExt())){
        	 	j.setJugador(oo);
        	 	j.setName(f.getNomSenseExt());
        	 	j.setOwner(u);

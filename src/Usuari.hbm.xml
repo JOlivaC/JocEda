@@ -11,13 +11,13 @@
         <property name="pass" type="java.lang.String">
             <column name="PASS" />
         </property>
-        <set name="jugadors" table="JUGADOR" inverse="false" lazy="false" cascade="save-update">
+        <set name="jugadors" table="HUMA" inverse="false" lazy="false" cascade="save-update">
             <key>
                 <column name="USERNAME" />
             </key>
             <one-to-many class="Domini.Model.Jugador" />
         </set>
-        <many-to-one name="jugadorActual" class="Domini.Model.Jugador" fetch="join" cascade="save-update">
+        <many-to-one name="jugadorActual" class="Domini.Model.Huma" fetch="join" cascade="save-update">
             <column name="JUGADORACTUAL" />
         </many-to-one>
     </class>

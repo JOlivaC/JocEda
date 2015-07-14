@@ -6,7 +6,7 @@ public class ResultatJugador {
 	private int ID;
 	private int Posicio;
 	private int Puntuacio;
-	private Huma j;
+	private Jugador j;
 	private Partida p;
 	public int getPosicio() {
 		return Posicio;
@@ -20,10 +20,10 @@ public class ResultatJugador {
 	public void setPuntuacio(int puntuacio) {
 		Puntuacio = puntuacio;
 	}
-	public Huma getJ() {
+	public Jugador getJ() {
 		return j;
 	}
-	public void setJ(Huma j) {
+	public void setJ(Jugador j) {
 		this.j = j;
 	}
 	public Partida getP() {

@@ -37,11 +37,12 @@ public class AlarmaJugar {
 
 		try {
 			TJP.Executar();	
+			t.cancel();
 		} catch (Exception e) {
 			System.out.print(e);
 		}
 		
-		t.cancel();
+		
 	}
 	
 	public void Programar(){

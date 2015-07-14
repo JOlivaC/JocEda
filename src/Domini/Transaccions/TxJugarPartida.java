@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,27 +19,29 @@ import Domini.Directoris.DirectoriPartida;
 import Domini.Execucions.Compilador;
 import Domini.Execucions.Executor;
 import Domini.Factories.FactoriaControladors;
-import Domini.InterficieBD.CtrlAlarma;
 import Domini.InterficieBD.CtrlPartida;
 import Domini.LectorResultat.InfoResultat;
 import Domini.LectorResultat.LectorResultat;
+import Domini.Model.Dummy;
 import Domini.Model.Huma;
+import Domini.Model.Jugador;
 import Domini.Model.Partida;
 import Domini.Model.ResultatJugador;
 import Domini.Model.Usuari;
+import Excepcions.InsuficientsJugadors;
 
 public class TxJugarPartida {
 	
 	
 	private Partida p;
 	private DirectoriPartida dir;
-	private Map<String,Huma> inscritsMap;
+	private Map<String,Jugador> inscritsMap;
 	private File resultat;
 
 	public TxJugarPartida(Partida p){
 		this.p = p; 
 
-		inscritsMap = new HashMap<String,Huma>();	
+		inscritsMap = new HashMap<String,Jugador>();	
 	}
 	
 	public void Executar() throws Exception {
@@ -67,7 +70,6 @@ public class TxJugarPartida {
 		Set<Usuari> participants = p.getParticipants();
 		Set<Huma> humas = new HashSet<>();
 		Set<Usuari> invalids = new HashSet<>();
-		Set<Huma> all = FactoriaControladors.getInstance().getCtrlJugador().getAll();
 
 		for (Usuari u: participants){
 			try {
@@ -79,10 +81,25 @@ public class TxJugarPartida {
 			}
 		}
 		
+		int i = 0;
 		
 		for (Huma j: humas){
 			dir.AfegirJugador(j.getJugador());
-		}		
+			i++;
+		}	
+		
+		if (i == 0) throw new InsuficientsJugadors();
+		if (i < 4){
+			Set<Dummy> dummys = FactoriaControladors.getInstance().getCtrlDummy().getAll();
+			if (dummys.size() < 4 - i) throw new InsuficientsJugadors();
+			Iterator<Dummy> it = dummys.iterator();
+			while (i < 4){
+				Dummy d = it.next();
+				inscritsMap.put(d.getName(),d);
+				dir.AfegirJugador(d.getJugador());
+				i++;
+			}
+		}
 		
 	}
 	private void CompilarPartida() throws IOException, Exception{
@@ -110,7 +127,7 @@ public class TxJugarPartida {
 	}
 	
 	private void AfegirPuntuacio(int posicio,String nomJugador,int Puntuacio){
-		Huma j = inscritsMap.get(nomJugador);
+		Jugador j = inscritsMap.get(nomJugador);
 		ResultatJugador R = new ResultatJugador();
 		R.setJ(j);
 		R.setP(p);

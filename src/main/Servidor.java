@@ -6,13 +6,18 @@
 package main;
 
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Scanner;
 
+import javax.swing.JFileChooser;
+
+import Comunicacio.Fitxer;
 import Dades.Factories.HibernateUtil;
+import Domini.CasosUs.CasUsCrearDummy;
 import Domini.Transaccions.TxEngegarAlarmes;
 import Domini.Transaccions.TxProgramarSessio;
 import Xarxa.Servidor.Escoltador;
@@ -45,6 +50,17 @@ public class Servidor {
         		LocalTime horaf = LocalTime.of(Integer.parseInt(in.nextLine()),Integer.parseInt(in.nextLine()));
         		
         		new TxProgramarSessio(i,c,horai,horaf).Executar();
+        	}
+        	else if (input.equalsIgnoreCase("dummy")){
+				JFileChooser Sel = new JFileChooser();
+				File f;
+				if (Sel.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+					 f = Sel.getSelectedFile();
+					 new CasUsCrearDummy().CrearDummy(new Fitxer(f));
+				}
+	       		 
+	       		 
+	       		 
         	}
         }
         HibernateUtil.getSessionFactory().close();

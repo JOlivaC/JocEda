@@ -2,9 +2,9 @@ package Dades.Controladors;
 
 import java.util.Set;
 
-import Domini.InterficieBD.CtrlJugador;
+import Domini.InterficieBD.CtrlHuma;
 
-public class Jugador extends Controlador implements CtrlJugador {
+public class Huma extends Controlador implements CtrlHuma {
 
 	@Override
 	public Set<Domini.Model.Huma> getAll() throws Exception {
