@@ -8,16 +8,16 @@ package Xarxa.Client;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
 import java.util.SortedSet;
 
+import Client.BD.Propietats;
 import Comunicacio.Fitxer;
 import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
-import Xarxa.Missatges.ConsultarClassificacio;
+import Updater.Release.ClientJar;
 import Xarxa.Missatges.LoginResponse;
 import Xarxa.Sockets.PaquetSocket;
 
@@ -34,7 +34,8 @@ public class Solicitant implements CapaDominiInterface {
     }
     
     public void Connectar() throws IOException{
-    	 s.connect(new InetSocketAddress("localhost",4000),5000);
+    	 Propietats p = new Propietats();
+    	 s.connect(new InetSocketAddress(p.getIp(),p.getPort()),5000);
     }
     
     @Override
@@ -61,9 +62,9 @@ public class Solicitant implements CapaDominiInterface {
 		return s.Llegir().ConsultarClassificacioResponseCast().getInfo();
 	}
 	
-	public File VisualitzarPartida(int ID) throws Exception{
+	public Fitxer VisualitzarPartida(int ID) throws Exception{
 		s.Escriure(new Xarxa.Missatges.VisualitzarPartida(ID));
-		return s.Llegir().VisualitzarPartidaResponseCast().getPartida().getFile();
+		return s.Llegir().VisualitzarPartidaResponseCast().getPartida();
 	}
 
 	@Override
@@ -81,6 +82,18 @@ public class Solicitant implements CapaDominiInterface {
 	public SortedSet<InfoCalendariPartida> ConsultarCalendari() throws Exception {
 		s.Escriure(new Xarxa.Missatges.ConsultarCalendari());
 		return s.Llegir().ConsultarCalendariResponseCast().getInfo();
+	}
+
+	@Override
+	public boolean CheckUpdate(int versio) throws Exception {
+		s.Escriure(new Xarxa.Missatges.CheckUpdate(versio));
+		return s.Llegir().BooleanResponseCast().isResult();
+	}
+
+	@Override
+	public ClientJar DescarregarUpdate() throws Exception {
+		s.Escriure(new Xarxa.Missatges.DescarregarJar());
+		return s.Llegir().DescarregarJarResponseCast().getJar();
 	}
     
    

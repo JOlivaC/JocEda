@@ -21,6 +21,7 @@ import Excepcions.InvalidLogin;
 import Excepcions.NoHiHaFitxer;
 import Presentacio.Comuns.Finestra;
 import Presentacio.Comuns.PanellContenidor;
+import Updater.Client.ControladorUpdater;
 import Xarxa.Client.CapaDominiInterface;
 import Xarxa.Client.Solicitant;
 
@@ -50,6 +51,16 @@ public class ControladorPrincipal {
 			Domini.Connectar();
 		} catch (IOException e) {
 			VistaLogin.MostraMsg("Servidor offline");
+		}
+        
+        try {
+			ControladorUpdater u = new ControladorUpdater(Domini);
+			u.Iniciar();
+			if (u.getResult()) VistaLogin.MostraMsg("La Versio s'acaba d'actualitzar,reinicia");
+			else VistaLogin.MostraMsg("Versio Nova");
+			
+		} catch (Exception e) {
+			VistaLogin.MostraMsg(e.getMessage());
 		}
     }
     
@@ -103,7 +114,7 @@ public class ControladorPrincipal {
     }
     public void VisualitzarPartida(int IDPartida){
     	try {
-			Domini.VisualitzarPartida(IDPartida);
+			new Client.VisualitzarPartida.VisualitzarPartida().Visualitzar(Domini.VisualitzarPartida(IDPartida));
 		} catch ( Exception e) {
 			// TODO Auto-generated catch block
 			VistaResultats.MostraMsg(e.getMessage());

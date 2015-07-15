@@ -10,6 +10,8 @@ import java.io.IOException;
 import Domini.CasosUs.CasUsSessio;
 import Excepcions.FitxerInvalid;
 import Log.LogServidor;
+import Updater.CasosUs.CasUsCheck;
+import Updater.CasosUs.CasUsDescarregarJar;
 import Xarxa.Missatges.*;
 import Xarxa.Sockets.PaquetSocket;
 
@@ -43,7 +45,9 @@ public class Sesio extends Thread {
                     else if (dada.EsConsultarClassificacio()) ConsultarClassificacio(dada.ConsultarClassificacioCast());
                     else if (dada.EsVisualitzarPartida()) VisualitzarPartida(dada.VisualitzarPartidaCast());
                     else if (dada.EsRegistrarse()) Registrarse(dada.RegistrarseCast());
+                    else if (dada.EsCheckUpdate()) CheckUpdate(dada.CheckUpdateCast());
                     else if (dada.EsConsultarCalendari()) ConsultarCalendari();
+                    else if (dada.EsDescarregarJar()) DescarregarJar();
                     
                 } catch (Exception ex) {
                     end = true;
@@ -131,5 +135,17 @@ public class Sesio extends Thread {
 		}
     	
     	connexio.Escriure(R);
+    }
+    
+    private void CheckUpdate(CheckUpdate P) throws IOException{
+    	CasUsCheck C = new CasUsCheck();
+    	BooleanResponse R = new BooleanResponse();
+    	R.setResult(C.CheckUpdate(P.getVersio()));
+    	connexio.Escriure(R);
+    }
+    
+    private void DescarregarJar() throws IOException{
+    	CasUsDescarregarJar C = new CasUsDescarregarJar();
+    	connexio.Escriure(new DescarregarJarResponse(C.DescarregarJar()));
     }
 }

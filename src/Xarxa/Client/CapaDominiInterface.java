@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.SortedSet;
 
+import Updater.Release.ClientJar;
+import Comunicacio.Fitxer;
 import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
@@ -29,12 +31,16 @@ public interface CapaDominiInterface {
     
     public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws IOException, ClassNotFoundException, Exception;
     
-    public File VisualitzarPartida(int ID) throws IOException, ClassNotFoundException, Exception;
+    public Fitxer VisualitzarPartida(int ID) throws IOException, ClassNotFoundException, Exception;
     
     public void Registrarse(String User,String pass) throws Exception;
     
     public SortedSet<InfoCalendariPartida> ConsultarCalendari() throws Exception;
     
     public void Finalitzar() throws Exception;
+    
+    public boolean CheckUpdate(int versio) throws Exception;
+    
+    public ClientJar DescarregarUpdate() throws Exception;
     
 }
