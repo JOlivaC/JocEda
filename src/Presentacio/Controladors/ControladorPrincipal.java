@@ -56,8 +56,8 @@ public class ControladorPrincipal {
         try {
 			ControladorUpdater u = new ControladorUpdater(Domini);
 			u.Iniciar();
-			if (u.getResult()) VistaLogin.MostraMsg("La Versio s'acaba d'actualitzar,reinicia");
-			else VistaLogin.MostraMsg("Versio Nova");
+			if (u.getResult()) VistaLogin.MostraMsg("La Versio s'acaba d'actualitzar, reinicia el programa");
+			else VistaLogin.MostraMsg("La versio esta actualitzada");
 			
 		} catch (Exception e) {
 			VistaLogin.MostraMsg(e.getMessage());
