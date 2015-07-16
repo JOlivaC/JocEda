@@ -1,5 +1,6 @@
 package Domini.CasosUs;
 
+import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -10,7 +11,7 @@ import Domini.Model.Partida;
 
 public class CasUsConsultarResultats {
 	public SortedSet<InfoPartida> ConsultarResultats() throws Exception{
-		Set<Partida> partides = FactoriaControladors.getInstance().getCtrlPartida().getAll();
+		List<Partida> partides = FactoriaControladors.getInstance().getCtrlLliga().Get(6).getPartides();
 		SortedSet<InfoPartida> ret = new TreeSet<>();
 		for (Partida p: partides){
 			if (p.EstaJugada())

@@ -36,7 +36,7 @@ public class CasUsSessio {
     	return new CasUsConsultarResultats().ConsultarResultats();
     }
     
-    public  SortedSet<InfoJugadorRanking> ConsultarClassificacio(){
+    public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws Exception{
     	return new CasUsConsultarClassificacio().ConsultarClassificacio();
     }
     

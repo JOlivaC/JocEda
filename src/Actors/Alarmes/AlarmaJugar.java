@@ -28,7 +28,6 @@ public class AlarmaJugar {
 	public AlarmaJugar(Date data,Partida p){
 		this.data = data;
 		this.partida = p;
-		this.ID = p.getID();
 	}
 	public AlarmaJugar() {
 

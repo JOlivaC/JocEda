@@ -6,12 +6,12 @@
     <class name="Actors.Alarmes.AlarmaJugar" table="ALARMAJUGAR">
         <id name="ID" type = "int">
             	<column name="ID" />
-            	<generator class="assigned"/>
+            	<generator class="increment"/>
         </id>       
         <property name="data" type="java.util.Date">
             <column name="DATA"/>
         </property>
-        <many-to-one name="partida" class="Domini.Model.Partida" fetch="join" cascade="save-update">
+        <many-to-one name="partida" class="Domini.Model.Partida" fetch="join" cascade="save-update,delete">
             <column name="IDPartida" />
         </many-to-one>
     </class>
