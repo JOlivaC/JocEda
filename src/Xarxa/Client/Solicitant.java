@@ -8,6 +8,7 @@ package Xarxa.Client;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Set;
 import java.util.SortedSet;
 
 import Client.BD.Propietats;
@@ -15,6 +16,7 @@ import Comunicacio.Fitxer;
 import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
+import Comunicacio.InfoUsuarisJugadors;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
 import Updater.Release.ClientJar;
@@ -94,6 +96,18 @@ public class Solicitant implements CapaDominiInterface {
 	public ClientJar DescarregarUpdate() throws Exception {
 		s.Escriure(new Xarxa.Missatges.DescarregarJar());
 		return s.Llegir().DescarregarJarResponseCast().getJar();
+	}
+
+	@Override
+	public InfoUsuarisJugadors VeureProves() throws Exception {
+		s.Escriure(new Xarxa.Missatges.VeureProva());
+		return s.Llegir().VeureProvaResponseCast().getInfo();
+	}
+
+	@Override
+	public Fitxer FerProva(Set<String> jugadors) throws Exception {
+		s.Escriure(new Xarxa.Missatges.PartidaProva(jugadors));
+		return s.Llegir().VisualitzarPartidaResponseCast().getPartida();
 	}
     
    

@@ -37,4 +37,9 @@ public class Huma extends Controlador implements CtrlHuma {
 		return super.Exists(Domini.Model.Huma.class,name);
 	}
 
+	@Override
+	public Domini.Model.Huma get(String name) throws Exception {
+		return (Domini.Model.Huma) super.get(Domini.Model.Huma.class, name);
+	}
+
 }

@@ -34,48 +34,38 @@ public class TxJugarPartida {
 	
 	
 	private Partida p;
-	private DirectoriPartida dir;
-	private Map<String,Jugador> inscritsMap;
-	private File resultat;
 
+	private Set<Jugador> jugadors;
+	private Map<String,Jugador> inscritsMap;
+	
+	private InfoResultat r;
+	private Fitxer fres;
 	public TxJugarPartida(Partida p){
 		this.p = p; 
-
-		inscritsMap = new HashMap<String,Jugador>();	
+			
 	}
 	
 	public void Executar() throws Exception {
+		AfegirParticipants();
 		FerPartida();
+		LlegirResultat();
+		FinalitzarPartida();
 		
 		CtrlPartida ctrlp = FactoriaControladors.getInstance().getCtrlPartida();
-		ctrlp.Update(p);
-		
+		ctrlp.Update(p);	
 		
 	}
 	
-	private void FerPartida() throws Exception{
-		SituarFitxers();
-		CompilarPartida();
-		RealitzarPartida();
-		LlegirResultat();
-		FinalitzarPartida();
-	}
-	private void SituarObjectesPartida() throws Exception{
-		dir = new DirectoriPartida(p.getID());
-		DirectoriObjectes objectes = new DirectoriObjectes();
-		dir.CopyAll(objectes);
-	}
-	private void SituarFitxers() throws Exception{
-		SituarObjectesPartida();
+	private void AfegirParticipants() throws Exception{
 		Set<Usuari> participants = p.getParticipants();
-		Set<Huma> humas = new HashSet<>();
 		Set<Usuari> invalids = new HashSet<>();
-
+		jugadors = new HashSet<>();
+		
+		
 		for (Usuari u: participants){
 			try {
 				Huma j = u.GetJugadorActual();
-				humas.add(j);
-				inscritsMap.put(j.getName(),j);
+				jugadors.add(j);
 			} catch (Exception e) {
 				invalids.add(u);
 			}
@@ -83,10 +73,6 @@ public class TxJugarPartida {
 		
 		int i = 0;
 		
-		for (Huma j: humas){
-			dir.AfegirJugador(j.getJugador());
-			i++;
-		}	
 		
 		if (i == 0) throw new InsuficientsJugadors();
 		if (i < 4){
@@ -95,35 +81,34 @@ public class TxJugarPartida {
 			Iterator<Dummy> it = dummys.iterator();
 			while (i < 4){
 				Dummy d = it.next();
-				inscritsMap.put(d.getName(),d);
-				dir.AfegirJugador(d.getJugador());
+				jugadors.add(d);
 				i++;
 			}
 		}
 		
-	}
-	private void CompilarPartida() throws IOException, Exception{
-		Compilador c = new Compilador();
-		c.compilarJoc(dir.getDir());
-	}
-	private void RealitzarPartida() throws IOException, Exception{	
-		List<String> jugadors = new ArrayList<String>();
-		jugadors.addAll(inscritsMap.keySet());
-		Executor e = new Executor();
-		resultat = e.executarJoc(jugadors, dir.getDir());
+		inscritsMap = new HashMap<String,Jugador>();
+		for (Jugador j: jugadors) inscritsMap.put(j.getName(), j);
+		
 	}
 	
+	private void FerPartida() throws Exception{
+		
+		TxFerPartida t = new TxFerPartida(jugadors,"Partida" + p.getID());
+		t.Executar();
+		r = t.getInfoResultat();
+		fres = t.getResultat();
+
+	}
+
+	
 	private void LlegirResultat() throws FileNotFoundException, IOException, Exception{
-		LectorResultat l = new LectorResultat();
-		InfoResultat r = l.Llegir(resultat);
 		Vector<InfoJugadorPartida> res  = r.getResultat();
 		for (int i = 0; i < res.size(); i ++){
 			InfoJugadorPartida infoj = res.get(i);
 			AfegirPuntuacio(i+1,infoj.getNom(),infoj.getPuntuacio());
 		}
-		Fitxer re = new Fitxer(resultat);
-		re.setNom("Partida" + p.getID() + ".br");
-		p.setPartidaResultant(re);
+		fres.setNom("Partida" + p.getID() + ".br");
+		p.setPartidaResultant(fres);
 	}
 	
 	private void AfegirPuntuacio(int posicio,String nomJugador,int Puntuacio){
@@ -137,7 +122,6 @@ public class TxJugarPartida {
 		p.getResultat().add(R);
 	}
 	private void FinalitzarPartida(){
-		dir.DestruirDirectori();
 		p.Acabar();
 	}
 }

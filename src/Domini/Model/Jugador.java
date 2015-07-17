@@ -40,4 +40,10 @@ public abstract class Jugador {
 	
 	public boolean EsDummy(){return false;}
 	public boolean EsHuma(){return false;}
+	
+	public boolean EsPublic(){
+		//TODO
+		return true;
+	
+	}
 }

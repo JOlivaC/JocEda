@@ -11,11 +11,13 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 import java.util.SortedSet;
 
 import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
+import Comunicacio.InfoUsuarisJugadors;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
 import Excepcions.NoHiHaFitxer;
@@ -37,6 +39,7 @@ public class ControladorPrincipal {
     private Presentacio.Classificacio.ClassificacioView VistaRanking;
     private Presentacio.RegisterView.Registrar VistaRegistrar;
     private Presentacio.Calendari.CalendariView VistaCalendari;
+    private Presentacio.Prova.ProvaView VistaProva;
     private CapaDominiInterface Domini;
     private Finestra Vista;
     private GestorContextual Gestor;
@@ -77,7 +80,7 @@ public class ControladorPrincipal {
     	 CanviarContext("Penjar Jugador",VistaPenjar);
     }
     private void MostrarMenu(){
-    	VistaMenu = new Presentacio.MenuPrincipalView.MenuPrincipal(new Penjar(), new Resultats(), new Ranking(),new Calendari());
+    	VistaMenu = new Presentacio.MenuPrincipalView.MenuPrincipal(new Penjar(), new Resultats(), new Ranking(),new Calendari(),new VeureProves());
     	CanviarContext("Menu",VistaMenu);
     }
     private void MostrarResultats( SortedSet<InfoPartida> Info){
@@ -91,6 +94,11 @@ public class ControladorPrincipal {
     private void MostrarCalendari(SortedSet<InfoCalendariPartida> info){
     	VistaCalendari = new Presentacio.Calendari.CalendariView(new Retrocedir(),4,info);
     	CanviarContext("Calendari",VistaCalendari);
+    }
+    private void MostrarProves(InfoUsuarisJugadors info){
+    	VistaProva = new Presentacio.Prova.ProvaView(new Retrocedir(), new FerProva());
+    	VistaProva.SetDades(info.getInfo());
+    	CanviarContext("Partides de Prova",VistaProva);
     }
     public void VeureResultats(){
 
@@ -116,7 +124,6 @@ public class ControladorPrincipal {
     	try {
 			new Client.VisualitzarPartida.VisualitzarPartida().Visualitzar(Domini.VisualitzarPartida(IDPartida));
 		} catch ( Exception e) {
-			// TODO Auto-generated catch block
 			VistaResultats.MostraMsg(e.getMessage());
 		}
     }
@@ -136,6 +143,23 @@ public class ControladorPrincipal {
 		}
     	
     	
+    }
+    
+    public void VisualitzarProves(){
+		try {
+			MostrarProves(Domini.VeureProves());
+		} catch (Exception e) {
+			
+		}
+   	
+    }
+    
+    public void FerProva(Set<String> jugadors){
+    	try {
+    		new Client.VisualitzarPartida.VisualitzarPartida().Visualitzar(Domini.FerProva(jugadors));
+		} catch (Exception e) {
+			VistaProva.MostraMsg(e.getMessage());
+		}
     }
     public void Login(String User,String Pass){
         try {
@@ -264,6 +288,25 @@ public class ControladorPrincipal {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			VisualitzarPartida(VistaResultats.getLastID());
+		}
+    	
+    }
+    
+    private class VeureProves implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			VisualitzarProves();
+			
+		}
+    	
+    }
+    
+    private class FerProva implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			FerProva(VistaProva.getJugadors());		
 		}
     	
     }

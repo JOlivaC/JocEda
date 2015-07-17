@@ -10,13 +10,16 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.swing.JFileChooser;
 
 import Comunicacio.Fitxer;
 import Dades.Factories.HibernateUtil;
 import Domini.CasosUs.CasUsCrearDummy;
+import Domini.CasosUs.CasUsPartidaProva;
 import Domini.Factories.FactoriaControladors;
 import Domini.Model.Lliga;
 import Domini.Transaccions.TxEngegarAlarmes;
@@ -67,6 +70,14 @@ public class Servidor {
 				Lliga l = FactoriaControladors.getInstance().getCtrlLliga().Get(Integer.valueOf(in.nextLine()));
 				FactoriaControladors.getInstance().getCtrlLliga().Delete(l);
 	       		 
+        	}
+        	else if (input.equalsIgnoreCase("test")){
+        		Set<String> j = new HashSet<String>();
+        		for (int i = 0; i < 4; i ++){
+        			j.add(in.nextLine());
+        		}
+        		CasUsPartidaProva c = new CasUsPartidaProva();
+        		c.PartidaProva(j);
         	}
         }
         HibernateUtil.getSessionFactory().close();

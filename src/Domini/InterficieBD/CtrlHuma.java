@@ -10,4 +10,5 @@ public interface CtrlHuma {
 	public void Delete(Huma j) throws Exception;
 	public void Update(Huma j) throws Exception;
 	public boolean Exists(String name) throws Exception;
+	public Huma get(String name) throws Exception;
 }

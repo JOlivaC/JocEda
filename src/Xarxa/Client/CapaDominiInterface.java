@@ -7,6 +7,7 @@ package Xarxa.Client;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 import java.util.SortedSet;
 
 import Updater.Release.ClientJar;
@@ -14,6 +15,7 @@ import Comunicacio.Fitxer;
 import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
+import Comunicacio.InfoUsuarisJugadors;
 import Excepcions.FitxerInvalid;
 import Excepcions.InvalidLogin;
 
@@ -42,5 +44,9 @@ public interface CapaDominiInterface {
     public boolean CheckUpdate(int versio) throws Exception;
     
     public ClientJar DescarregarUpdate() throws Exception;
+    
+    public InfoUsuarisJugadors VeureProves() throws Exception;
+    
+    public Fitxer FerProva(Set<String> jugadors) throws Exception;
     
 }

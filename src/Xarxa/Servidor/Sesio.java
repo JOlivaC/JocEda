@@ -7,6 +7,7 @@ package Xarxa.Servidor;
 
 import java.io.IOException;
 
+import Domini.CasosUs.CasUsPartidaProva;
 import Domini.CasosUs.CasUsSessio;
 import Excepcions.FitxerInvalid;
 import Log.LogServidor;
@@ -48,6 +49,8 @@ public class Sesio extends Thread {
                     else if (dada.EsCheckUpdate()) CheckUpdate(dada.CheckUpdateCast());
                     else if (dada.EsConsultarCalendari()) ConsultarCalendari();
                     else if (dada.EsDescarregarJar()) DescarregarJar();
+                    else if (dada.EsVeureProva()) VeureProva();
+                    else if (dada.EsPartidaProva()) PartidaDeProva(dada.PartidaProvaCast());
                     
                 } catch (Exception ex) {
                     end = true;
@@ -65,7 +68,9 @@ public class Sesio extends Thread {
 
     }
     
-    private void Penjar(PenjarJugador PJ) throws IOException {
+  
+
+	private void Penjar(PenjarJugador PJ) throws IOException {
     	PenjarJugadorResponse R;
     	try {
 			CUSessio.Penjar(PJ.getPenjarJugador());
@@ -148,4 +153,31 @@ public class Sesio extends Thread {
     	CasUsDescarregarJar C = new CasUsDescarregarJar();
     	connexio.Escriure(new DescarregarJarResponse(C.DescarregarJar()));
     }
+    
+    private void VeureProva() throws IOException {
+    	VeureProvaResponse R;
+    	
+  		try {
+			R = new VeureProvaResponse(CUSessio.ObrirProves());
+		} catch (Exception e) {
+			R = new VeureProvaResponse(e);
+		}
+  		
+  		connexio.Escriure(R);
+  	}
+    
+    
+    private void PartidaDeProva(PartidaProva partidaProva) throws IOException {
+  		CasUsPartidaProva c = new CasUsPartidaProva();
+  		VisualitzarPartidaResponse R;
+  		try {
+  			R = new VisualitzarPartidaResponse(c.PartidaProva(partidaProva.getJugadors()));
+
+		} catch (Exception e) {
+			R = new VisualitzarPartidaResponse(e);
+		}
+  		connexio.Escriure(R);
+  	}
+
+  	
 }

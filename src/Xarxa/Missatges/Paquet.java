@@ -43,6 +43,9 @@ public abstract class Paquet implements Serializable {
     public boolean EsBooleanResponse(){return false;}
     public boolean EsDescarregarJar(){return false;}
     public boolean EsDescarregarJarResponse(){return false;}
+    
+    public boolean EsVeureProva(){return false;}
+    public boolean EsPartidaProva(){return false;}
 
     
     
@@ -68,7 +71,8 @@ public abstract class Paquet implements Serializable {
     
     public DescarregarJarResponse DescarregarJarResponseCast(){return (DescarregarJarResponse) this;}
     
-   
+    public VeureProvaResponse VeureProvaResponseCast(){return (VeureProvaResponse) this;}
+    public PartidaProva PartidaProvaCast(){return (PartidaProva) this;}
     
     
     
