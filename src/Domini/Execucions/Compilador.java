@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Compilador {
@@ -40,7 +39,9 @@ public class Compilador {
         while (in.hasNext()){
         	msg += in.nextLine() + "\n";
         }
+        in.close();
         return new Exception(msg);
+        
     }
 
     // Compila el jugador indicat a "ruta" a la mateixa carpeta. Retorna el .o del jugador.

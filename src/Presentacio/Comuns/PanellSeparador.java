@@ -18,7 +18,11 @@ import javax.swing.JPanel;
  * @author JOAN
  */
 public class PanellSeparador extends JPanel {
-    private BoxLayout l;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private BoxLayout l;
     private JPanel Central;
     private static final int Separacio = 10;
     public PanellSeparador(){

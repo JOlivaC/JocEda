@@ -17,7 +17,12 @@ import javax.swing.JPanel;
  */
 public class PanellMatriu extends JPanel {
 
-    public PanellMatriu(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public PanellMatriu(){
         this.setLayout(new GridBagLayout());
     }
     

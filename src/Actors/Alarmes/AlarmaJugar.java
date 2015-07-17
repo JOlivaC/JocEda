@@ -10,10 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import Domini.Factories.FactoriaControladors;
-import Domini.InterficieBD.CtrlAlarma;
-import Domini.Model.Partida;
 import Domini.Transaccions.TxJugarPartida;
-import Excepcions.ErrorPartida;
 import Excepcions.InsuficientsJugadors;
 
 /**

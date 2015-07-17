@@ -5,28 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
-
 import Comunicacio.Fitxer;
-import Comunicacio.InfoJugadorPartida;
 import Domini.Directoris.DirectoriObjectes;
 import Domini.Directoris.DirectoriPartida;
 import Domini.Execucions.Compilador;
 import Domini.Execucions.Executor;
-import Domini.Factories.FactoriaControladors;
 import Domini.LectorResultat.InfoResultat;
 import Domini.LectorResultat.LectorResultat;
-import Domini.Model.Dummy;
-import Domini.Model.Huma;
 import Domini.Model.Jugador;
-import Domini.Model.ResultatJugador;
-import Domini.Model.Usuari;
-import Excepcions.InsuficientsJugadors;
 
 public class TxFerPartida {
 	private Map<String,Jugador> inscritsMap;

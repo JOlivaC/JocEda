@@ -10,7 +10,7 @@ import Domini.Directoris.DirectoriRelease;
 import Updater.Release.ClientJar;
 
 public class CasUsDescarregarJar {
-	private static final String ruta = System.getProperty("user.dir") + File.separator + "Release" + File.separator + "Client.jar";
+	
 	public ClientJar DescarregarJar() throws IOException{
 		Directori d = new DirectoriRelease();
 		String ruta = d.getDir() + File.separator + "Client.jar";

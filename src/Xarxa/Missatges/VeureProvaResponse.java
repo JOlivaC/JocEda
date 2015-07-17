@@ -3,6 +3,11 @@ package Xarxa.Missatges;
 import Comunicacio.InfoUsuarisJugadors;
 
 public class VeureProvaResponse extends Paquet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public VeureProvaResponse(InfoUsuarisJugadors info) {
 		super();
 		this.info = info;

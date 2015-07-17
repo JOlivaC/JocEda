@@ -5,11 +5,6 @@
  */
 package Domini.Model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import Comunicacio.Fitxer;
-
 /**
  *
  * @author JOAN

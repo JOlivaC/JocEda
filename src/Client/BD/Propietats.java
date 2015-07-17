@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Properties;
 
 public class Propietats {
@@ -75,14 +74,6 @@ public class Propietats {
 		p.store(new FileOutputStream(new File(System.getProperty("user.dir") + File.separator + config)),config);
 	}
 	
-	public static void main(String[] argv) throws FileNotFoundException, IOException{
-		Propietats p = new Propietats();
-		
-		String ip = p.getIp();
-		int port = p.getPort();
-		int v = p.getVersio();
-		
-		
-	}
+
 	
 }

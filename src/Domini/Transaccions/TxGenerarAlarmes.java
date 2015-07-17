@@ -1,21 +1,13 @@
 package Domini.Transaccions;
 
 
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-import Actors.Alarmes.AlarmaJugar;
 import Domini.Factories.FactoriaControladors;
-import Domini.InterficieBD.CtrlAlarma;
 import Domini.InterficieBD.CtrlLliga;
-import Domini.InterficieBD.CtrlPartida;
-import Domini.Model.Lliga;
 import Domini.Model.Partida;
 
 public class TxGenerarAlarmes {

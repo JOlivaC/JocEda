@@ -8,6 +8,10 @@ import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Taula.Taula;
 
 public class ClassificacioView extends PanellGeneral{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Taula t;
 	public ClassificacioView(ActionListener Retrocedir,SortedSet<InfoJugadorRanking> info){
 		super(Retrocedir);

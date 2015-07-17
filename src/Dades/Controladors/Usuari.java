@@ -2,7 +2,6 @@ package Dades.Controladors;
 
 import java.util.Set;
 
-import Actors.Alarmes.AlarmaJugar;
 import Domini.InterficieBD.CtrlUsuari;
 
 public class Usuari  extends Controlador implements CtrlUsuari{

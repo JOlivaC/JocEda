@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import Actors.Alarmes.AlarmaJugar;
 import Comunicacio.InfoCalendariPartida;
 import Domini.Factories.FactoriaControladors;
 import Domini.Model.Partida;

@@ -81,6 +81,7 @@ public class Servidor {
         	}
         }
         HibernateUtil.getSessionFactory().close();
+        in.close();
     }
     
 }

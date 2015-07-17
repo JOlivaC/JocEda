@@ -3,7 +3,6 @@ package Domini.InterficieBD;
 import java.util.Set;
 
 import Domini.Model.Dummy;
-import Domini.Model.Huma;
 
 public interface CtrlDummy {
 	public Set<Dummy> getAll() throws Exception;

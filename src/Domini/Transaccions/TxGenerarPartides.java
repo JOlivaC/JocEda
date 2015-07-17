@@ -8,7 +8,6 @@ import java.util.Set;
 import Domini.Factories.FactoriaControladors;
 import Domini.Generadors.GeneradorCombinacions;
 import Domini.InterficieBD.CtrlLliga;
-import Domini.InterficieBD.CtrlPartida;
 import Domini.Model.Lliga;
 import Domini.Model.Partida;
 import Domini.Model.Usuari;

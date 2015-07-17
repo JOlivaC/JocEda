@@ -3,6 +3,11 @@ package Xarxa.Missatges;
 import java.util.Set;
 
 public class PartidaProva extends Paquet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public PartidaProva(Set<String> jugadors) {
 		this.jugadors = jugadors;
 	}

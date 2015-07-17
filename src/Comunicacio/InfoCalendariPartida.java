@@ -6,6 +6,10 @@ import java.util.Set;
 
 public class InfoCalendariPartida implements Comparable<Object> ,Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Set<String> Usuaris;
 	private int idPartida;
 	private Date data;

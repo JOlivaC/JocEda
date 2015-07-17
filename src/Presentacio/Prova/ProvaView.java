@@ -2,15 +2,12 @@ package Presentacio.Prova;
 
 import static javax.swing.BorderFactory.createTitledBorder;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,6 +23,11 @@ import Presentacio.Comuns.PanellSeparador;
 public class ProvaView extends PanellGeneral {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Map<String,Set<String>> NomsJugadors;
 	
 	private JList<String> Usuaris;

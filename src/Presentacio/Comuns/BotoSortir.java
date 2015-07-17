@@ -13,7 +13,12 @@ import javax.swing.JButton;
  * @author JOAN
  */
 public class BotoSortir extends JButton {
-    public BotoSortir(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public BotoSortir(){
         this.setText("Sortir");
     }
     

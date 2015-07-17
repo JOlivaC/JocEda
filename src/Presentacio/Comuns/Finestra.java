@@ -14,7 +14,12 @@ import javax.swing.JFrame;
  * @author JOAN
  */
 public  class Finestra extends JFrame {
-    public Finestra(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Finestra(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(new Dimension(600,600));
         this.setPreferredSize(new Dimension(600,600));

@@ -1,11 +1,14 @@
 package Updater.Release;
 
-import java.io.File;
 import java.io.Serializable;
 
 import Comunicacio.Fitxer;
 
 public class ClientJar implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int Versio;
 	private Fitxer jar;
 	public ClientJar(){}

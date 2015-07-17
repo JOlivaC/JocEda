@@ -9,6 +9,11 @@ import Presentacio.Comuns.PanellContenidor;
 import Presentacio.Comuns.PanellSeparador;
 
 public class MenuPrincipal extends PanellContenidor {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public MenuPrincipal(ActionListener Penjar,ActionListener VeureResultats,ActionListener VeureRanking,ActionListener VeureCalendari,ActionListener VeureProves){
 		this.setLayout(new GridBagLayout());
 		PanellSeparador P = new PanellSeparador();

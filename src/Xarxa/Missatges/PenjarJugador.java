@@ -5,7 +5,6 @@
  */
 package Xarxa.Missatges;
 
-import java.io.File;
 import java.io.IOException;
 
 import Comunicacio.Fitxer;
@@ -16,7 +15,11 @@ import Comunicacio.Fitxer;
  * @author JOAN
  */
 public class PenjarJugador extends Paquet {
-    public Fitxer F;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public Fitxer F;
 
     public PenjarJugador(Fitxer F) throws IOException{
         this.F = F;

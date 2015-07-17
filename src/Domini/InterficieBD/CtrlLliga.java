@@ -2,7 +2,6 @@ package Domini.InterficieBD;
 
 import java.util.Set;
 
-import Domini.Model.Huma;
 import Domini.Model.Lliga;
 
 public interface CtrlLliga {

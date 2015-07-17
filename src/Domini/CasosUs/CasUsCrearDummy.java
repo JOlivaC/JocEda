@@ -3,7 +3,6 @@ package Domini.CasosUs;
 import Comunicacio.Fitxer;
 import Domini.Factories.FactoriaControladors;
 import Domini.Model.Dummy;
-import Domini.Model.Huma;
 import Domini.Transaccions.TxCompilarJugador;
 import Excepcions.FitxerInvalid;
 

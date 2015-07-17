@@ -11,7 +11,6 @@ import Domini.Model.Huma;
 import Domini.Model.Usuari;
 import Domini.Transaccions.TxCompilarJugador;
 import Domini.Transaccions.TxComprovarJugador;
-import Excepcions.FitxerInvalid;
 
 /**
  *

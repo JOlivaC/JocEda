@@ -6,13 +6,7 @@
 package main;
 
 import Presentacio.Controladors.ControladorPrincipal;
-import Xarxa.Missatges.Login;
-import Xarxa.Servidor.Escoltador;
-import Xarxa.Servidor.Sesio;
-import Xarxa.Sockets.PaquetSocket;
 import java.io.IOException;
-import java.net.Socket;
-import java.util.Scanner;
 
 /**
  *

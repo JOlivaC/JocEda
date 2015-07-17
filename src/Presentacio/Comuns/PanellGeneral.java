@@ -8,6 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class PanellGeneral extends PanellAmbMsg {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JPanel Centre;
 	public PanellGeneral(ActionListener retrocedir){
 		this.setLayout(new BorderLayout());

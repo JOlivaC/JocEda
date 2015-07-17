@@ -6,7 +6,6 @@
 package Domini.CasosUs;
 
 import Domini.Factories.FactoriaControladors;
-import Domini.Model.Normes;
 import Domini.Model.Usuari;
 import Excepcions.InvalidLogin;
 

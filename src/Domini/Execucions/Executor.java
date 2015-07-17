@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -131,7 +130,7 @@ public class Executor {
     
     public File executarJoc(List<String> players, String ruta) throws IOException, Exception{
         //comprovar_jugadors(players);
-        File f = new File(ruta);
+        //File f = new File(ruta);
         String map = maps[new Random().nextInt(8)];
         // Guardar mapa a un string.
         //System.out.println(ruta+"/"+map);

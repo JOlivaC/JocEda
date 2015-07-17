@@ -6,14 +6,16 @@
 package Xarxa.Missatges;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
  * @author JOAN
  */
 public abstract class Paquet implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Paquet(){}
 	
 	 private Exception excepcio;

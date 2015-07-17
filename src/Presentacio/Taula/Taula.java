@@ -9,12 +9,9 @@ package Presentacio.Taula;
 import static javax.swing.BorderFactory.createTitledBorder;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-
 import javax.swing.Action;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,7 +21,11 @@ import javax.swing.table.DefaultTableModel;
  * @author JOAN
  */
 public class Taula extends JPanel{
-    protected TaulaBloquejada taula;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected TaulaBloquejada taula;
     public Taula(String titol,String[] Headers){
             Border lineBorder = createTitledBorder("Resultats");
             this.setBorder(lineBorder);

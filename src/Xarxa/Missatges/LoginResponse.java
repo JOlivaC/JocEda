@@ -10,7 +10,11 @@ package Xarxa.Missatges;
  * @author JOAN
  */
 public class LoginResponse extends Paquet{
-    public boolean autoritzat;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public boolean autoritzat;
     
     public boolean EsLoginResponse(){return true;}
 }

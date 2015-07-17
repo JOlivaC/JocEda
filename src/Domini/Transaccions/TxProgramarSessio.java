@@ -3,8 +3,6 @@ package Domini.Transaccions;
 import java.time.LocalTime;
 import java.util.Date;
 
-import Domini.Factories.FactoriaControladors;
-
 public class TxProgramarSessio {
 	
 	private Date i;
