@@ -11,6 +11,9 @@
         <property name="Estat" type="int">
             <column name="ESTAT" />
         </property>
+        <property name="data" type="java.util.Date">
+            <column name="DATA"/>
+        </property>
         <set name="Resultat" table="RESULTATJUGADOR" inverse="false" lazy="false" cascade="save-update,delete">
             <key>
                 <column name="p" />

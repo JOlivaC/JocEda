@@ -62,16 +62,19 @@ public class TxJugarPartida {
 		jugadors = new HashSet<>();
 		
 		
+		int i = 0;
+		
 		for (Usuari u: participants){
 			try {
 				Huma j = u.GetJugadorActual();
 				jugadors.add(j);
+				i++;
 			} catch (Exception e) {
 				invalids.add(u);
 			}
 		}
 		
-		int i = 0;
+		
 		
 		
 		if (i == 0) throw new InsuficientsJugadors();

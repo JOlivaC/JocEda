@@ -21,25 +21,26 @@ import Excepcions.InsuficientsJugadors;
  * @author JOAN
  */
 public class AlarmaJugar {
-	private int ID;
-	private Partida partida;
+	private int IDPartida;
 	private Date data;
 	private transient Timer t;
-	public AlarmaJugar(Date data,Partida p){
+	public AlarmaJugar(Date data,int IDPartida){
 		this.data = data;
-		this.partida = p;
+		this.IDPartida = IDPartida;
 	}
 	public AlarmaJugar() {
 
 	}
 	public void Sonar() {
-		TxJugarPartida TJP = new TxJugarPartida(partida);
+		
+		TxJugarPartida TJP;
 
 		try {
+			TJP = new TxJugarPartida(FactoriaControladors.getInstance().getCtrlPartida().get(IDPartida));
 			TJP.Executar();	
 			t.cancel();
 		} catch (InsuficientsJugadors i){
-			Log.LogServidor.WriteLine("Insuficients Jugadors per la partida" + partida);
+			Log.LogServidor.WriteLine("Insuficients Jugadors per la partida" + String.valueOf(IDPartida));
 		} catch (Exception e) {
 			Log.LogServidor.WriteException(e);
 		}
@@ -48,8 +49,10 @@ public class AlarmaJugar {
 	}
 	
 	public void Programar(){
-		t = new Timer();
-		t.schedule(new Sonar(), data);
+		if (data != null){
+			t = new Timer();
+			t.schedule(new Sonar(), data);
+		}
 	}
 	
 	private class Sonar extends TimerTask{
@@ -62,12 +65,6 @@ public class AlarmaJugar {
 	}
 
 
-	public Partida getPartida() {
-		return partida;
-	}
-	public void setPartida(Partida partida) {
-		this.partida = partida;
-	}
 	public Date getData() {
 		return data;
 	}
@@ -75,10 +72,10 @@ public class AlarmaJugar {
 		this.data = data;
 	}
 	public int getID() {
-		return ID;
+		return IDPartida;
 	}
 	public void setID(int iD) {
-		ID = iD;
+		IDPartida = iD;
 	}
 
 

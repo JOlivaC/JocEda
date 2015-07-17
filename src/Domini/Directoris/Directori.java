@@ -23,11 +23,16 @@ public abstract class Directori {
 	protected abstract String getDirName();
 	
 	public void CrearDirectori(){
-		directori = new File(System.getProperty("user.dir") + File.separator + getDirName());
+		directori = new File(System.getProperty("user.dir") + File.separator + "Data" + File.separator + getDirName());
+		if (!directori.exists()) directori.mkdir();
+		else if (!directori.isDirectory()) {
+			directori.delete();
+			directori.mkdir();
+		}
 	};
 	
 	public void CrearDirectori(String Clau) throws IOException{
-		directori = new File(System.getProperty("user.dir") + File.separator + getDirName() + Clau);
+		directori = new File(System.getProperty("user.dir") + File.separator + "Data" +  getDirName() + Clau);
 		if (!directori.exists()) directori.mkdir();
 		else if (!directori.isDirectory()) {
 			directori.delete();

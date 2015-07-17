@@ -16,7 +16,6 @@
         <mapping resource="Partida.hbm.xml"/>
         <mapping resource="ResultatJugador.hbm.xml"/>
         <mapping resource="Usuari.hbm.xml"/>
-        <mapping resource="AlarmaJugar.hbm.xml"/>
         <mapping resource="Lliga.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

@@ -46,16 +46,18 @@ public class TxGenerarAlarmes {
 			cal.set(Calendar.MINUTE, HoraInici.getMinute());
 			for (int k = 0; k < GetCopsDia(); k++){
 				Date d = cal.getTime();
-				CrearAlarma(it.next(),d);
+				Partida p = it.next();
+				CrearAlarma(p,d);
+				FactoriaControladors.getInstance().getCtrlPartida().Update(p);
 				cal.add(Calendar.SECOND, GetSegonsFranja());
 			}
 	        cal.add(Calendar.DATE,1); //minus number would decrement the days
 		}
 		
+				
 	}
 	private void CrearAlarma(Partida p,Date data) throws Exception{
-		CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
-		ctrl.Insert(new AlarmaJugar(data,p));
+		p.setData(data);
 	}
 	
 	private int GetSegonsFranja(){
