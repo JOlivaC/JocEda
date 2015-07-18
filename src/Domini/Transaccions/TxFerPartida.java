@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import Comunicacio.Fitxer;
+import Domini.Directoris.DirectoriMapes;
 import Domini.Directoris.DirectoriObjectes;
 import Domini.Directoris.DirectoriPartida;
 import Domini.Execucions.Compilador;
@@ -61,7 +63,7 @@ public class TxFerPartida {
 		dir.CopyAll(objectes);
 	}
 	private void SituarFitxers() throws Exception{
-		SituarObjectesPartida();
+		//SituarObjectesPartida();
 		for (Jugador j: inscritsMap.values()){
 			dir.AfegirJugador(j.getJugador());
 		}	
@@ -70,13 +72,13 @@ public class TxFerPartida {
 	}
 	private void CompilarPartida() throws IOException, Exception{
 		Compilador c = new Compilador();
-		c.compilarJoc(dir.getDir());
+		c.compilarJoc(dir.getDir(),new DirectoriObjectes().getDir());
 	}
 	private void RealitzarPartida() throws IOException, Exception{	
 		List<String> jugadors = new ArrayList<String>();
 		jugadors.addAll(inscritsMap.keySet());
 		Executor e = new Executor();
-		resultat = e.executarJoc(jugadors, dir.getDir());
+		resultat = e.executarJoc(jugadors, dir.getDir(),new DirectoriMapes().getDir());
 		fres = new Fitxer(resultat);
 	}
 	

@@ -28,7 +28,7 @@ public abstract class Directori {
 	};
 	
 	public void CrearDirectori(String Clau) throws IOException{
-		directori = new File(System.getProperty("user.dir") + File.separator + "Data" +  getDirName() + Clau);
+		directori = new File(System.getProperty("user.dir") + File.separator + "Data" +  File.separator + getDirName() + Clau);
 		if (!directori.exists()) directori.mkdir();
 		else if (!directori.isDirectory()) {
 			directori.delete();

@@ -27,7 +27,7 @@ public class TxComprovarJugador {
 		
 		if (dummys.size() < 3) throw new Exception("Insuficients Jugadors per fer la prova");
 		
-		dir.CopyAll(new DirectoriObjectes());
+		//dir.CopyAll(new DirectoriObjectes());
 		dir.AfegirJugador(j);
 		
 		List<String> jugadors = new ArrayList<String>();
@@ -38,10 +38,10 @@ public class TxComprovarJugador {
 		jugadors.add(j.getNomSenseExt());
 		
 		Compilador c = new Compilador();
-		c.compilarJoc(dir.getDir());
+		c.compilarJoc(dir.getDir(),new DirectoriObjectes().getDir());
 		
 		Executor e = new Executor();
-		e.executarJoc(jugadors, dir.getDir());	
+		//e.executarJoc(jugadors, dir.getDir());	
 		
 		dir.DestruirDirectori();
 	}

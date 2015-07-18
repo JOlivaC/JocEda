@@ -128,13 +128,13 @@ public class Executor {
         for(int i=players.size(); i<4; ++i) players.add("Dummy");
     }
     
-    public File executarJoc(List<String> players, String ruta) throws IOException, Exception{
+    public File executarJoc(List<String> players, String ruta,String rutaMapes) throws IOException, Exception{
         //comprovar_jugadors(players);
         //File f = new File(ruta);
         String map = maps[new Random().nextInt(8)];
         // Guardar mapa a un string.
         //System.out.println(ruta+"/"+map);
-        BufferedReader entrada = new BufferedReader(new FileReader(ruta+"/"+map));
+        BufferedReader entrada = new BufferedReader(new FileReader(rutaMapes+"/"+map));
         String l;
         String fitxer = "";
         while((l=entrada.readLine())!=null) fitxer += l+"\n";

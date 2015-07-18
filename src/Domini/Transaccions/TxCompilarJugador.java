@@ -20,10 +20,9 @@ public class TxCompilarJugador {
 	
 	public void Executar() throws Exception{
 		DirectoriCompilacioJugador dir = new DirectoriCompilacioJugador(cc.getNomSenseExt());
-		dir.CopyAll(new DirectoriHeaders());
 		dir.AfegirFitxer(cc);
 		Compilador c = new Compilador();
-		File f = c.compilarJugador(dir.getDirFitxer());
+		File f = c.compilarJugador(dir.getDirFitxer(),new DirectoriHeaders().getDir());
 		object = new Fitxer(f);
 		dir.DestruirDirectori();
 		f.delete();
