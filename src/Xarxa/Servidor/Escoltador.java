@@ -20,7 +20,7 @@ import java.util.Set;
 public class Escoltador extends Thread {
 
 	private Set<Sesio> Sessions = new HashSet<>();
-    private static final int MAX_SESSIONS = 20;
+    private static final int MAX_SESSIONS = 15;
     public Escoltador(){
         setDaemon(true);
     }

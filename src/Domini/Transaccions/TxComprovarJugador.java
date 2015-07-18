@@ -1,10 +1,12 @@
 package Domini.Transaccions;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import Comunicacio.Fitxer;
+import Domini.Directoris.DirectoriMapes;
 import Domini.Directoris.DirectoriObjectes;
 import Domini.Directoris.DirectoriProvaJugador;
 import Domini.Execucions.Compilador;
@@ -27,13 +29,16 @@ public class TxComprovarJugador {
 		
 		if (dummys.size() < 3) throw new Exception("Insuficients Jugadors per fer la prova");
 		
-		//dir.CopyAll(new DirectoriObjectes());
 		dir.AfegirJugador(j);
 		
 		List<String> jugadors = new ArrayList<String>();
-		for (Jugador j: dummys) {
-			dir.AfegirFitxer(j.getJugador());
-			jugadors.add(j.getName());
+		Iterator<Dummy>  it = dummys.iterator();
+		int i = 0;
+		while (it.hasNext() && i < 3){
+			Dummy d = it.next();
+			dir.AfegirFitxer(d.getJugador());
+			jugadors.add(d.getName());
+			i++;
 		}
 		jugadors.add(j.getNomSenseExt());
 		
@@ -41,7 +46,7 @@ public class TxComprovarJugador {
 		c.compilarJoc(dir.getDir(),new DirectoriObjectes().getDir());
 		
 		Executor e = new Executor();
-		//e.executarJoc(jugadors, dir.getDir());	
+		e.executarJoc(jugadors, dir.getDir(),new DirectoriMapes().getDir());	
 		
 		dir.DestruirDirectori();
 	}

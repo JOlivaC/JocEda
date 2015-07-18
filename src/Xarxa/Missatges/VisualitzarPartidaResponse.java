@@ -20,7 +20,6 @@ public class VisualitzarPartidaResponse extends Paquet {
 	}
 	public boolean EsVisualitzarPartidaResponse(){return true;}
     public Fitxer getPartida() throws IOException{
-    	long i = F.getFile().length();
     	return F;
     }
 }
