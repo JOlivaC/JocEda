@@ -13,4 +13,6 @@ public abstract class Normes {
 	public static boolean IsPlayerValid(String PlayerName){
 		return !PlayerName.toLowerCase().contains(UserProhibit.toLowerCase());
 	}
+	
+	public static int GetIndexLliga(){return 1;}
 }

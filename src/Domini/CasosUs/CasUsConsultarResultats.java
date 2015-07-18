@@ -6,11 +6,12 @@ import java.util.TreeSet;
 
 import Comunicacio.InfoPartida;
 import Domini.Factories.FactoriaControladors;
+import Domini.Model.Normes;
 import Domini.Model.Partida;
 
 public class CasUsConsultarResultats {
 	public SortedSet<InfoPartida> ConsultarResultats() throws Exception{
-		List<Partida> partides = FactoriaControladors.getInstance().getCtrlLliga().Get(6).getPartides();
+		List<Partida> partides = FactoriaControladors.getInstance().getCtrlLliga().Get(Normes.GetIndexLliga()).getPartides();
 		SortedSet<InfoPartida> ret = new TreeSet<>();
 		for (Partida p: partides){
 			if (p.EstaJugada())

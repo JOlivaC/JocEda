@@ -13,7 +13,7 @@ public class VisualitzarPartida {
 	
 	
 	public void Visualitzar(Fitxer partida) throws IOException, URISyntaxException{
-		
+		int i = partida.getDades().length;
 		partida.WriteFile(gameFile);
 		
 		File htmlFile = new File(htmlF);

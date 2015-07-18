@@ -13,6 +13,7 @@ import Comunicacio.InfoJugadorPosicio;
 import Comunicacio.InfoJugadorRanking;
 import Domini.Factories.FactoriaControladors;
 import Domini.Model.Huma;
+import Domini.Model.Normes;
 import Domini.Model.Partida;
 import Domini.Model.ResultatJugador;
 import Domini.Model.Usuari;
@@ -21,7 +22,7 @@ public class CasUsConsultarClassificacio {
 	public SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws Exception{
 		SortedSet<InfoJugadorRanking> ret = new TreeSet<>();
 		
-		List<Partida> partides = FactoriaControladors.getInstance().getCtrlLliga().Get(6).getPartides();
+		List<Partida> partides = FactoriaControladors.getInstance().getCtrlLliga().Get(Normes.GetIndexLliga()).getPartides();
 		Set<ResultatJugador> resultats = new HashSet<>();
 		for (Partida p: partides) resultats.addAll(p.getResultat());
 		Set<Usuari> usuaris = FactoriaControladors.getInstance().getCtrlUsuari().getAll();

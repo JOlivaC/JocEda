@@ -116,8 +116,15 @@ public class Sesio extends Thread {
     	connexio.Escriure(Res);
     }
     
-    private void ConsultarClassificacio(ConsultarClassificacio CC) throws Exception{
-    	ConsultarClassificacioResponse R = new ConsultarClassificacioResponse(CUSessio.ConsultarClassificacio());
+    private void ConsultarClassificacio(ConsultarClassificacio CC) throws IOException {
+    	ConsultarClassificacioResponse R;
+    	try {
+			
+			R = new ConsultarClassificacioResponse(CUSessio.ConsultarClassificacio());
+		} catch (Exception e) {
+			R = new ConsultarClassificacioResponse(e);
+		}
+    	
     	connexio.Escriure(R);
     }
     private void VisualitzarPartida(VisualitzarPartida VP) throws IOException{

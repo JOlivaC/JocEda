@@ -79,13 +79,14 @@ public class TxFerPartida {
 		jugadors.addAll(inscritsMap.keySet());
 		Executor e = new Executor();
 		resultat = e.executarJoc(jugadors, dir.getDir(),new DirectoriMapes().getDir());
-		fres = new Fitxer(resultat);
+		
 	}
 	
 	private void LlegirResultat() throws FileNotFoundException, IOException, Exception{
 		LectorResultat l = new LectorResultat();
 		r = l.Llegir(resultat);
 		
+		fres = new Fitxer(resultat);
 	}
 
 	private void Finalitzar(){

@@ -22,6 +22,7 @@ import Domini.CasosUs.CasUsCrearDummy;
 import Domini.CasosUs.CasUsPartidaProva;
 import Domini.Factories.FactoriaControladors;
 import Domini.Model.Lliga;
+import Domini.Model.Normes;
 import Domini.Transaccions.TxEngegarAlarmes;
 import Domini.Transaccions.TxProgramarSessio;
 import Xarxa.Servidor.Escoltador;
@@ -53,7 +54,7 @@ public class Servidor {
         		System.out.print("Escriu la hora de fi: Hora,Minut\n");
         		LocalTime horaf = LocalTime.of(Integer.parseInt(in.nextLine()),Integer.parseInt(in.nextLine()));
         		
-        		new TxProgramarSessio(i,c,horai,horaf,6).Executar();
+        		new TxProgramarSessio(i,c,horai,horaf,Normes.GetIndexLliga()).Executar();
         	}
         	else if (input.equalsIgnoreCase("dummy")){
 				JFileChooser Sel = new JFileChooser();

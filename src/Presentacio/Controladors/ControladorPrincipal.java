@@ -80,7 +80,7 @@ public class ControladorPrincipal {
     	 CanviarContext("Penjar Jugador",VistaPenjar);
     }
     private void MostrarMenu(){
-    	VistaMenu = new Presentacio.MenuPrincipalView.MenuPrincipal(new Penjar(), new Resultats(), new Ranking(),new Calendari(),new VeureProves());
+    	VistaMenu = new Presentacio.MenuPrincipalView.MenuPrincipal(new Retrocedir(),new Penjar(), new Resultats(), new Ranking(),new Calendari(),new VeureProves());
     	CanviarContext("Menu",VistaMenu);
     }
     private void MostrarResultats( SortedSet<InfoPartida> Info){
@@ -105,7 +105,7 @@ public class ControladorPrincipal {
     		try {
 				MostrarResultats(Domini.ConsultarResultats());
 			} catch (Exception e) {
-				
+				VistaMenu.MostraMsg(e.getMessage());
 			}
     		
 
@@ -131,7 +131,7 @@ public class ControladorPrincipal {
     	try {
 			MostrarCalendari(Domini.ConsultarCalendari());
 		} catch (Exception e) {
-			
+			VistaMenu.MostraMsg(e.getMessage());
 		}
     }
     public void VeureRanking(){
@@ -139,7 +139,7 @@ public class ControladorPrincipal {
 			
 			MostrarRanking(Domini.ConsultarClassificacio());
 		} catch (Exception e) {
-			
+			VistaMenu.MostraMsg(e.getMessage());
 		}
     	
     	
@@ -149,7 +149,7 @@ public class ControladorPrincipal {
 		try {
 			MostrarProves(Domini.VeureProves());
 		} catch (Exception e) {
-			
+			VistaMenu.MostraMsg(e.getMessage());
 		}
    	
     }
