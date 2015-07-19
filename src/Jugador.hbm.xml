@@ -3,16 +3,22 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Jul 8, 2015 1:37:49 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="Domini.Model.Jugador" table="JUGADOR">
+    <class name="Domini.Model.Jugador" table = "JUGADOR" abstract = "true">
         <id name="name" type="java.lang.String">
             <column name="NAME" />
             <generator class="assigned"/>
         </id>
+        <discriminator column="JUGADOR_TYPE" type="string"/>
         <many-to-one name="jugador" class="Comunicacio.Fitxer" fetch="join" cascade="save-update">
             <column name="JUGADOR" />
         </many-to-one>
-        <many-to-one name="owner" class="Domini.Model.Usuari" fetch="join" cascade="save-update">
-            <column name="OWNER" />
-        </many-to-one>
+        
+        <subclass name="Domini.Model.Dummy" discriminator-value="DUMMY">
+        </subclass>
+        <subclass name="Domini.Model.Huma" discriminator-value="HUMA">
+            <many-to-one name="owner" class="Domini.Model.Usuari" fetch="join">
+            	<column name="OWNER" />
+        	</many-to-one>
+        </subclass>
     </class>
 </hibernate-mapping>

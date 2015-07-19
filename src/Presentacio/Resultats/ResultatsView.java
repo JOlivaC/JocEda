@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.SortedSet;
 
 import javax.swing.AbstractAction;
-import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +16,10 @@ import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Taula.TaulaResultats;
 
 public class ResultatsView extends PanellGeneral {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TaulaResultats t;
 	private int n;
 	SortedSet<InfoPartida> Info;
@@ -66,6 +69,11 @@ public class ResultatsView extends PanellGeneral {
 	
 	private class Visualitzar extends AbstractAction{
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JTable table = (JTable)e.getSource();
@@ -78,6 +86,11 @@ public class ResultatsView extends PanellGeneral {
 	}
 	
 	private class Resultats extends AbstractAction{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
 		@Override
 		public void actionPerformed(ActionEvent e) {

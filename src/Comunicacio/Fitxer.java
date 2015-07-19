@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class Fitxer implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private byte[] dades;
 	private String nom;
 	
@@ -26,9 +30,7 @@ public class Fitxer implements Serializable {
 		this.dades = dades;
 	}
 	
-	public Fitxer() {
-		nom = "abc";
-		dades = new byte[5];
+	public Fitxer(){
 		
 	}
 	public byte[] getDades(){return dades;}

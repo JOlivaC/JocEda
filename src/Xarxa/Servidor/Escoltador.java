@@ -10,14 +10,8 @@ import Xarxa.Sockets.PaquetSocket;
 import Xarxa.Sockets.SocketServidor;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketAddress;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +20,7 @@ import java.util.logging.Logger;
 public class Escoltador extends Thread {
 
 	private Set<Sesio> Sessions = new HashSet<>();
-    private static final int MAX_SESSIONS = 20;
+    private static final int MAX_SESSIONS = 15;
     public Escoltador(){
         setDaemon(true);
     }

@@ -10,12 +10,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Comunicacio.Fitxer;
 
 public class Executor {
     
@@ -34,14 +36,16 @@ public class Executor {
             s = " ";
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);
-            String line;
             try {
-                while(!acabar)
-                    while (br.ready() && (line = br.readLine()) != null) s += line;
+            	
+            	Scanner i = new Scanner(br);
+                while (i.hasNext() && !acabar){
+                	s += i.nextLine() + "\n";
+                }
+                i.close();
                 br.close();
                 isr.close();
                 is.close();
-                //System.out.println("Acaba ThreadStdErr");
             } catch (IOException ex) {
                 Logger.getLogger(Executor.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -73,7 +77,6 @@ public class Executor {
             try {
                 bw.write(s);
                 bw.close();
-                //System.out.println("Acaba ThreadStdIn");
             } catch (IOException ex) {
                 Logger.getLogger(Executor.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -97,14 +100,15 @@ public class Executor {
                 BufferedWriter resultat  = new BufferedWriter(new FileWriter(ruta));
                 InputStreamReader isr = new InputStreamReader(is);
                 BufferedReader br = new BufferedReader(isr);
-                String line;
-                while(!acabar)
-                    while (br.ready() && (line = br.readLine()) != null) resultat.write(line+"\n");
+                Scanner i = new Scanner(br);
+                while (i.hasNext() && !acabar){
+                	resultat.write(i.nextLine() + "\n");
+                }
+                i.close();         
                 resultat.close();
                 br.close();
                 isr.close();
                 is.close();
-                //System.out.println("Acaba ThreadStdOut");
             } catch (IOException ex) {
                 Logger.getLogger(Executor.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -119,27 +123,18 @@ public class Executor {
     
     final private static String[] maps = {"akamatsu.cnf","default.cnf","kitano.cnf","nanahara.cnf",
         "chigusa.cnf","kiriyama.cnf","nakagawa.cnf","utsumi.cnf"};
+
     
 
     
-    private void comprovar_jugadors(List<String> players) throws Exception {
-        if (players.isEmpty()) throw new Exception("Cal indicar almenys un jugador per executar el joc.");
-        else if(players.size()>4) throw new Exception("El joc admet com a màxim 4 jugadors.");
-        for(int i=players.size(); i<4; ++i) players.add("Dummy");
-    }
-    
-    public File executarJoc(List<String> players, String ruta) throws IOException, Exception{
-        comprovar_jugadors(players);
-        File f = new File(ruta);
-        String map = maps[new Random().nextInt(8)];
+    public File executarJoc(List<String> players, String ruta,String rutaMapes) throws IOException, Exception{
+        String map = maps[new Random().nextInt(maps.length)];
         // Guardar mapa a un string.
-        //System.out.println(ruta+"/"+map);
-        BufferedReader entrada = new BufferedReader(new FileReader(ruta+"/"+map));
+        BufferedReader entrada = new BufferedReader(new FileReader(rutaMapes+"/"+map));
         String l;
         String fitxer = "";
         while((l=entrada.readLine())!=null) fitxer += l+"\n";
         entrada.close();
-        
         // Executar procés.
         Process p = Runtime.getRuntime().exec(ruta+"/Game.exe "+players.get(0)+" "+players.get(1)+" "+players.get(2)+" "+players.get(3));
 
@@ -152,18 +147,17 @@ public class Executor {
         stdIn.start();
         stdOut.start();
         stdErr.start();
-        
         // Comprovar si l'execució acaba correctament.
         if(!p.waitFor(timeout,TimeUnit.SECONDS)){
+        	p.destroy();
             stdOut.acaba();
             stdErr.acaba();
-            throw new Exception("L'execució ha tardat més de "+timeout+" segons.\nMissatges d'error:\n"+stdErr.getErr());
+            throw new Exception("L'execucio ha tardat mes de "+timeout+" segons.");
         }
         stdOut.acaba();
         stdErr.acaba();
         if(p.exitValue()!=0){
-            throw new Exception("S'ha produït un error durant l'execució del joc.\nMissatges d'error:\n"+stdErr.getErr()
-                    +"\nExit value: "+p.exitValue());
+            throw new Exception("S'ha produit un error durant l'execucio del joc.");
         }
             
         return new File(ruta+"/game.br");

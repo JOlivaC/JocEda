@@ -17,6 +17,7 @@ public class CasUsLogin {
 	public CasUsLogin(){}
     public Usuari Login(String User,String Pass) throws InvalidLogin{
     	try {
+    		
 			Usuari u = FactoriaControladors.getInstance().getCtrlUsuari().get(User);
 			if (! u.getPass().equals(Pass)) throw new InvalidLogin();
 			return u;

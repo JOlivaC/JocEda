@@ -7,10 +7,10 @@ package Domini.CasosUs;
 
 import Comunicacio.Fitxer;
 import Domini.Factories.FactoriaControladors;
-import Domini.Model.Jugador;
+import Domini.Model.Huma;
 import Domini.Model.Usuari;
 import Domini.Transaccions.TxCompilarJugador;
-import Excepcions.FitxerInvalid;
+import Domini.Transaccions.TxComprovarJugador;
 
 /**
  *
@@ -27,12 +27,20 @@ public class CasUsPenjarJugador {
     		oo = t.getResultat();
     	}
     	catch (Exception e){
-    		throw new FitxerInvalid();
+    		throw new Exception("El jugador no compila");
     		
     	}
     	
-    	Jugador j = new Jugador();
-    	if (!FactoriaControladors.getInstance().getCtrlJugador().Exists(f.getNomSenseExt())){
+    	try{
+    		TxComprovarJugador t = new TxComprovarJugador(oo);
+    		t.Executar();
+    	}
+    	catch (Exception e){
+    		throw new Exception("El jugador compila pero no passa la prova");
+    	}
+    	
+    	Huma j = new Huma();
+    	if (!FactoriaControladors.getInstance().getCtrlHuma().Exists(f.getNomSenseExt())){
        	 	j.setJugador(oo);
        	 	j.setName(f.getNomSenseExt());
        	 	j.setOwner(u);

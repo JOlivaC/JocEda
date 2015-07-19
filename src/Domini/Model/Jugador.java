@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domini.Model;
 
 import java.util.HashSet;
@@ -10,16 +5,11 @@ import java.util.Set;
 
 import Comunicacio.Fitxer;
 
-/**
- *
- * @author JOAN
- */
-
-public class Jugador {
-    private String name;
+public abstract class Jugador {
+	private String name;
     private Fitxer jugador;
-    private Usuari owner;
     private Set<Partida> PartidesJugades;
+    
     public Jugador(){
     	PartidesJugades = new HashSet<>();
     }
@@ -35,12 +25,7 @@ public class Jugador {
 	public void setJugador(Fitxer jugador) {
 		this.jugador = jugador;
 	}
-	public Usuari getOwner() {
-		return owner;
-	}
-	public void setOwner(Usuari owner) {
-		this.owner = owner;
-	}
+
     
 	public Set<Partida> getPartidesJugades() {
 		return PartidesJugades;
@@ -51,5 +36,14 @@ public class Jugador {
     
 	public boolean equals(Object other){
 		return name.equals(((Jugador)other).name);
+	}
+	
+	public boolean EsDummy(){return false;}
+	public boolean EsHuma(){return false;}
+	
+	public boolean EsPublic(){
+		//TODO
+		return true;
+	
 	}
 }

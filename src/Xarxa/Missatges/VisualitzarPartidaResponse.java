@@ -1,12 +1,15 @@
 package Xarxa.Missatges;
 
-import java.io.File;
 import java.io.IOException;
 
 import Comunicacio.Fitxer;
 
 
 public class VisualitzarPartidaResponse extends Paquet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Fitxer F;
 
     public VisualitzarPartidaResponse(Fitxer F) throws IOException{

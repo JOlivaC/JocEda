@@ -6,7 +6,6 @@
 package Presentacio.LoginView;
 
 import Presentacio.Comuns.BotoOK;
-import Presentacio.Comuns.BotoSortir;
 import Presentacio.Comuns.PanellAmbMsg;
 import Presentacio.Comuns.PanellSeparador;
 import Presentacio.Comuns.TextMesCamp;
@@ -15,7 +14,6 @@ import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.EAST;
 import static java.awt.BorderLayout.NORTH;
 import static java.awt.BorderLayout.SOUTH;
-import static java.awt.BorderLayout.WEST;
 import java.awt.event.ActionListener;
 import static java.lang.String.valueOf;
 import javax.swing.JLabel;
@@ -29,7 +27,11 @@ import javax.swing.JTextField;
  */
 public class Login extends PanellAmbMsg{
 
-    private JTextField UserName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField UserName;
     private JPasswordField Pass;
     
     public Login(ActionListener OKHandler,ActionListener Registrarse){

@@ -10,7 +10,11 @@ package Presentacio.Comuns;
  * @author JOAN
  */
 public abstract class PanellAmbMsg extends PanellContenidor {
-    protected MessageArea msg = new MessageArea();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected MessageArea msg = new MessageArea();
     public void MostraMsg(String msg){
         this.msg.SetText(msg);
         this.repaint();

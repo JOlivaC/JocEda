@@ -3,6 +3,10 @@ package Presentacio.Taula;
 import javax.swing.JTable;
 
 public class TaulaBloquejada extends JTable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean[] editableRows;
 	public TaulaBloquejada(){
 		editableRows = null;

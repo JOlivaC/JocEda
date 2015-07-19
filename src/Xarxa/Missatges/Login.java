@@ -5,14 +5,16 @@
  */
 package Xarxa.Missatges;
 
-import java.io.Serializable;
-
 /**
  *
  * @author JOAN
  */
 public class Login extends Paquet {
-    public String User;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String User;
     public String Pass;
 
     public Login(){}

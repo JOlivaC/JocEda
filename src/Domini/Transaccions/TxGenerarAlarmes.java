@@ -1,18 +1,13 @@
 package Domini.Transaccions;
 
 
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
-import Actors.Alarmes.AlarmaJugar;
+import java.util.List;
 import Domini.Factories.FactoriaControladors;
-import Domini.InterficieBD.CtrlAlarma;
-import Domini.InterficieBD.CtrlPartida;
+import Domini.InterficieBD.CtrlLliga;
 import Domini.Model.Partida;
 
 public class TxGenerarAlarmes {
@@ -21,19 +16,20 @@ public class TxGenerarAlarmes {
 	private Date Fi;
 	private LocalTime HoraInici;
 	private LocalTime HoraFi;
-	public TxGenerarAlarmes(Date I,Date F,LocalTime HI,LocalTime HF){
+	private int IDLliga;
+	public TxGenerarAlarmes(Date I,Date F,LocalTime HI,LocalTime HF,int IDLliga){
 		Inici = I;
 		Fi = F;
 		HoraInici = HI;
 		HoraFi = HF;
+		this.IDLliga = IDLliga;
 	}
 	public void Executar() throws Exception{
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(Inici);
 		
-		CtrlPartida ctrlp = FactoriaControladors.getInstance().getCtrlPartida(); 
-		SortedSet<Partida> s = new TreeSet<>();
-		s.addAll(ctrlp.getAll());
+		CtrlLliga ctrlp = FactoriaControladors.getInstance().getCtrlLliga();
+		List<Partida> s = ctrlp.Get(IDLliga).getPartides();
 		n = s.size();
 		Iterator<Partida> it = s.iterator();
 		
@@ -42,16 +38,18 @@ public class TxGenerarAlarmes {
 			cal.set(Calendar.MINUTE, HoraInici.getMinute());
 			for (int k = 0; k < GetCopsDia(); k++){
 				Date d = cal.getTime();
-				CrearAlarma(it.next(),d);
+				Partida p = it.next();
+				CrearAlarma(p,d);
+				FactoriaControladors.getInstance().getCtrlPartida().Update(p);
 				cal.add(Calendar.SECOND, GetSegonsFranja());
 			}
 	        cal.add(Calendar.DATE,1); //minus number would decrement the days
 		}
 		
+				
 	}
 	private void CrearAlarma(Partida p,Date data) throws Exception{
-		CtrlAlarma ctrl = FactoriaControladors.getInstance().getCtrlAlarma();
-		ctrl.Insert(new AlarmaJugar(data,p));
+		p.setData(data);
 	}
 	
 	private int GetSegonsFranja(){
@@ -69,18 +67,9 @@ public class TxGenerarAlarmes {
 		return i;
 	}
 	private int GetCopsDia(){
-		int i = n / GetDiesFranja();
+		int i = Math.floorDiv(n,GetDiesFranja());
 		return i;
 	}
-	
-	public static void main(String argv[]) throws Exception{
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date i = sdf.parse("1/1/2000");
-		Date f = sdf.parse("15/1/2000");
-		LocalTime in = LocalTime.of(8, 0);
-		LocalTime fn = LocalTime.of(16, 0);
-		TxGenerarAlarmes t = new TxGenerarAlarmes(i,f,in,fn);
-		t.Executar();
-	}
+
 
 }

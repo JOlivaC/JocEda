@@ -1,9 +1,10 @@
 package Presentacio.Taula;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class TaulaResultats extends Taula {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static String ID = "ID";
 	private static String Visualitzar = "Visualitzar";
 	private static String Resultat = "Resultat";

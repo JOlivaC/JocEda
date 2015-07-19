@@ -5,6 +5,7 @@
  */
 package Domini.Model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +23,7 @@ public class Partida implements Comparable<Object>{
     private Set<ResultatJugador> Resultat;
     private Set<Usuari> Participants;
     private Fitxer PartidaResultant;
+    private Date data;
     
     public Partida(){
     	Resultat = new HashSet<>();
@@ -78,6 +80,16 @@ public class Partida implements Comparable<Object>{
 	@Override
 	public int compareTo(Object arg0) {
 		return Integer.compare(this.ID,((Partida)arg0).ID);
+	}
+	
+	public String toString(){
+		return String.valueOf(ID);
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
 	}
     
     

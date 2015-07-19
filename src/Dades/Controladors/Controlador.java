@@ -4,19 +4,16 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import Actors.Alarmes.AlarmaJugar;
 import Dades.Factories.HibernateUtil;
-import Domini.Model.Partida;
-import Domini.Model.Usuari;
 
 public class Controlador  {
 
+	@SuppressWarnings("rawtypes")
 	public Set<Object> getAll(Class c){
 		Set<Object> ret = new HashSet<>();
 		SessionFactory s = HibernateUtil.getSessionFactory();

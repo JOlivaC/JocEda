@@ -1,9 +1,5 @@
 package Presentacio.PenjarView;
 
-import static java.awt.BorderLayout.CENTER;
-import static java.awt.BorderLayout.NORTH;
-
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,6 +14,10 @@ import Presentacio.Comuns.PanellSeparador;
 import Presentacio.Comuns.TextMesCamp;
 
 public class Penjar extends PanellGeneral{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private File f;
 	private JLabel FitxerText;
 	

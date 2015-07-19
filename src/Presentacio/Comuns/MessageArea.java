@@ -18,7 +18,11 @@ import javax.swing.border.Border;
  * @author JOAN
  */
 public class MessageArea extends JPanel {
-    private JLabel Contingut;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel Contingut;
     public MessageArea(){
         /*this.setHorizontalAlignment(JLabel.CENTER);
         this.setVerticalAlignment(JLabel.CENTER);*/

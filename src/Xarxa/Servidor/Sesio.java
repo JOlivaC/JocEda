@@ -7,9 +7,12 @@ package Xarxa.Servidor;
 
 import java.io.IOException;
 
+import Domini.CasosUs.CasUsPartidaProva;
 import Domini.CasosUs.CasUsSessio;
 import Excepcions.FitxerInvalid;
 import Log.LogServidor;
+import Updater.CasosUs.CasUsCheck;
+import Updater.CasosUs.CasUsDescarregarJar;
 import Xarxa.Missatges.*;
 import Xarxa.Sockets.PaquetSocket;
 
@@ -43,7 +46,11 @@ public class Sesio extends Thread {
                     else if (dada.EsConsultarClassificacio()) ConsultarClassificacio(dada.ConsultarClassificacioCast());
                     else if (dada.EsVisualitzarPartida()) VisualitzarPartida(dada.VisualitzarPartidaCast());
                     else if (dada.EsRegistrarse()) Registrarse(dada.RegistrarseCast());
+                    else if (dada.EsCheckUpdate()) CheckUpdate(dada.CheckUpdateCast());
                     else if (dada.EsConsultarCalendari()) ConsultarCalendari();
+                    else if (dada.EsDescarregarJar()) DescarregarJar();
+                    else if (dada.EsVeureProva()) VeureProva();
+                    else if (dada.EsPartidaProva()) PartidaDeProva(dada.PartidaProvaCast());
                     
                 } catch (Exception ex) {
                     end = true;
@@ -61,7 +68,9 @@ public class Sesio extends Thread {
 
     }
     
-    private void Penjar(PenjarJugador PJ) throws IOException {
+  
+
+	private void Penjar(PenjarJugador PJ) throws IOException {
     	PenjarJugadorResponse R;
     	try {
 			CUSessio.Penjar(PJ.getPenjarJugador());
@@ -107,8 +116,15 @@ public class Sesio extends Thread {
     	connexio.Escriure(Res);
     }
     
-    private void ConsultarClassificacio(ConsultarClassificacio CC) throws IOException{
-    	ConsultarClassificacioResponse R = new ConsultarClassificacioResponse(CUSessio.ConsultarClassificacio());
+    private void ConsultarClassificacio(ConsultarClassificacio CC) throws IOException {
+    	ConsultarClassificacioResponse R;
+    	try {
+			
+			R = new ConsultarClassificacioResponse(CUSessio.ConsultarClassificacio());
+		} catch (Exception e) {
+			R = new ConsultarClassificacioResponse(e);
+		}
+    	
     	connexio.Escriure(R);
     }
     private void VisualitzarPartida(VisualitzarPartida VP) throws IOException{
@@ -132,4 +148,43 @@ public class Sesio extends Thread {
     	
     	connexio.Escriure(R);
     }
+    
+    private void CheckUpdate(CheckUpdate P) throws IOException{
+    	CasUsCheck C = new CasUsCheck();
+    	BooleanResponse R = new BooleanResponse();
+    	R.setResult(C.CheckUpdate(P.getVersio()));
+    	connexio.Escriure(R);
+    }
+    
+    private void DescarregarJar() throws IOException{
+    	CasUsDescarregarJar C = new CasUsDescarregarJar();
+    	connexio.Escriure(new DescarregarJarResponse(C.DescarregarJar()));
+    }
+    
+    private void VeureProva() throws IOException {
+    	VeureProvaResponse R;
+    	
+  		try {
+			R = new VeureProvaResponse(CUSessio.ObrirProves());
+		} catch (Exception e) {
+			R = new VeureProvaResponse(e);
+		}
+  		
+  		connexio.Escriure(R);
+  	}
+    
+    
+    private void PartidaDeProva(PartidaProva partidaProva) throws IOException {
+  		CasUsPartidaProva c = new CasUsPartidaProva();
+  		VisualitzarPartidaResponse R;
+  		try {
+  			R = new VisualitzarPartidaResponse(c.PartidaProva(partidaProva.getJugadors()));
+
+		} catch (Exception e) {
+			R = new VisualitzarPartidaResponse(e);
+		}
+  		connexio.Escriure(R);
+  	}
+
+  	
 }

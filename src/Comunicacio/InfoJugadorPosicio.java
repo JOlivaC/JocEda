@@ -1,7 +1,11 @@
 package Comunicacio;
 
-public class InfoJugadorPosicio extends Tipus implements Comparable {
-	 private String nom;
+public class InfoJugadorPosicio extends Tipus implements Comparable<Object> {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String nom;
 	 private int Punts;
 	
 	 

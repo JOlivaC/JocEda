@@ -1,6 +1,5 @@
 package Presentacio.Controladors;
 
-import java.awt.Component;
 import java.util.Stack;
 
 import Presentacio.Comuns.PanellContenidor;

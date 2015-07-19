@@ -1,9 +1,11 @@
 package Comunicacio;
 
-import java.util.Comparator;
-
-public class InfoJugadorPartida extends Tipus implements Comparable {
-    private String nom;
+public class InfoJugadorPartida extends Tipus implements Comparable<Object> {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String nom;
     private int puntuacio;
 
     public InfoJugadorPartida(String n, int p){

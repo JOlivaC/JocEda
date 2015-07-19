@@ -6,13 +6,23 @@
 package main;
 
 
-import java.text.ParseException;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
+import javax.swing.JFileChooser;
+
+import Comunicacio.Fitxer;
 import Dades.Factories.HibernateUtil;
+import Domini.CasosUs.CasUsCrearDummy;
+import Domini.CasosUs.CasUsPartidaProva;
+import Domini.Factories.FactoriaControladors;
+import Domini.Model.Lliga;
+import Domini.Model.Normes;
 import Domini.Transaccions.TxEngegarAlarmes;
 import Domini.Transaccions.TxProgramarSessio;
 import Xarxa.Servidor.Escoltador;
@@ -44,10 +54,35 @@ public class Servidor {
         		System.out.print("Escriu la hora de fi: Hora,Minut\n");
         		LocalTime horaf = LocalTime.of(Integer.parseInt(in.nextLine()),Integer.parseInt(in.nextLine()));
         		
-        		new TxProgramarSessio(i,c,horai,horaf).Executar();
+        		new TxProgramarSessio(i,c,horai,horaf,Normes.GetIndexLliga()).Executar();
+        	}
+        	else if (input.equalsIgnoreCase("dummy")){
+				JFileChooser Sel = new JFileChooser();
+				File f;
+				if (Sel.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+					 f = Sel.getSelectedFile();
+					 new CasUsCrearDummy().CrearDummy(new Fitxer(f));
+				}
+	       		 
+	       		 
+	       		 
+        	}
+        	else if (input.equalsIgnoreCase("droplliga")){
+				Lliga l = FactoriaControladors.getInstance().getCtrlLliga().Get(Integer.valueOf(in.nextLine()));
+				FactoriaControladors.getInstance().getCtrlLliga().Delete(l);
+	       		 
+        	}
+        	else if (input.equalsIgnoreCase("test")){
+        		Set<String> j = new HashSet<String>();
+        		for (int i = 0; i < 4; i ++){
+        			j.add(in.nextLine());
+        		}
+        		CasUsPartidaProva c = new CasUsPartidaProva();
+        		c.PartidaProva(j);
         	}
         }
         HibernateUtil.getSessionFactory().close();
+        in.close();
     }
     
 }

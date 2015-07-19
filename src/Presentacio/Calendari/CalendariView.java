@@ -9,6 +9,10 @@ import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Taula.Taula;
 
 public class CalendariView extends PanellGeneral {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static String ID = "ID";
 	private static String Jugador = "U";
 	private static String Data = "Data";

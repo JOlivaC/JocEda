@@ -16,25 +16,27 @@ public class Jugador extends Controlador implements CtrlJugador {
 		super.Insert(j);
 		
 	}
-	
-	
-
 
 	@Override
 	public void Delete(Domini.Model.Jugador j) throws Exception {
-		// TODO Auto-generated method stub
+		super.Delete(j);
 		
 	}
 
 	@Override
 	public void Update(Domini.Model.Jugador j) throws Exception {
-		// TODO Auto-generated method stub
+		super.Update(j);
 		
 	}
 
 	@Override
 	public boolean Exists(String name) throws Exception {
-		return super.Exists(Domini.Model.Jugador.class,name);
+		return super.Exists(Domini.Model.Jugador.class, name);
+	}
+
+	@Override
+	public Domini.Model.Jugador get(String name) throws Exception {
+		return (Domini.Model.Jugador) super.get(Domini.Model.Jugador.class, name);
 	}
 
 }

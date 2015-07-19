@@ -6,14 +6,16 @@
 package Xarxa.Missatges;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
  * @author JOAN
  */
 public abstract class Paquet implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Paquet(){}
 	
 	 private Exception excepcio;
@@ -39,6 +41,15 @@ public abstract class Paquet implements Serializable {
     public boolean EsConsultarCalendari(){return false;}
     public boolean EsConsultarCalendariResponse(){return false;}
     
+    public boolean EsCheckUpdate(){return false;}
+    public boolean EsBooleanResponse(){return false;}
+    public boolean EsDescarregarJar(){return false;}
+    public boolean EsDescarregarJarResponse(){return false;}
+    
+    public boolean EsVeureProva(){return false;}
+    public boolean EsPartidaProva(){return false;}
+
+    
     
     
     public Login LoginCast(){return (Login) this;}
@@ -57,7 +68,13 @@ public abstract class Paquet implements Serializable {
     public ConsultarCalendari ConsultarCalendariCast(){return (ConsultarCalendari) this;}
     public ConsultarCalendariResponse ConsultarCalendariResponseCast(){return (ConsultarCalendariResponse) this;}
     
-   
+    public CheckUpdate CheckUpdateCast(){return (CheckUpdate) this;}
+    public BooleanResponse BooleanResponseCast(){return (BooleanResponse) this;}
+    
+    public DescarregarJarResponse DescarregarJarResponseCast(){return (DescarregarJarResponse) this;}
+    
+    public VeureProvaResponse VeureProvaResponseCast(){return (VeureProvaResponse) this;}
+    public PartidaProva PartidaProvaCast(){return (PartidaProva) this;}
     
     
     

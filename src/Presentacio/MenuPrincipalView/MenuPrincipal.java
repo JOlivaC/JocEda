@@ -6,11 +6,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import Presentacio.Comuns.PanellContenidor;
+import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Comuns.PanellSeparador;
 
-public class MenuPrincipal extends PanellContenidor {
-	public MenuPrincipal(ActionListener Penjar,ActionListener VeureResultats,ActionListener VeureRanking,ActionListener VeureCalendari){
-		this.setLayout(new GridBagLayout());
+public class MenuPrincipal extends PanellGeneral {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public MenuPrincipal(ActionListener Retrocedir,ActionListener Penjar,ActionListener VeureResultats,ActionListener VeureRanking,ActionListener VeureCalendari,ActionListener VeureProves){
+		super(Retrocedir);
 		PanellSeparador P = new PanellSeparador();
 		
 		JButton penjar = new JButton("Penjar Fitxer");
@@ -28,9 +34,13 @@ public class MenuPrincipal extends PanellContenidor {
 		JButton calendari= new JButton("Veure Calendari");
 		calendari.addActionListener(VeureCalendari);
 		P.afegir(calendari);
+		
+		JButton proves= new JButton("Veure Proves");
+		proves.addActionListener(VeureProves);
+		P.afegir(proves);
 	
 		
-		this.add(P);
+		Centre.add(P);
 	}
 
 }

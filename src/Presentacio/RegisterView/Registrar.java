@@ -2,7 +2,6 @@ package Presentacio.RegisterView;
 
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.EAST;
-import static java.awt.BorderLayout.NORTH;
 import static java.awt.BorderLayout.SOUTH;
 import static java.lang.String.valueOf;
 
@@ -15,13 +14,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import Presentacio.Comuns.BotoOK;
-import Presentacio.Comuns.PanellAmbMsg;
 import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Comuns.PanellSeparador;
 import Presentacio.Comuns.TextMesCamp;
 
 public class Registrar extends PanellGeneral {
-	 private JTextField UserName;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField UserName;
 	    private JPasswordField Pass;
 	    
 	    public Registrar(ActionListener OKHandler,ActionListener Retrocedir){

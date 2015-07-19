@@ -11,7 +11,12 @@ package Xarxa.Missatges;
  */
 public class Finalitzar extends Paquet {
 
-    public boolean EsFinalitzar(){return true;}
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public boolean EsFinalitzar(){return true;}
     
     
 }

@@ -12,7 +12,11 @@ package Xarxa.Missatges;
  * @author JOAN
  */
 public class PenjarJugadorResponse extends Paquet {
-    public boolean valid;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public boolean valid;
 
     public PenjarJugadorResponse(boolean valid){
         this.valid = valid;

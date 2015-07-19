@@ -1,7 +1,11 @@
 package Xarxa.Missatges;
 
 public class Registrarse extends Paquet {
-	 public String User;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String User;
     public String Pass;
 
     public Registrarse(){}

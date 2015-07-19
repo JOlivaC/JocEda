@@ -13,7 +13,12 @@ import javax.swing.JButton;
  * @author JOAN
  */
 public class BotoOK extends JButton {
-    public BotoOK(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public BotoOK(){
         this.setText("OK");
     }
     

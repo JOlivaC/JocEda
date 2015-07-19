@@ -2,10 +2,6 @@ package Domini.Directoris;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-
 import Comunicacio.Fitxer;
 
 public abstract class Directori {
@@ -23,11 +19,16 @@ public abstract class Directori {
 	protected abstract String getDirName();
 	
 	public void CrearDirectori(){
-		directori = new File(System.getProperty("user.dir") + File.separator + getDirName());
+		directori = new File(System.getProperty("user.dir") + File.separator + "Data" + File.separator + getDirName());
+		if (!directori.exists()) directori.mkdir();
+		else if (!directori.isDirectory()) {
+			directori.delete();
+			directori.mkdir();
+		}
 	};
 	
 	public void CrearDirectori(String Clau) throws IOException{
-		directori = new File(System.getProperty("user.dir") + File.separator + getDirName() + Clau);
+		directori = new File(System.getProperty("user.dir") + File.separator + "Data" +  File.separator + getDirName() + Clau);
 		if (!directori.exists()) directori.mkdir();
 		else if (!directori.isDirectory()) {
 			directori.delete();

@@ -15,8 +15,8 @@ import java.util.Set;
 public class Usuari {
     private String username;
     private String pass;
-    private Set<Jugador> jugadors;
-    private Jugador jugadorActual;
+    private Set<Huma> jugadors;
+    private Huma jugadorActual;
     public Usuari(){
     	jugadors = new HashSet<>();
     }
@@ -38,30 +38,30 @@ public class Usuari {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public Set<Jugador> getJugadors() {
+	public Set<Huma> getJugadors() {
 		return jugadors;
 	}
-	public void setJugadors(Set<Jugador> jugadors) {
-		this.jugadors = jugadors;
+	public void setJugadors(Set<Huma> humas) {
+		this.jugadors = humas;
 	}
 	
-	public Set<Jugador> getSetJugadors(){
-		return new HashSet<Jugador>(jugadors);
+	public Set<Huma> getSetJugadors(){
+		return new HashSet<Huma>(jugadors);
 	}
 	
-	public void AfegirJugador(Jugador j){
+	public void AfegirJugador(Huma j){
 		jugadors.add(j);
 		jugadorActual = j;
 	}
 	
-	public Jugador GetJugadorActual() throws Exception{
+	public Huma GetJugadorActual() throws Exception{
 		if (jugadors.size() > 0) return jugadorActual;
 		else throw new Exception("No hi han jugadors");
 	}
-	public Jugador getJugadorActual() {
+	public Huma getJugadorActual() {
 		return jugadorActual;
 	}
-	public void setJugadorActual(Jugador jugadorActual) {
+	public void setJugadorActual(Huma jugadorActual) {
 		this.jugadorActual = jugadorActual;
 	}
 

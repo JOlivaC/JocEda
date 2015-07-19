@@ -10,4 +10,5 @@ public interface CtrlJugador {
 	public void Delete(Jugador j) throws Exception;
 	public void Update(Jugador j) throws Exception;
 	public boolean Exists(String name) throws Exception;
+	public Jugador get(String name) throws Exception;
 }

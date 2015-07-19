@@ -15,7 +15,12 @@ import javax.swing.JPanel;
  * @author JOAN
  */
 public class TextMesCamp extends JPanel {
-    public TextMesCamp(Component c1,Component c2){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public TextMesCamp(Component c1,Component c2){
         this.setLayout(new GridLayout(0,2));
         this.add(c1);
         this.add(c2);

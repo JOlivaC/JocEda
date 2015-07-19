@@ -11,6 +11,7 @@ import Comunicacio.Fitxer;
 import Comunicacio.InfoCalendariPartida;
 import Comunicacio.InfoJugadorRanking;
 import Comunicacio.InfoPartida;
+import Comunicacio.InfoUsuarisJugadors;
 import Domini.Model.Usuari;
 
 /**
@@ -36,7 +37,7 @@ public class CasUsSessio {
     	return new CasUsConsultarResultats().ConsultarResultats();
     }
     
-    public  SortedSet<InfoJugadorRanking> ConsultarClassificacio(){
+    public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws Exception{
     	return new CasUsConsultarClassificacio().ConsultarClassificacio();
     }
     
@@ -46,5 +47,9 @@ public class CasUsSessio {
     
     public SortedSet<InfoCalendariPartida> ConsultarCalendari() throws Exception{
     	return new CasUsConsultarCalendari().ConsultarCalendari();
+    }
+    
+    public InfoUsuarisJugadors ObrirProves() throws Exception{
+    	return new CasUsObrirProves().ObrirProves(loguejat);
     }
 }

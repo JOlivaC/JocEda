@@ -2,6 +2,7 @@ package Domini.CasosUs;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
@@ -11,21 +12,25 @@ import Comunicacio.InfoJugadorNPartides;
 import Comunicacio.InfoJugadorPosicio;
 import Comunicacio.InfoJugadorRanking;
 import Domini.Factories.FactoriaControladors;
-import Domini.Model.Jugador;
+import Domini.Model.Huma;
+import Domini.Model.Normes;
+import Domini.Model.Partida;
 import Domini.Model.ResultatJugador;
 import Domini.Model.Usuari;
 
 public class CasUsConsultarClassificacio {
-	public SortedSet<InfoJugadorRanking> ConsultarClassificacio(){
+	public SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws Exception{
 		SortedSet<InfoJugadorRanking> ret = new TreeSet<>();
 		
-		Set<ResultatJugador> resultats = FactoriaControladors.getInstance().getCtrlResultats().getAll();
+		List<Partida> partides = FactoriaControladors.getInstance().getCtrlLliga().Get(Normes.GetIndexLliga()).getPartides();
+		Set<ResultatJugador> resultats = new HashSet<>();
+		for (Partida p: partides) resultats.addAll(p.getResultat());
 		Set<Usuari> usuaris = FactoriaControladors.getInstance().getCtrlUsuari().getAll();
 		
 		for (Usuari u: usuaris){
-			Set<Jugador> jugadors = u.getSetJugadors();
+			Set<Huma> humas = u.getSetJugadors();
 			Set<ResultatJugador> partidesJugades = new HashSet<>();
-			for (Jugador j: jugadors){
+			for (Huma j: humas){
 				Set<ResultatJugador> Descartats = new HashSet<>();
 				for (ResultatJugador RJ: resultats){
 					if (RJ.getJ().equals(j)){
