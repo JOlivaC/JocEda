@@ -76,7 +76,7 @@ public class ControladorPrincipal {
    	 CanviarContext("Registrar-se",VistaRegistrar);
    }
     private void MostrarPenjar(){
-    	 VistaPenjar = new Presentacio.PenjarView.Penjar(new FitxerOK(),new Retrocedir());
+    	 VistaPenjar = new Presentacio.PenjarView.Penjar(new FitxerOK(),new  FitxerPIV(),new Retrocedir());
     	 CanviarContext("Penjar Jugador",VistaPenjar);
     }
     private void MostrarMenu(){
@@ -187,7 +187,7 @@ public class ControladorPrincipal {
     	try {
     		File f = VistaPenjar.getFitxer();
     		Domini.EnviarFitxer(f);
-    		MostrarMenu();
+    		VistaPenjar.MostraMsg("El teu jugador s'ha pujat amb exit");
     	}
     	catch (NoHiHaFitxer e){
     		VistaPenjar.MostraMsg("No hi ha fitxer");
@@ -200,6 +200,24 @@ public class ControladorPrincipal {
 			VistaPenjar.MostraMsg(e.getMessage());
 		}
     }
+    
+    public void PIVFitxer() {
+    	try {
+    		File f = VistaPenjar.getFitxer();
+    		new Client.VisualitzarPartida.VisualitzarPartida().Visualitzar(Domini.EnviarIVisualitzar(f));
+    	}
+    	catch (NoHiHaFitxer e){
+    		VistaPenjar.MostraMsg("No hi ha fitxer");
+    	} catch (ClassNotFoundException e) {
+		} catch (IOException e) {
+			VistaPenjar.MostraMsg("Error de xarxa");
+		} catch (FitxerInvalid e) {
+			VistaPenjar.MostraMsg("Fitxer Invalid");
+		} catch (Exception e) {
+			VistaPenjar.MostraMsg(e.getMessage());
+		}
+		
+	}
     
     private void CanviarContext(String titol,PanellContenidor Panell){
     	Panell.setTitol(titol);
@@ -276,6 +294,11 @@ public class ControladorPrincipal {
 			
 		}
     	
+    }
+    private class FitxerPIV implements ActionListener{
+    	public void actionPerformed(ActionEvent e){
+    		PIVFitxer();
+    	}
     }
     private class FitxerOK implements ActionListener{
     	public void actionPerformed(ActionEvent e){
@@ -365,5 +388,7 @@ public class ControladorPrincipal {
 		}
     	
     }
+
+	
     
 }

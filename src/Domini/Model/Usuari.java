@@ -64,6 +64,10 @@ public class Usuari {
 	public void setJugadorActual(Huma jugadorActual) {
 		this.jugadorActual = jugadorActual;
 	}
+	
+	public boolean equals(Object o){
+		return username.equals(((Usuari) o).username);
+	}
 
 	
 	

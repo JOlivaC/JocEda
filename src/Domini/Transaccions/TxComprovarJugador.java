@@ -1,5 +1,6 @@
 package Domini.Transaccions;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,10 +18,11 @@ import Domini.Model.Jugador;
 
 public class TxComprovarJugador {
 	private Fitxer j;
-	
+	private Fitxer result;
 	public TxComprovarJugador(Fitxer j){
 		this.j = j;
 	}
+	public Fitxer getResult(){return result;}
 	
 	public void Executar() throws Exception{
 		DirectoriProvaJugador dir = new DirectoriProvaJugador(j.getNomSenseExt());
@@ -46,8 +48,9 @@ public class TxComprovarJugador {
 		c.compilarJoc(dir.getDir(),new DirectoriObjectes().getDir());
 		
 		Executor e = new Executor();
-		e.executarJoc(jugadors, dir.getDir(),new DirectoriMapes().getDir());	
+		result = new Fitxer(e.executarJoc(jugadors, dir.getDir(),new DirectoriMapes().getDir()));	
 		
 		dir.DestruirDirectori();
+		
 	}
 }

@@ -109,6 +109,13 @@ public class Solicitant implements CapaDominiInterface {
 		s.Escriure(new Xarxa.Missatges.PartidaProva(jugadors));
 		return s.Llegir().VisualitzarPartidaResponseCast().getPartida();
 	}
+
+	@Override
+	public Fitxer EnviarIVisualitzar(File f) throws Exception {
+		 s.Escriure(new Xarxa.Missatges.PenjarIVisualitzar(new Fitxer(f)));
+		 return s.Llegir().VisualitzarPartidaResponseCast().getPartida();
+		
+	}
     
    
 }

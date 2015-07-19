@@ -49,12 +49,13 @@ public abstract class Paquet implements Serializable {
     public boolean EsVeureProva(){return false;}
     public boolean EsPartidaProva(){return false;}
 
-    
+    public boolean EsPenjarIVisualitzar(){return false;}
     
     
     public Login LoginCast(){return (Login) this;}
     public Finalitzar FinalitzarCast(){return (Finalitzar) this;}
     public PenjarJugador PenjarJugadorCast(){return (PenjarJugador) this;}
+    public PenjarIVisualitzar PenjarIVisualitzarCast(){return (PenjarIVisualitzar) this;}
     public LoginResponse LoginResponseCast(){return (LoginResponse) this;}
     public PenjarJugadorResponse PenjarJugadorResponseCast(){return (PenjarJugadorResponse) this;}
     public ConsultarResultats ConsultarResultatsCast(){return (ConsultarResultats) this;}

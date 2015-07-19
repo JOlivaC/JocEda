@@ -29,6 +29,8 @@ public interface CapaDominiInterface {
     
     public void EnviarFitxer(File f) throws IOException, ClassNotFoundException, FitxerInvalid, Exception;
     
+    public Fitxer EnviarIVisualitzar(File f) throws IOException, ClassNotFoundException, FitxerInvalid, Exception;
+    
     public SortedSet<InfoPartida> ConsultarResultats() throws IOException, ClassNotFoundException, Exception;
     
     public  SortedSet<InfoJugadorRanking> ConsultarClassificacio() throws IOException, ClassNotFoundException, Exception;

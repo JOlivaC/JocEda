@@ -12,14 +12,17 @@ public class Propietats {
 	private static final String PIP = "IP";
 	private static final String PPort = "PORT";
 	private static final String PVersio = "VERSIO";
+	private static final String PRutaFitxer = "RUTAFITXER";
 	
 	private static final String DefaultIP = "localhost";
 	private static final int DefaultPort = 4000;
 	private static final int DefaultVersio = 0;
+	private static final String DefaultRutaFitxer = "";
 	
 	private String ip;
 	private int port;
 	private int versio;
+	private String rutafitxer;
 	Properties p;
 	public Propietats() throws FileNotFoundException, IOException {
 		p  = new Properties();
@@ -44,11 +47,19 @@ public class Propietats {
 	public void setVersio(int versio) {
 		this.versio = versio;
 	}
+	public String getRutafitxer() {
+		return rutafitxer;
+	}
+	public void setRutafitxer(String rutafitxer) {
+		this.rutafitxer = rutafitxer;
+	}
+	
 	
 	public void Save() throws FileNotFoundException, IOException {
 		p.setProperty(PIP, this.getIp());
 		p.setProperty(PPort, String.valueOf(this.getPort()));
 		p.setProperty(PVersio, String.valueOf(this.getVersio()));	
+		p.setProperty(PRutaFitxer, this.getRutafitxer());
 		p.store(new FileOutputStream(new File(System.getProperty("user.dir") + File.separator + config)),config);
 	}
 	
@@ -62,7 +73,7 @@ public class Propietats {
 		 this.setIp(p.getProperty(PIP));
 		 this.setPort(Integer.valueOf(p.getProperty(PPort)));
 		 this.setVersio(Integer.valueOf(p.getProperty(PVersio)));	
-		 
+		 this.setRutafitxer(p.getProperty(PRutaFitxer));
 		 
 		 
 	}
@@ -71,6 +82,7 @@ public class Propietats {
 		p.setProperty(PIP, DefaultIP);
 		p.setProperty(PPort,String.valueOf(DefaultPort));
 		p.setProperty(PVersio,String.valueOf(DefaultVersio));	
+		p.setProperty(PRutaFitxer,String.valueOf(DefaultRutaFitxer));
 		p.store(new FileOutputStream(new File(System.getProperty("user.dir") + File.separator + config)),config);
 	}
 	

@@ -51,6 +51,7 @@ public class Sesio extends Thread {
                     else if (dada.EsDescarregarJar()) DescarregarJar();
                     else if (dada.EsVeureProva()) VeureProva();
                     else if (dada.EsPartidaProva()) PartidaDeProva(dada.PartidaProvaCast());
+                    else if (dada.EsPenjarIVisualitzar()) PenjarIVisualitzar(dada.PenjarIVisualitzarCast());
                     
                 } catch (Exception ex) {
                     end = true;
@@ -69,6 +70,19 @@ public class Sesio extends Thread {
     }
     
   
+
+	private void PenjarIVisualitzar(PenjarIVisualitzar PV) throws IOException {
+		VisualitzarPartidaResponse R;
+		try {
+			R = new VisualitzarPartidaResponse(CUSessio.PenjarIVisualitzar(PV.getPenjarJugador()));
+		}
+		catch (Exception e){
+			R = new VisualitzarPartidaResponse(e);
+		}
+		
+		connexio.Escriure(R);
+		
+	}
 
 	private void Penjar(PenjarJugador PJ) throws IOException {
     	PenjarJugadorResponse R;

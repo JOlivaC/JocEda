@@ -8,6 +8,7 @@ package Domini.CasosUs;
 import Comunicacio.Fitxer;
 import Domini.Factories.FactoriaControladors;
 import Domini.Model.Huma;
+import Domini.Model.Jugador;
 import Domini.Model.Usuari;
 import Domini.Transaccions.TxCompilarJugador;
 import Domini.Transaccions.TxComprovarJugador;
@@ -19,7 +20,8 @@ import Domini.Transaccions.TxComprovarJugador;
 public class CasUsPenjarJugador {
 	private Usuari u;
     public CasUsPenjarJugador(Usuari u){this.u = u;}
-    public void PenjarJugador(Fitxer f) throws Exception{
+    public Fitxer PenjarJugador(Fitxer f) throws Exception{
+    	Fitxer resultat;
     	Fitxer oo;
     	try{
     		TxCompilarJugador t = new TxCompilarJugador(f);
@@ -34,20 +36,37 @@ public class CasUsPenjarJugador {
     	try{
     		TxComprovarJugador t = new TxComprovarJugador(oo);
     		t.Executar();
+    		resultat = t.getResult();
+    		
     	}
     	catch (Exception e){
     		throw new Exception("El jugador compila pero no passa la prova");
     	}
     	
     	Huma j = new Huma();
-    	if (!FactoriaControladors.getInstance().getCtrlHuma().Exists(f.getNomSenseExt())){
-       	 	j.setJugador(oo);
+    	
+    	if (!FactoriaControladors.getInstance().getCtrlJugador().Exists(f.getNomSenseExt())){
+    		j.setJugador(oo);
        	 	j.setName(f.getNomSenseExt());
        	 	j.setOwner(u);
        	 	u.AfegirJugador(j);
        	 	FactoriaControladors.getInstance().getCtrlUsuari().Update(u);   
     	}
-    	else throw new Exception("El nom del jugador ja existeix");
+    	else {
+    		Jugador k = FactoriaControladors.getInstance().getCtrlJugador().get(f.getNomSenseExt());
+    		if (k.EsHuma()){
+    			Huma h = (Huma)k;
+    			if (h.getOwner().equals(u)){
+        			k.setJugador(oo);
+        			FactoriaControladors.getInstance().getCtrlHuma().Update(h);
+        		}
+    			else throw new Exception("El nom del jugador ja existeix");
+    		}
+    		
+    		else throw new Exception("El nom del jugador ja existeix");
+    	}
+    	
+    	return resultat;
     
     }
 }

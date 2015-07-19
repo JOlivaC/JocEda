@@ -38,6 +38,23 @@ public class PanellSeparador extends JPanel {
         Central.add(createVerticalStrut(Separacio));
        
     }
+    
+    public PanellSeparador(boolean Orientacio){
+        
+
+        this.setLayout(new GridBagLayout());
+        
+        
+        Central = new JPanel();
+        if (Orientacio)
+        	l = new BoxLayout(Central, Y_AXIS);
+        else 
+        	l = new BoxLayout(Central,BoxLayout.X_AXIS);
+        Central.setLayout(l);
+        this.add(Central);
+        Central.add(createVerticalStrut(Separacio));
+       
+    }
    
     public void afegir(Component c){
         

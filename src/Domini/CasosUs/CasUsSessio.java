@@ -33,6 +33,11 @@ public class CasUsSessio {
     	u.PenjarJugador(f);	
     }
     
+    public Fitxer PenjarIVisualitzar(Fitxer f) throws Exception{
+    	CasUsPenjarJugador u = new CasUsPenjarJugador(loguejat);
+    	return u.PenjarJugador(f);
+    }
+    
     public  SortedSet<InfoPartida> ConsultarResultats() throws Exception{
     	return new CasUsConsultarResultats().ConsultarResultats();
     }
@@ -52,4 +57,6 @@ public class CasUsSessio {
     public InfoUsuarisJugadors ObrirProves() throws Exception{
     	return new CasUsObrirProves().ObrirProves(loguejat);
     }
+    
+    
 }

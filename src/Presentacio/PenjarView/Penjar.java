@@ -3,11 +3,14 @@ package Presentacio.PenjarView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
+import Client.BD.Propietats;
 import Excepcions.NoHiHaFitxer;
 import Presentacio.Comuns.PanellGeneral;
 import Presentacio.Comuns.PanellSeparador;
@@ -21,7 +24,7 @@ public class Penjar extends PanellGeneral{
 	private File f;
 	private JLabel FitxerText;
 	
-	public Penjar(ActionListener Acceptar,ActionListener Retrocedir){
+	public Penjar(ActionListener Acceptar,ActionListener PenjarIVeure,ActionListener Retrocedir){
 			super(Retrocedir);
 	        
 			
@@ -35,17 +38,40 @@ public class Penjar extends PanellGeneral{
 	        PanellSeparador S = new PanellSeparador();
 	        S.afegir(Seleccio);
 	        
+	        PanellSeparador p = new PanellSeparador(false);
 	        JButton BotoAcceptar = new JButton("Acceptar");
 	        BotoAcceptar.addActionListener(Acceptar);
 	        
-	        S.afegir(BotoAcceptar);
+	        JButton BotoPIV = new JButton("Acceptar i Visualitzar");
+	        BotoPIV.addActionListener(PenjarIVeure);
+	        
+	        p.add(BotoAcceptar);
+	        p.add(BotoPIV);
+	        
+	        S.afegir(p);
 	        Centre.add(S);
 	}
 	public void SeleccionaFitxer() {
-		 JFileChooser Sel = new JFileChooser();
+		 JFileChooser Sel;
+		 Propietats p = null;
+		try {
+			p = new Propietats();
+			if (p.getRutafitxer() != null) Sel = new JFileChooser(p.getRutafitxer());
+			else Sel = new JFileChooser();
+		} catch (IOException e) {
+			Sel = new JFileChooser();
+		}
 		 if (Sel.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
 			 f = Sel.getSelectedFile();
 			 FitxerText.setText(f.getName());
+			 if (p != null) {
+				 p.setRutafitxer(f.getParent());
+				 try {
+					p.Save();
+				} catch (IOException e) {
+					
+				}
+			 }
 		 }
 	}
 	public File getFitxer()throws NoHiHaFitxer{
