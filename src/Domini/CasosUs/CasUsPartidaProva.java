@@ -17,7 +17,7 @@ public class CasUsPartidaProva {
 		for (String s: Jugadors){participants.add(FactoriaControladors.getInstance().getCtrlJugador().get(s));}
 		
 		
-		TxFerPartida t = new TxFerPartida(participants,"prova");
+		TxFerPartida t = new TxFerPartida(participants,"Prova" + String.valueOf(this.hashCode()));
 		t.Executar();
 		return t.getResultat();
 		

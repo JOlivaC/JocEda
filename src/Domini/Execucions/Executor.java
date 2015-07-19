@@ -119,7 +119,7 @@ public class Executor {
         }
     }
     
-    final private static long timeout = 5;
+    final private static long timeout = 3;
     
     final private static String[] maps = {"akamatsu.cnf","default.cnf","kitano.cnf","nanahara.cnf",
         "chigusa.cnf","kiriyama.cnf","nakagawa.cnf","utsumi.cnf"};

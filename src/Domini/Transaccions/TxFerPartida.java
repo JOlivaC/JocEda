@@ -45,10 +45,17 @@ public class TxFerPartida {
 	public void Executar() throws Exception{
 		IniciarEstructures();
 		SituarFitxers();
-		CompilarPartida();
-		RealitzarPartida();
-		LlegirResultat();	
-		Finalitzar();
+		try{
+			CompilarPartida();
+			RealitzarPartida();
+			LlegirResultat();	
+		}
+		catch (Exception e){
+			throw e;
+		}
+		finally {
+			Finalitzar();
+		}
 	}
 	
 	public Fitxer getResultat(){
@@ -58,12 +65,7 @@ public class TxFerPartida {
 		return r;
 	}
 	
-	private void SituarObjectesPartida() throws Exception{
-		DirectoriObjectes objectes = new DirectoriObjectes();
-		dir.CopyAll(objectes);
-	}
 	private void SituarFitxers() throws Exception{
-		//SituarObjectesPartida();
 		for (Jugador j: inscritsMap.values()){
 			dir.AfegirJugador(j.getJugador());
 		}	

@@ -205,6 +205,7 @@ public class ControladorPrincipal {
     	try {
     		File f = VistaPenjar.getFitxer();
     		new Client.VisualitzarPartida.VisualitzarPartida().Visualitzar(Domini.EnviarIVisualitzar(f));
+    		VistaPenjar.MostraMsg("Fitxer Penjat amb exit");
     	}
     	catch (NoHiHaFitxer e){
     		VistaPenjar.MostraMsg("No hi ha fitxer");
